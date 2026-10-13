@@ -10,6 +10,16 @@
   --accent-saffron: #d97706;
   --line-color: rgba(94, 10, 20, .17);
   --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba 48%, #b38728);
+  --haldi-main: #e5a910;
+  --haldi-light: #fbbf24;
+  --haldi-wash: #fff8d5;
+  --haldi-ink: #a87412;
+  --henna-main: #0f382a;
+  --henna-accent: #0d5c5b;
+  --henna-ink: #246b5a;
+  --agni-main: #680e1c;
+  --agni-ink: #8e2431;
+  --event-glow: .26;
   --serif: "Cinzel", "Playfair Display", Georgia, serif;
   --devanagari: "Noto Serif Devanagari", serif;
   --sans: "DM Sans", Arial, sans-serif;

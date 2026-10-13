@@ -36,6 +36,8 @@ export function initGallery(wedding, i18n) {
     entries.forEach((photo, index) => {
       const button = document.createElement("button");
       button.className = "gallery-thumb";
+      button.classList.add("reveal-on-scroll");
+      if (document.documentElement.classList.contains("motion-initialized")) button.classList.add("is-visible");
       button.type = "button";
       button.setAttribute("aria-label", `${t("galleryOpen")}: ${text(photo.caption)}`);
       const picture = document.createElement("img");

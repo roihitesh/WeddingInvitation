@@ -25,6 +25,7 @@ export function initSoundscape() {
       }
       audioContext ||= new AudioContextType();
       await audioContext.resume();
+      if (!enabled) playOpeningChime(audioContext);
       master = audioContext.createGain();
       master.gain.setValueAtTime(0, audioContext.currentTime);
       master.gain.linearRampToValueAtTime(0.055, audioContext.currentTime + 1.8);
@@ -74,4 +75,40 @@ export function initSoundscape() {
 
   button.addEventListener("click", () => { setEnabled(!enabled).catch(() => { enabled = false; label(); }); });
   return { setEnabled };
+}
+
+function playOpeningChime(context) {
+  const now = context.currentTime;
+  [659.25, 880, 1174.66].forEach((frequency, index) => {
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const delay = context.createDelay(.6);
+    const feedback = context.createGain();
+    const filter = context.createBiquadFilter();
+    oscillator.type = index === 0 ? "triangle" : "sine";
+    oscillator.frequency.setValueAtTime(frequency, now + index * .075);
+    filter.type = "lowpass";
+    filter.frequency.value = 4200;
+    gain.gain.setValueAtTime(.0001, now + index * .075);
+    gain.gain.exponentialRampToValueAtTime(.035 / (index + 1), now + index * .075 + .025);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + 1.1);
+    delay.delayTime.value = .22;
+    feedback.gain.value = .2;
+    oscillator.connect(filter).connect(gain).connect(context.destination);
+    gain.connect(delay).connect(feedback).connect(delay);
+    delay.connect(context.destination);
+    oscillator.start(now + index * .075);
+    oscillator.stop(now + 1.15);
+  });
+  const pluck = context.createOscillator();
+  const pluckGain = context.createGain();
+  pluck.type = "triangle";
+  pluck.frequency.setValueAtTime(392, now + .04);
+  pluck.frequency.exponentialRampToValueAtTime(293.66, now + .32);
+  pluckGain.gain.setValueAtTime(.0001, now + .04);
+  pluckGain.gain.exponentialRampToValueAtTime(.02, now + .06);
+  pluckGain.gain.exponentialRampToValueAtTime(.0001, now + .45);
+  pluck.connect(pluckGain).connect(context.destination);
+  pluck.start(now + .04);
+  pluck.stop(now + .46);
 }

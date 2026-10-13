@@ -37,6 +37,7 @@ export function setupRSVP(wedding) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
+    navigator.vibrate?.(20);
     if (!form.querySelector('input[name="ceremonies"]:checked')) {
       showToast("rsvpEventsRequired");
       return;

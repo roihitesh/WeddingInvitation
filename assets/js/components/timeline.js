@@ -37,10 +37,16 @@ export function renderTimeline(wedding, i18n) {
   const fragment = document.createDocumentFragment();
   wedding.events.forEach((event, index) => {
     const card = document.createElement("article");
-    card.className = "event-card";
+    card.className = `event-card event-${event.id} reveal-on-scroll`;
+    if (document.documentElement.classList.contains("motion-initialized")) card.classList.add("is-visible");
     const date = document.createElement("p");
     date.className = "event-date";
     date.textContent = safeDate(event.dateTime, language);
+    const symbol = document.createElement("span");
+    symbol.className = "event-symbol";
+    symbol.setAttribute("aria-hidden", "true");
+    symbol.textContent = ({ haldi: "✺", mehendi: "❧", sangeet: "♫", baraat: "✤", phere: "ॐ" })[event.id] || "✿";
+    date.append(" ", symbol);
     const number = document.createElement("span");
     number.className = "event-index";
     number.textContent = String(index + 1).padStart(2, "0");

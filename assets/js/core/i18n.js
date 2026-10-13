@@ -9,8 +9,9 @@ export function initI18n(tenant) {
   language = supported.includes(saved) ? saved : (supported.includes(detected) ? detected : supported[0]);
   applyLanguage();
 
-  document.querySelectorAll("[data-language]").forEach((button) => {
-    button.addEventListener("click", () => setLanguage(button.dataset.language));
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest?.("[data-language]");
+    if (button) setLanguage(button.dataset.language);
   });
   return { t, text, setLanguage, getLanguage };
 }

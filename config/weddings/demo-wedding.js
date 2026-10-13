@@ -161,15 +161,21 @@ const ui = {
   },
 };
 
+const languageOptions = {
+  en: { native: "English", shortLabel: "A", icon: "✒", subtext: "Traditional Wedding Invitation" },
+  hi: { native: "हिन्दी", shortLabel: "अ", icon: "दीप", subtext: "पारंपरिक शुभ विवाह पत्रिका" },
+};
+
 const weddingData = {
   id: "demo-wedding",
   meta: { title: "Hitesh & Shivanee · Wedding Invitation", ogImage: "assets/images/og-preview.svg" },
   theme: { preset: "royal-maroon-gold", customOverrides: {} },
   supportedLanguages: ["en", "hi"],
+  languageOptions,
   defaultLanguage: "en",
   ui,
   blessings: {
-    invokingDeity: { icon: "ganesha", en: "|| Shree Ganeshay Namah ||", hi: "॥ श्री गणेशाय नमः ॥" },
+    invokingDeity: { icon: "ganesha", en: "॥ ॐ श्री गणेशाय नमः ॥", hi: "॥ श्री गणेशाय नमः ॥" },
     shloka: {
       sanskrit: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।\nनिर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥",
       meaning_en: "O Lord with the curved trunk and radiant form, may all our undertakings be free of obstacles.",
@@ -211,4 +217,4 @@ const weddingData = {
   },
 };
 
-export { weddingData, ui as sharedInterface };
+export { weddingData, ui as sharedInterface, languageOptions as sharedLanguages };

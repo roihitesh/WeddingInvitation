@@ -12,6 +12,7 @@ export function initEnvelope({ openButton, sealButton, gate, patrikaScreen, main
   openButton.addEventListener("click", enter, { once: true });
   sealButton.addEventListener("click", () => {
     sealButton.disabled = true;
+    navigator.vibrate?.(20);
     onOpen?.();
     patrika.classList.add("is-unsealed");
     animatePetals(canvas);

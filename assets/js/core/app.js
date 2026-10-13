@@ -8,6 +8,7 @@ import { setupRSVP } from "../components/rsvp.js";
 import { initSoundscape } from "./soundscape.js";
 import { initLanguageModal } from "../components/LanguageModal.js";
 import { initCeremonyDetails } from "../components/ceremony-details.js";
+import { initVisualEffects } from "./visual-effects.js";
 
 const setText = (id, value) => { const element = document.getElementById(id); if (element) element.textContent = value; };
 
@@ -28,8 +29,8 @@ async function bootstrap() {
   setText("invoking-mantra", text(wedding.blessings.invokingDeity));
   setText("sanskrit-shloka", wedding.blessings.shloka.sanskrit);
   setText("shloka-meaning", wedding.blessings.shloka[`meaning_${i18n.getLanguage()}`] || wedding.blessings.shloka.meaning_en || i18n.t("shlokaMeaning"));
-  setText("bride-name", text(bride.name));
-  setText("groom-name", text(groom.name));
+  renderNameLetters(document.getElementById("bride-name"), text(bride.name));
+  renderNameLetters(document.getElementById("groom-name"), text(groom.name));
   setText("auspicious-tithi", text(wedding.muhurat.auspiciousTithi));
   setText("rsvp-deadline", wedding.rsvp.deadline);
   setText("muhurat-date", `${new Intl.DateTimeFormat(i18n.getLanguage(), { dateStyle: "full", timeStyle: "short" }).format(new Date(wedding.muhurat.dateTime))}`);
@@ -55,15 +56,36 @@ async function bootstrap() {
   renderTimeline(wedding, i18n);
   initGallery(wedding, i18n);
   setupRSVP(wedding, i18n);
+  initVisualEffects();
 
   window.addEventListener("wedding:language", (event) => {
     const language = event.detail.language;
+    renderNameLetters(document.getElementById("bride-name"), text(bride.name));
+    renderNameLetters(document.getElementById("groom-name"), text(groom.name));
     setText("shloka-meaning", wedding.blessings.shloka[`meaning_${language}`] || i18n.t("shlokaMeaning"));
     setText("muhurat-date", new Intl.DateTimeFormat(language, { dateStyle: "full", timeStyle: "short" }).format(new Date(wedding.muhurat.dateTime)));
     document.querySelectorAll(".footer-names").forEach((element) => { element.textContent = `${text(bride.name)} & ${text(groom.name)}`; });
     renderTimeline(wedding, i18n);
     // Gallery owns its single language-change listener.
   });
+}
+
+function renderNameLetters(element, value) {
+  element.setAttribute("aria-label", value);
+  element.setAttribute("role", "text");
+  const clusters = typeof Intl.Segmenter === "function"
+    ? [...new Intl.Segmenter(document.documentElement.lang, { granularity: "grapheme" }).segment(value)].map((part) => part.segment)
+    : Array.from(value);
+  const fragment = document.createDocumentFragment();
+  clusters.forEach((cluster, index) => {
+    const letter = document.createElement("span");
+    letter.className = "name-letter";
+    letter.setAttribute("aria-hidden", "true");
+    letter.textContent = cluster === " " ? "\u00a0" : cluster;
+    letter.style.setProperty("--letter-index", String(index));
+    fragment.append(letter);
+  });
+  element.replaceChildren(fragment);
 }
 
 function renderLineage(wedding, i18n) {

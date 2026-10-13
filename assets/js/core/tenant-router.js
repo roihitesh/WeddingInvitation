@@ -1,5 +1,5 @@
 import { tenants, themePresets } from "../../../config/tenants.js";
-import { weddingData as fallbackWedding, sharedInterface } from "../../../config/weddings/demo-wedding.js";
+import { weddingData as fallbackWedding, sharedInterface, sharedLanguages } from "../../../config/weddings/demo-wedding.js";
 
 export function requestedTenantId(location = window.location) {
   const query = new URLSearchParams(location.search).get("id");
@@ -22,7 +22,7 @@ export async function resolveTenant(location = window.location) {
   const requestedId = requestedTenantId(location);
   const requestedWedding = tenants[requestedId];
   const wedding = requestedWedding && isValidWedding(requestedWedding) ? requestedWedding : fallbackWedding;
-  const ui = Object.fromEntries(["en", "hi"].map((language) => [
+  const ui = Object.fromEntries(wedding.supportedLanguages.map((language) => [
     language,
     { ...(sharedInterface[language] || sharedInterface.en), ...(wedding.ui[language] || {}) },
   ]));
@@ -35,5 +35,5 @@ export async function resolveTenant(location = window.location) {
     }
   });
 
-  return { ...wedding, ui, requestedId, notFound: requestedId !== wedding.id && requestedId !== "demo-wedding" };
+  return { ...wedding, ui, languageOptions: { ...sharedLanguages, ...(wedding.languageOptions || {}) }, requestedId, notFound: requestedId !== wedding.id && requestedId !== "demo-wedding" };
 }
