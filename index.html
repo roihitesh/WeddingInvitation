@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#5e0a14" />
+    <meta name="description" content="A traditional Hindu wedding invitation." />
+    <meta property="og:title" content="A Wedding Invitation" />
+    <meta property="og:image" content="assets/images/og-preview.svg" />
+    <title>A Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/themes.css" />
+    <link rel="stylesheet" href="assets/css/typography.css" />
+    <link rel="stylesheet" href="assets/css/envelope.css" />
+    <link rel="stylesheet" href="assets/css/language-gate.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <script type="module" src="assets/js/core/app.js"></script>
+  </head>
+  <body>
+    <div class="sample-banner" data-i18n="sample"></div>
+
+    <section class="entry-gate" id="entry-gate" aria-labelledby="entry-title">
+      <div class="entry-card">
+        <div class="gold-rule"></div>
+        <svg class="ganesha-mark" viewBox="0 0 100 100" role="img" aria-label="Ganesha emblem">
+          <circle cx="50" cy="50" r="43" fill="none" stroke="url(#entryGold)" stroke-width="1.5" />
+          <path d="M50 24c-10 0-17 8-17 19 0 7 3 12 8 15-7 2-12 8-12 16 0 8 6 13 14 13 7 0 12-4 14-10 1-4-1-7-4-9-4-2-8-1-10 2-2 2-2 5 0 7-5 0-8-3-8-8 0-8 8-13 18-13 8 0 14 4 14 11 0 6-4 9-10 9v8c11 0 19-6 19-17 0-9-6-16-15-19 4-4 7-10 7-17 0-11-8-19-18-19Zm-8 18c0-5 3-9 8-9s8 4 8 9c0 5-3 9-8 9s-8-4-8-9Zm-12 2c-10 0-17 7-17 17 0 8 4 14 11 17l4-7c-4-2-6-5-6-10 0-5 3-9 8-9h5v-8h-5Zm40 0v8h5c5 0 8 4 8 9 0 5-2 8-6 10l4 7c7-3 11-9 11-17 0-10-7-17-17-17h-5Z" fill="url(#entryGold)" />
+          <defs><linearGradient id="entryGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bf953f"/><stop offset=".5" stop-color="#fcf6ba"/><stop offset="1" stop-color="#b38728"/></linearGradient></defs>
+        </svg>
+        <p class="entry-mantra" id="entry-mantra"></p>
+        <p class="entry-eyebrow" data-i18n="entryEyebrow"></p>
+        <h1 id="entry-title" data-i18n-html="entryTitle"></h1>
+        <p class="entry-welcome" data-i18n="entryWelcome"></p>
+        <p class="entry-language-heading" data-i18n="chooseLanguage"></p>
+        <div class="language-choice" role="radiogroup" aria-label="Choose language">
+          <button type="button" role="radio" data-language-card="en" aria-checked="false"><span class="language-card-icon" aria-hidden="true">✒</span><span class="language-native">English</span><span class="language-card-subtext" data-i18n="englishCardSubtext"></span></button>
+          <button type="button" role="radio" data-language-card="hi" aria-checked="false"><span class="language-card-icon" aria-hidden="true">दीप</span><span class="language-native">हिन्दी</span><span class="language-card-subtext" data-i18n="hindiCardSubtext"></span></button>
+        </div>
+        <button class="button button-gold" id="enter-invitation" type="button"><span data-i18n="enter"></span><span aria-hidden="true">↗</span></button>
+        <div class="gold-rule"></div>
+      </div>
+    </section>
+
+    <section class="patrika-screen" id="patrika-screen" aria-label="Wedding invitation envelope" hidden>
+      <div class="patrika-copy">
+        <p class="eyebrow" data-i18n="opening"></p>
+        <div class="patrika" id="patrika">
+          <div class="patrika-card" aria-hidden="true"><span class="card-om">ॐ</span><span class="card-vine">❋</span><span class="card-vine">❋</span></div>
+          <div class="patrika-flap"></div>
+          <button class="tilak-seal" id="open-patrika" type="button" aria-label="Open the Lagan Patrika"><span class="seal-ring">ॐ</span></button>
+        </div>
+        <p class="patrika-hint" data-i18n="sealHint"></p>
+      </div>
+    </section>
+
+    <canvas class="petal-canvas" id="petal-canvas" aria-hidden="true"></canvas>
+
+    <header class="sacred-header" id="site-header" hidden>
+      <a class="header-mark" href="#top" aria-label="Back to invitation">ॐ</a>
+      <nav aria-label="Invitation navigation">
+        <a href="#hero" data-i18n="navStory"></a>
+        <a href="#events" data-i18n="navEvents"></a>
+        <a href="#gallery" data-i18n="navGallery"></a>
+        <a href="#rsvp" data-i18n="navRsvp"></a>
+      </nav>
+      <span class="header-ornament" aria-hidden="true">✽</span>
+    </header>
+
+    <main id="invitation" hidden>
+      <section class="sacred-opening" id="top">
+        <div class="sacred-motif" aria-hidden="true">ॐ</div>
+        <p class="invoking-mantra" id="invoking-mantra"></p>
+        <blockquote class="sanskrit-shloka" id="sanskrit-shloka"></blockquote>
+        <p class="meaning-badge" id="shloka-meaning"></p>
+      </section>
+
+      <section class="hero-section" id="hero">
+        <div class="hero-ornament hero-ornament-left" aria-hidden="true">❋</div>
+        <p class="eyebrow" data-i18n="heroEyebrow"></p>
+        <div class="lineage-block" id="lineage"></div>
+        <h1 class="couple-names"><span id="bride-name"></span><i aria-hidden="true">&amp;</i><span id="groom-name"></span></h1>
+        <p class="invitation-line" data-i18n="invitationLine"></p>
+        <p class="tithi"><span data-i18n="tithiLabel"></span> <strong id="auspicious-tithi"></strong></p>
+        <div class="muhurat-block">
+          <p class="eyebrow" data-i18n="countdownTitle"></p>
+          <div class="countdown" id="countdown" aria-live="polite"></div>
+          <p class="muhurat-date" id="muhurat-date"></p>
+        </div>
+        <div class="hero-ornament hero-ornament-right" aria-hidden="true">❋</div>
+      </section>
+
+      <section class="events-section section-shell" id="events">
+        <div class="section-heading"><p class="eyebrow" data-i18n="eventsEyebrow"></p><h2 data-i18n="eventsTitle"></h2><p data-i18n="eventsIntro"></p></div>
+        <div class="event-grid" id="event-grid"></div>
+      </section>
+
+      <section class="gallery-section section-shell" id="gallery">
+        <div class="section-heading"><p class="eyebrow" data-i18n="galleryEyebrow"></p><h2 data-i18n="galleryTitle"></h2><p data-i18n="galleryIntro"></p></div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <section class="rsvp-section section-shell" id="rsvp">
+        <div class="section-heading"><p class="eyebrow" data-i18n="rsvpEyebrow"></p><h2 data-i18n="rsvpTitle"></h2><p><span data-i18n="rsvpIntro"></span> <strong id="rsvp-deadline"></strong></p></div>
+        <form class="rsvp-form" id="rsvp-form">
+          <label for="guest-name" data-i18n="guestName"></label>
+          <input id="guest-name" name="guestName" autocomplete="name" required data-i18n-placeholder="guestNamePlaceholder" />
+          <fieldset><legend data-i18n="attending"></legend><div class="event-checkboxes" id="event-checkboxes"></div></fieldset>
+          <label for="guest-count" data-i18n="guests"></label>
+          <select id="guest-count" name="guestCount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>
+          <label for="dietary-choice" data-i18n="dietary"></label>
+          <select id="dietary-choice" name="dietaryChoice"><option value="jain" data-i18n="dietaryJain"></option><option value="sattvic" data-i18n="dietarySattvic"></option><option value="north-indian" data-i18n="dietaryNorth"></option><option value="south-indian" data-i18n="dietarySouth"></option></select>
+          <label for="blessing-message" data-i18n="blessing"></label>
+          <textarea id="blessing-message" name="blessing" rows="4" maxlength="600" data-i18n-placeholder="blessingPlaceholder"></textarea>
+          <button class="button button-maroon" id="rsvp-submit" type="submit"><span data-i18n="submit"></span><span aria-hidden="true">↗</span></button>
+          <p class="rsvp-preview" id="rsvp-preview" data-i18n="preview"></p>
+        </form>
+      </section>
+
+      <footer class="sacred-footer"><p class="footer-names"></p><p data-i18n="footer"></p><span aria-hidden="true">ॐ</span></footer>
+    </main>
+
+    <aside class="floating-controls" id="floating-controls" aria-label="Invitation controls" hidden>
+        <div class="floating-languages" role="group" aria-label="Language"><button type="button" data-language="en">A</button><button type="button" data-language="hi">अ</button></div>
+      <button class="control-audio" id="audio-toggle" type="button" aria-pressed="false" aria-label="Toggle ambient sound"><span aria-hidden="true">♫</span></button>
+      <a class="button button-gold control-rsvp" href="#rsvp"><span data-i18n="jumpRsvp"></span><span aria-hidden="true">↑</span></a>
+    </aside>
+
+    <dialog class="ceremony-dialog" id="ceremony-dialog" aria-labelledby="ceremony-dialog-title">
+      <button type="button" class="ceremony-dialog-close" id="ceremony-dialog-close" data-i18n="closeDetails" aria-label="Close details">×</button>
+      <p class="eyebrow" data-i18n="detailsTitle"></p>
+      <h2 id="ceremony-dialog-title"></h2>
+      <p class="ceremony-dialog-date" id="ceremony-dialog-date"></p>
+      <p class="ceremony-dialog-description" id="ceremony-dialog-description"></p>
+      <p class="ceremony-dialog-detail" id="ceremony-dialog-venue"></p>
+      <p class="ceremony-dialog-detail" id="ceremony-dialog-attire"></p>
+      <a class="button button-gold" id="ceremony-dialog-map" href="#" target="_blank" rel="noopener noreferrer"></a>
+      <button type="button" class="button button-maroon ceremony-music" id="ceremony-music" aria-pressed="false" data-i18n="ceremonyMusic"></button>
+      <p class="ceremony-music-note" id="ceremony-music-note"></p>
+    </dialog>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Photo gallery">
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+      <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous photo">‹</button>
+      <figure><img id="lightbox-image" alt="" /><figcaption id="lightbox-caption"></figcaption></figure>
+      <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next photo">›</button>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <canvas class="confetti-canvas" id="confetti-canvas" aria-hidden="true"></canvas>
+  </body>
+</html>
