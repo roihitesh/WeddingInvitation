@@ -16,8 +16,8 @@ async function bootstrap() {
   const wedding = await resolveTenant();
   const i18n = initI18n(wedding);
   const soundscape = initSoundscape(wedding);
-  initLanguageModal({ wedding, i18n, confirmButton: document.getElementById("enter-invitation") });
-  initCeremonyDetails(wedding, i18n);
+  initLanguageModal({ wedding, i18n, confirmButton: document.getElementById("enter-invitation"), soundscape });
+  initCeremonyDetails(wedding, i18n, soundscape);
 
   document.title = wedding.meta.title;
   document.querySelector('meta[property="og:title"]').content = wedding.meta.title;
@@ -31,9 +31,16 @@ async function bootstrap() {
   setText("shloka-meaning", wedding.blessings.shloka[`meaning_${i18n.getLanguage()}`] || wedding.blessings.shloka.meaning_en || i18n.t("shlokaMeaning"));
   renderNameLetters(document.getElementById("bride-name"), text(bride.name));
   renderNameLetters(document.getElementById("groom-name"), text(groom.name));
+  setText("crest-initial-bride", text(bride.name).charAt(0));
+  setText("crest-initial-groom", text(groom.name).charAt(0));
+  const renderEntryDetails = (language) => {
+    setText("entry-names", `${text(bride.name)} & ${text(groom.name)}`);
+    setText("entry-date", new Intl.DateTimeFormat(language, { dateStyle: "long", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime)));
+  };
+  renderEntryDetails(i18n.getLanguage());
   setText("auspicious-tithi", text(wedding.muhurat.auspiciousTithi));
   setText("rsvp-deadline", wedding.rsvp.deadline);
-  setText("muhurat-date", `${new Intl.DateTimeFormat(i18n.getLanguage(), { dateStyle: "full", timeStyle: "short" }).format(new Date(wedding.muhurat.dateTime))}`);
+  setText("muhurat-date", `${new Intl.DateTimeFormat(i18n.getLanguage(), { dateStyle: "full", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime))}`);
   setText("lineage", "");
   renderLineage(wedding, i18n);
   document.querySelectorAll(".footer-names").forEach((element) => { element.textContent = `${text(bride.name)} & ${text(groom.name)}`; });
@@ -49,7 +56,8 @@ async function bootstrap() {
     header: document.getElementById("site-header"),
     controls: document.getElementById("floating-controls"),
     canvas: petalCanvas,
-    onOpen: () => soundscape.setEnabled(true),
+    onEnter: () => soundscape.playIntro(),
+    onOpen: () => { soundscape.stopIntro(); soundscape.setEnabled(true).catch(() => {}); },
   });
 
   startCountdown(wedding.muhurat.dateTime);
@@ -62,8 +70,11 @@ async function bootstrap() {
     const language = event.detail.language;
     renderNameLetters(document.getElementById("bride-name"), text(bride.name));
     renderNameLetters(document.getElementById("groom-name"), text(groom.name));
+    setText("crest-initial-bride", text(bride.name).charAt(0));
+    setText("crest-initial-groom", text(groom.name).charAt(0));
+    renderEntryDetails(language);
     setText("shloka-meaning", wedding.blessings.shloka[`meaning_${language}`] || i18n.t("shlokaMeaning"));
-    setText("muhurat-date", new Intl.DateTimeFormat(language, { dateStyle: "full", timeStyle: "short" }).format(new Date(wedding.muhurat.dateTime)));
+    setText("muhurat-date", new Intl.DateTimeFormat(language, { dateStyle: "full", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime)));
     document.querySelectorAll(".footer-names").forEach((element) => { element.textContent = `${text(bride.name)} & ${text(groom.name)}`; });
     renderTimeline(wedding, i18n);
     // Gallery owns its single language-change listener.

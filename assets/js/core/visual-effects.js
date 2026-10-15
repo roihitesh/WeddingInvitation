@@ -37,7 +37,8 @@ function initCrestTilt() {
 
 function initAmbientCanvas() {
   const canvas = document.getElementById("ambient-canvas");
-  const context = canvas?.getContext("2d", { alpha: true });
+  if (!canvas || getComputedStyle(canvas).display === "none") return;
+  const context = canvas.getContext("2d", { alpha: true });
   if (!context || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const particles = [];
   const count = Math.min(56, Math.max(28, Math.round(innerWidth / 22)));

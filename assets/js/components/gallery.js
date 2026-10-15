@@ -44,9 +44,16 @@ export function initGallery(wedding, i18n) {
       picture.src = photo.url;
       picture.alt = text(photo.caption);
       picture.loading = "lazy";
+      const overlay = document.createElement("div");
+      overlay.className = "gallery-overlay";
+      const chapter = document.createElement("span");
+      chapter.className = "gallery-chapter-tag";
+      chapter.textContent = `✦ Moment 0${index + 1}`;
       const label = document.createElement("span");
+      label.className = "gallery-caption";
       label.textContent = text(photo.caption);
-      button.append(picture, label);
+      overlay.append(chapter, label);
+      button.append(picture, overlay);
       button.addEventListener("click", () => openPhoto(index));
       fragment.append(button);
     });

@@ -1,5 +1,5 @@
 /** Accessible language-card selection for the invitation entrance gate. */
-export function initLanguageModal({ wedding, i18n, confirmButton }) {
+export function initLanguageModal({ wedding, i18n, confirmButton, soundscape }) {
   const gate = document.getElementById("entry-gate");
   const choiceGroup = document.getElementById("language-choice");
   const floatingLanguages = document.getElementById("floating-languages");
@@ -54,6 +54,7 @@ export function initLanguageModal({ wedding, i18n, confirmButton }) {
       const quickEnter = language === i18n.getLanguage() && now - lastSelectionAt < 450;
       navigator.vibrate?.(20);
       select(language);
+      soundscape?.playIntro?.();
       lastSelectionAt = now;
       if (quickEnter) confirmButton.click();
     });
@@ -75,8 +76,7 @@ export function initLanguageModal({ wedding, i18n, confirmButton }) {
   const detected = navigator.language?.toLowerCase().startsWith("hi") ? "hi" : wedding.defaultLanguage;
   const returningLanguage = [saved, legacy].find((candidate) => wedding.supportedLanguages.includes(candidate));
   select(returningLanguage || (wedding.supportedLanguages.includes(detected) ? detected : wedding.supportedLanguages[0]));
-  if (returningLanguage && new URLSearchParams(window.location.search).get("preview") !== "1") {
-    window.setTimeout(() => confirmButton.click(), 0);
-  }
+  // Always begin at the language gate. Remembering the choice preselects a card,
+  // but should never skip the guest's explicit entry action after a reload.
   return { select };
 }

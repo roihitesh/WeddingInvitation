@@ -10,13 +10,15 @@
     <title>A Wedding Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/themes.css" />
     <link rel="stylesheet" href="assets/css/typography.css" />
     <link rel="stylesheet" href="assets/css/envelope.css" />
     <link rel="stylesheet" href="assets/css/language-gate.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
-    <script type="module" src="assets/js/core/app.js"></script>
+    <link rel="stylesheet" href="assets/css/creative.css" />
+    <link rel="preload" href="assets/audio/ganesha-intro.mp3" as="audio" type="audio/mpeg" />
+    <script type="module" src="assets/js/core/app.js?v=20261015-cover-audio"></script>
   </head>
   <body>
     <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
@@ -29,17 +31,18 @@
           <path class="crest-trace crest-arch" d="M24 128V74C24 37 45 17 75 17s51 20 51 57v54M34 128V77c0-29 15-47 41-47s41 18 41 47v51" />
           <path class="crest-trace crest-wreath" d="M31 107C10 87 18 67 37 69 18 54 28 38 47 47 39 25 58 20 69 39 75 15 94 20 97 42 114 27 130 39 119 58 139 51 147 69 128 81 144 99 130 114 114 101M119 107c21-20 13-40-6-38 19-15 9-31-10-22 8-22-11-27-22-8" />
           <path class="crest-trace crest-base" d="M35 127h80M44 137h62M51 117h48" />
-          <text class="crest-letter crest-letter-s" x="57" y="91">S</text><text class="crest-letter crest-letter-h" x="78" y="91">H</text>
+          <text class="crest-letter crest-letter-s" id="crest-initial-bride" x="57" y="91">S</text><text class="crest-letter crest-letter-h" id="crest-initial-groom" x="78" y="91">H</text>
           <text class="crest-om" x="75" y="117">ॐ</text>
           <defs><linearGradient id="entryGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bf953f"/><stop offset=".5" stop-color="#fcf6ba"/><stop offset="1" stop-color="#b38728"/></linearGradient></defs>
         </svg>
         <p class="entry-mantra" id="entry-mantra"></p>
         <p class="entry-eyebrow" data-i18n="entryEyebrow"></p>
         <h1 id="entry-title" class="reveal-on-scroll" data-i18n-html="entryTitle"></h1>
+        <p class="entry-names" id="entry-names"></p>
+        <p class="entry-date" id="entry-date"></p>
         <p class="entry-welcome" data-i18n="entryWelcome"></p>
         <p class="entry-language-heading" id="language-prompt" data-i18n="chooseLanguage"></p>
         <div class="language-choice" role="radiogroup" aria-labelledby="language-prompt" id="language-choice"></div>
-        </div>
         <button class="button button-gold" id="enter-invitation" type="button"><span data-i18n="enter"></span><span aria-hidden="true">↗</span></button>
         <div class="gold-rule"></div>
       </div>
@@ -108,19 +111,84 @@
       <div class="toran-divider" aria-hidden="true"><svg viewBox="0 0 1200 70" preserveAspectRatio="none"><path class="toran-line" d="M0 8Q300 8 600 18t600-10M0 12v12m50-12v9m50-9v12m1050-12v12m50-12v9m50-9v12"/><g class="toran-leaves"><path d="M70 15q-15 23 0 32 15-9 0-32m60-2q-14 22 0 31 14-9 0-31m60 1q-13 21 0 29 13-8 0-29m820 0q-13 21 0 29 13-8 0-29m60-1q-14 22 0 31 14-9 0-31m60 2q-15 23 0 32 15-9 0-32"/><path d="M600 18Q570 43 600 62q30-19 0-44m-65 0q-25 22 0 40 25-18 0-40m130 0q-25 22 0 40 25-18 0-40"/></g></svg></div>
       <section class="rsvp-section section-shell" id="rsvp">
         <div class="section-heading reveal-on-scroll"><p class="eyebrow" data-i18n="rsvpEyebrow"></p><h2 data-i18n="rsvpTitle"></h2><p><span data-i18n="rsvpIntro"></span> <strong id="rsvp-deadline"></strong></p></div>
+        
+        <div class="rsvp-progress" id="rsvp-progress" aria-label="RSVP Steps">
+          <div class="rsvp-progress-step active" data-step-indicator="1">
+            <div class="rsvp-progress-dot">1</div>
+            <span class="rsvp-progress-label" data-i18n="stepGuests"></span>
+          </div>
+          <div class="rsvp-progress-step" data-step-indicator="2">
+            <div class="rsvp-progress-dot">2</div>
+            <span class="rsvp-progress-label" data-i18n="stepEvents"></span>
+          </div>
+          <div class="rsvp-progress-step" data-step-indicator="3">
+            <div class="rsvp-progress-dot">3</div>
+            <span class="rsvp-progress-label" data-i18n="stepBlessings"></span>
+          </div>
+        </div>
+
         <form class="rsvp-form" id="rsvp-form">
-          <label for="guest-name" data-i18n="guestName"></label>
-          <input id="guest-name" name="guestName" autocomplete="name" required data-i18n-placeholder="guestNamePlaceholder" />
-          <fieldset><legend data-i18n="attending"></legend><div class="event-checkboxes" id="event-checkboxes"></div></fieldset>
-          <label for="guest-count" data-i18n="guests"></label>
-          <select id="guest-count" name="guestCount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>
-          <label for="dietary-choice" data-i18n="dietary"></label>
-          <select id="dietary-choice" name="dietaryChoice"><option value="jain" data-i18n="dietaryJain"></option><option value="sattvic" data-i18n="dietarySattvic"></option><option value="north-indian" data-i18n="dietaryNorth"></option><option value="south-indian" data-i18n="dietarySouth"></option></select>
-          <label for="blessing-message" data-i18n="blessing"></label>
-          <textarea id="blessing-message" name="blessing" rows="4" maxlength="600" data-i18n-placeholder="blessingPlaceholder"></textarea>
-          <button class="button button-maroon" id="rsvp-submit" type="submit"><span data-i18n="submit"></span><span aria-hidden="true">↗</span></button>
-          <p class="rsvp-preview" id="rsvp-preview" data-i18n="preview"></p>
+          <!-- Step 1: Guest Details -->
+          <div class="rsvp-step active" data-step="1">
+            <label for="guest-name" data-i18n="guestName"></label>
+            <input id="guest-name" name="guestName" autocomplete="name" required data-i18n-placeholder="guestNamePlaceholder" />
+            <label for="guest-count" data-i18n="guests"></label>
+            <div class="guest-pills" id="guest-pills" role="radiogroup" aria-labelledby="guest-count">
+              <button type="button" class="guest-pill is-active" data-count="1">1</button>
+              <button type="button" class="guest-pill" data-count="2">2</button>
+              <button type="button" class="guest-pill" data-count="3">3</button>
+              <button type="button" class="guest-pill" data-count="4">4</button>
+              <button type="button" class="guest-pill" data-count="5">5</button>
+              <button type="button" class="guest-pill" data-count="6">6+</button>
+            </div>
+            <select id="guest-count" name="guestCount" class="visually-hidden">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <button class="button button-maroon rsvp-step-btn" id="rsvp-next-1" type="button"><span data-i18n="nextStep"></span><span aria-hidden="true">→</span></button>
+          </div>
+
+          <!-- Step 2: Ceremonies -->
+          <div class="rsvp-step" data-step="2">
+            <div class="events-step-header">
+              <label data-i18n="attending"></label>
+              <button type="button" class="quick-select-all" id="quick-select-all"><span class="check-icon">✓</span> <span data-i18n="selectAllEvents"></span></button>
+            </div>
+            <fieldset class="rsvp-fieldset"><div class="event-checkboxes" id="event-checkboxes"></div></fieldset>
+            <div class="rsvp-nav">
+              <button class="button button-outline" id="rsvp-prev-2" type="button"><span aria-hidden="true">←</span> <span data-i18n="prevStep"></span></button>
+              <button class="button button-maroon" id="rsvp-next-2" type="button"><span data-i18n="nextStep"></span> <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+
+          <!-- Step 3: Blessings & Feast -->
+          <div class="rsvp-step" data-step="3">
+            <label for="dietary-choice" data-i18n="dietary"></label>
+            <select id="dietary-choice" name="dietaryChoice">
+              <option value="jain" data-i18n="dietaryJain"></option>
+              <option value="sattvic" data-i18n="dietarySattvic"></option>
+              <option value="north-indian" data-i18n="dietaryNorth"></option>
+              <option value="south-indian" data-i18n="dietarySouth"></option>
+            </select>
+            <label for="blessing-message" data-i18n="blessing"></label>
+            <textarea id="blessing-message" name="blessing" rows="3" maxlength="600" data-i18n-placeholder="blessingPlaceholder"></textarea>
+            <div class="rsvp-nav">
+              <button class="button button-outline" id="rsvp-prev-3" type="button"><span aria-hidden="true">←</span> <span data-i18n="prevStep"></span></button>
+              <button class="button button-maroon" id="rsvp-submit" type="submit"><span data-i18n="submit"></span><span aria-hidden="true">↗</span></button>
+            </div>
+            <p class="rsvp-preview" id="rsvp-preview" data-i18n="preview"></p>
+          </div>
         </form>
+
+        <div class="rsvp-celebration" id="rsvp-celebration" hidden>
+          <span class="celebration-icon" aria-hidden="true">🌺</span>
+          <h3 data-i18n="celebrationTitle"></h3>
+          <p data-i18n="celebrationText"></p>
+        </div>
       </section>
 
       <footer class="sacred-footer"><p class="footer-names"></p><p data-i18n="footer"></p><span aria-hidden="true">ॐ</span></footer>
@@ -141,8 +209,6 @@
       <p class="ceremony-dialog-detail" id="ceremony-dialog-venue"></p>
       <p class="ceremony-dialog-detail" id="ceremony-dialog-attire"></p>
       <a class="button button-gold" id="ceremony-dialog-map" href="#" target="_blank" rel="noopener noreferrer"></a>
-      <button type="button" class="button button-maroon ceremony-music" id="ceremony-music" aria-pressed="false" data-i18n="ceremonyMusic"></button>
-      <p class="ceremony-music-note" id="ceremony-music-note"></p>
     </dialog>
 
     <dialog class="lightbox" id="lightbox" aria-label="Photo gallery">

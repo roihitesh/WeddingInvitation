@@ -1,7 +1,7 @@
 import { t, text } from "../core/i18n.js";
 
 function safeDate(value, language) {
-  return new Intl.DateTimeFormat(language, { weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
+  return new Intl.DateTimeFormat(language, { weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit", timeZone: "Asia/Kolkata", timeZoneName: "short" }).format(new Date(value));
 }
 
 function calendarDate(date) { return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z"); }
@@ -39,6 +39,12 @@ export function renderTimeline(wedding, i18n) {
     const card = document.createElement("article");
     card.className = `event-card event-${event.id} reveal-on-scroll`;
     if (document.documentElement.classList.contains("motion-initialized")) card.classList.add("is-visible");
+    
+    const badge = document.createElement("span");
+    badge.className = "ceremony-badge";
+    badge.setAttribute("aria-hidden", "true");
+    badge.textContent = ({ haldi: "✺", mehendi: "❧", sangeet: "♫", baraat: "✤", phere: "ॐ" })[event.id] || "✿";
+    
     const date = document.createElement("p");
     date.className = "event-date";
     date.textContent = safeDate(event.dateTime, language);
@@ -83,7 +89,7 @@ export function renderTimeline(wedding, i18n) {
     details.textContent = t("detailsButton");
     details.addEventListener("click", () => window.dispatchEvent(new CustomEvent("ceremony:open", { detail: { id: event.id } })));
     actions.append(map, calendar, download);
-    card.append(number, date, title, tagline, venue, dress, actions);
+    card.append(badge, number, date, title, tagline, venue, dress, actions);
     card.append(details);
     fragment.append(card);
   });

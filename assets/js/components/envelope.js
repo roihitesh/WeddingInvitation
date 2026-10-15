@@ -1,6 +1,7 @@
-export function initEnvelope({ openButton, sealButton, gate, patrikaScreen, main, header, controls, canvas, onOpen }) {
+export function initEnvelope({ openButton, sealButton, gate, patrikaScreen, main, header, controls, canvas, onEnter, onOpen }) {
   const patrika = document.getElementById("patrika");
   const enter = () => {
+    onEnter?.();
     animatePetals(canvas);
     gate.classList.add("is-leaving");
     window.setTimeout(() => {
@@ -37,14 +38,14 @@ function animatePetals(canvas) {
   canvas.height = Math.round(window.innerHeight * scale);
   context.setTransform(scale, 0, 0, scale, 0, 0);
   const colors = ["#e0a928", "#f1b736", "#d77a32", "#b94343", "#d36a70", "#efb1a2"];
-  const petals = Array.from({ length: 115 }, () => ({
+  const petals = Array.from({ length: 52 }, () => ({
     x: Math.random() * window.innerWidth,
     y: -Math.random() * window.innerHeight * .75,
-    size: 3 + Math.random() * 7,
-    speed: 1.2 + Math.random() * 3.1,
-    drift: (Math.random() - .5) * 1.8,
+    size: 2.5 + Math.random() * 4,
+    speed: .8 + Math.random() * 1.8,
+    drift: (Math.random() - .5) * 1.1,
     rotation: Math.random() * Math.PI,
-    spin: (Math.random() - .5) * .12,
+    spin: (Math.random() - .5) * .065,
     color: colors[Math.floor(Math.random() * colors.length)],
     round: Math.random() > .55,
   }));
@@ -70,7 +71,7 @@ function animatePetals(canvas) {
       context.fill();
       context.restore();
     });
-    if (now - started < 4300) requestAnimationFrame(frame);
+    if (now - started < 2800) requestAnimationFrame(frame);
     else context.clearRect(0, 0, window.innerWidth, window.innerHeight);
   }
   requestAnimationFrame(frame);
