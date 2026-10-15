@@ -16,24 +16,6 @@ export function setupRSVP(wedding) {
   const steps = document.querySelectorAll(".rsvp-step");
   const celebration = document.getElementById("rsvp-celebration");
 
-  let currentStep = 1;
-
-  const goToStep = (stepNumber) => {
-    currentStep = Math.max(1, Math.min(3, stepNumber));
-    progressSteps.forEach((indicator) => {
-      const idx = Number(indicator.dataset.stepIndicator);
-      indicator.classList.toggle("active", idx === currentStep);
-      indicator.classList.toggle("completed", idx < currentStep);
-    });
-    steps.forEach((step) => {
-      const idx = Number(step.dataset.step);
-      step.classList.toggle("active", idx === currentStep);
-    });
-    const activeStep = document.querySelector(`.rsvp-step[data-step="${currentStep}"]`);
-    const firstInput = activeStep?.querySelector("input, select, textarea, button");
-    firstInput?.focus();
-  };
-
   // Quick guest count pills
   guestPills.forEach((pill) => {
     pill.addEventListener("click", () => {
@@ -44,25 +26,6 @@ export function setupRSVP(wedding) {
       }
     });
   });
-
-  // Step 1 -> Step 2
-  document.getElementById("rsvp-next-1")?.addEventListener("click", () => {
-    if (guestName && !guestName.reportValidity()) return;
-    goToStep(2);
-  });
-
-  // Step 2 navigation
-  document.getElementById("rsvp-prev-2")?.addEventListener("click", () => goToStep(1));
-  document.getElementById("rsvp-next-2")?.addEventListener("click", () => {
-    if (!form.querySelector('input[name="ceremonies"]:checked')) {
-      showToast("rsvpEventsRequired");
-      return;
-    }
-    goToStep(3);
-  });
-
-  // Step 3 navigation
-  document.getElementById("rsvp-prev-3")?.addEventListener("click", () => goToStep(2));
 
   // Quick select all ceremonies
   quickSelectAll?.addEventListener("click", () => {
@@ -118,7 +81,6 @@ export function setupRSVP(wedding) {
     navigator.vibrate?.(20);
     if (!form.querySelector('input[name="ceremonies"]:checked')) {
       showToast("rsvpEventsRequired");
-      goToStep(2);
       return;
     }
     if (!endpoint) {

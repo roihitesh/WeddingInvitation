@@ -37,7 +37,7 @@
         </svg>
         <p class="entry-mantra" id="entry-mantra"></p>
         <p class="entry-eyebrow" data-i18n="entryEyebrow"></p>
-        <h1 id="entry-title" class="reveal-on-scroll" data-i18n-html="entryTitle"></h1>
+        <h1 id="entry-title" class="entry-title" data-i18n-html="entryTitle"></h1>
         <p class="entry-names" id="entry-names"></p>
         <p class="entry-date" id="entry-date"></p>
         <p class="entry-welcome" data-i18n="entryWelcome"></p>
@@ -85,7 +85,7 @@
         <div class="hero-ornament hero-ornament-left" aria-hidden="true">❋</div>
         <p class="eyebrow" data-i18n="heroEyebrow"></p>
         <div class="lineage-block" id="lineage"></div>
-        <h1 class="couple-names reveal-on-scroll"><span id="bride-name"></span><i aria-hidden="true">&amp;</i><span id="groom-name"></span></h1>
+        <h1 class="couple-names"><span id="bride-name"></span><i aria-hidden="true">&amp;</i><span id="groom-name"></span></h1>
         <p class="invitation-line" data-i18n="invitationLine"></p>
         <p class="tithi"><span data-i18n="tithiLabel"></span> <strong id="auspicious-tithi"></strong></p>
         <div class="muhurat-block">
@@ -112,24 +112,13 @@
       <section class="rsvp-section section-shell" id="rsvp">
         <div class="section-heading reveal-on-scroll"><p class="eyebrow" data-i18n="rsvpEyebrow"></p><h2 data-i18n="rsvpTitle"></h2><p><span data-i18n="rsvpIntro"></span> <strong id="rsvp-deadline"></strong></p></div>
         
-        <div class="rsvp-progress" id="rsvp-progress" aria-label="RSVP Steps">
-          <div class="rsvp-progress-step active" data-step-indicator="1">
-            <div class="rsvp-progress-dot">1</div>
-            <span class="rsvp-progress-label" data-i18n="stepGuests"></span>
-          </div>
-          <div class="rsvp-progress-step" data-step-indicator="2">
-            <div class="rsvp-progress-dot">2</div>
-            <span class="rsvp-progress-label" data-i18n="stepEvents"></span>
-          </div>
-          <div class="rsvp-progress-step" data-step-indicator="3">
-            <div class="rsvp-progress-dot">3</div>
-            <span class="rsvp-progress-label" data-i18n="stepBlessings"></span>
-          </div>
-        </div>
-
         <form class="rsvp-form" id="rsvp-form">
-          <!-- Step 1: Guest Details -->
-          <div class="rsvp-step active" data-step="1">
+          <!-- Section 1: Guest Details -->
+          <div class="rsvp-section-card">
+            <div class="rsvp-card-header">
+              <span class="rsvp-section-num">1</span>
+              <span class="rsvp-section-title" data-i18n="stepGuests"></span>
+            </div>
             <label for="guest-name" data-i18n="guestName"></label>
             <input id="guest-name" name="guestName" autocomplete="name" required data-i18n-placeholder="guestNamePlaceholder" />
             <label for="guest-count" data-i18n="guests"></label>
@@ -149,24 +138,24 @@
               <option value="5">5</option>
               <option value="6">6</option>
             </select>
-            <button class="button button-maroon rsvp-step-btn" id="rsvp-next-1" type="button"><span data-i18n="nextStep"></span><span aria-hidden="true">→</span></button>
           </div>
 
-          <!-- Step 2: Ceremonies -->
-          <div class="rsvp-step" data-step="2">
-            <div class="events-step-header">
-              <label data-i18n="attending"></label>
+          <!-- Section 2: Ceremonies -->
+          <div class="rsvp-section-card">
+            <div class="rsvp-card-header">
+              <span class="rsvp-section-num">2</span>
+              <span class="rsvp-section-title" data-i18n="stepEvents"></span>
               <button type="button" class="quick-select-all" id="quick-select-all"><span class="check-icon">✓</span> <span data-i18n="selectAllEvents"></span></button>
             </div>
             <fieldset class="rsvp-fieldset"><div class="event-checkboxes" id="event-checkboxes"></div></fieldset>
-            <div class="rsvp-nav">
-              <button class="button button-outline" id="rsvp-prev-2" type="button"><span aria-hidden="true">←</span> <span data-i18n="prevStep"></span></button>
-              <button class="button button-maroon" id="rsvp-next-2" type="button"><span data-i18n="nextStep"></span> <span aria-hidden="true">→</span></button>
-            </div>
           </div>
 
-          <!-- Step 3: Blessings & Feast -->
-          <div class="rsvp-step" data-step="3">
+          <!-- Section 3: Blessings & Feast -->
+          <div class="rsvp-section-card">
+            <div class="rsvp-card-header">
+              <span class="rsvp-section-num">3</span>
+              <span class="rsvp-section-title" data-i18n="stepBlessings"></span>
+            </div>
             <label for="dietary-choice" data-i18n="dietary"></label>
             <select id="dietary-choice" name="dietaryChoice">
               <option value="jain" data-i18n="dietaryJain"></option>
@@ -176,12 +165,10 @@
             </select>
             <label for="blessing-message" data-i18n="blessing"></label>
             <textarea id="blessing-message" name="blessing" rows="3" maxlength="600" data-i18n-placeholder="blessingPlaceholder"></textarea>
-            <div class="rsvp-nav">
-              <button class="button button-outline" id="rsvp-prev-3" type="button"><span aria-hidden="true">←</span> <span data-i18n="prevStep"></span></button>
-              <button class="button button-maroon" id="rsvp-submit" type="submit"><span data-i18n="submit"></span><span aria-hidden="true">↗</span></button>
-            </div>
-            <p class="rsvp-preview" id="rsvp-preview" data-i18n="preview"></p>
           </div>
+
+          <button class="button button-maroon rsvp-submit-btn" id="rsvp-submit" type="submit"><span data-i18n="submit"></span><span aria-hidden="true">↗</span></button>
+          <p class="rsvp-preview" id="rsvp-preview" data-i18n="preview"></p>
         </form>
 
         <div class="rsvp-celebration" id="rsvp-celebration" hidden>

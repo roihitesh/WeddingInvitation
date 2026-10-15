@@ -36,16 +36,24 @@ export function initLanguageModal({ wedding, i18n, confirmButton, soundscape }) 
   });
   let lastSelectionAt = 0;
 
-  const select = (language) => {
-    if (!wedding.supportedLanguages.includes(language)) return;
-    i18n.setLanguage(language);
-    window.localStorage.setItem("wedding_invite_lang", language);
+  const updateCardSelection = (lang) => {
     cards.forEach((card) => {
-      const selected = card.dataset.languageCard === language;
+      const selected = card.dataset.languageCard === lang;
       card.classList.toggle("is-selected", selected);
       card.setAttribute("aria-checked", String(selected));
     });
   };
+
+  const select = (language) => {
+    if (!wedding.supportedLanguages.includes(language)) return;
+    i18n.setLanguage(language);
+    window.localStorage.setItem("wedding_invite_lang", language);
+    updateCardSelection(language);
+  };
+
+  window.addEventListener("wedding:language", (event) => {
+    updateCardSelection(event.detail.language);
+  });
 
   cards.forEach((card) => {
     card.addEventListener("click", () => {

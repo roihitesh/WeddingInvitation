@@ -34,16 +34,21 @@ async function bootstrap() {
   setText("crest-initial-bride", text(bride.name).charAt(0));
   setText("crest-initial-groom", text(groom.name).charAt(0));
   const renderEntryDetails = (language) => {
-    setText("entry-names", `${text(bride.name)} & ${text(groom.name)}`);
+    const connector = language === "hi" ? "एवं" : "&";
+    setText("entry-mantra", text(wedding.blessings.invokingDeity));
+    setText("invoking-mantra", text(wedding.blessings.invokingDeity));
+    setText("entry-names", `${text(bride.name)} ${connector} ${text(groom.name)}`);
     setText("entry-date", new Intl.DateTimeFormat(language, { dateStyle: "long", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime)));
   };
   renderEntryDetails(i18n.getLanguage());
   setText("auspicious-tithi", text(wedding.muhurat.auspiciousTithi));
   setText("rsvp-deadline", wedding.rsvp.deadline);
   setText("muhurat-date", `${new Intl.DateTimeFormat(i18n.getLanguage(), { dateStyle: "full", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime))}`);
-  setText("lineage", "");
   renderLineage(wedding, i18n);
-  document.querySelectorAll(".footer-names").forEach((element) => { element.textContent = `${text(bride.name)} & ${text(groom.name)}`; });
+  document.querySelectorAll(".footer-names").forEach((element) => {
+    const connector = i18n.getLanguage() === "hi" ? "एवं" : "&";
+    element.textContent = `${text(bride.name)} ${connector} ${text(groom.name)}`;
+  });
 
   const petalCanvas = document.getElementById("petal-canvas");
   initEnvelope({
@@ -73,42 +78,37 @@ async function bootstrap() {
     setText("crest-initial-bride", text(bride.name).charAt(0));
     setText("crest-initial-groom", text(groom.name).charAt(0));
     renderEntryDetails(language);
+    renderLineage(wedding, i18n);
+    setText("auspicious-tithi", text(wedding.muhurat.auspiciousTithi));
     setText("shloka-meaning", wedding.blessings.shloka[`meaning_${language}`] || i18n.t("shlokaMeaning"));
     setText("muhurat-date", new Intl.DateTimeFormat(language, { dateStyle: "full", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(new Date(wedding.muhurat.dateTime)));
-    document.querySelectorAll(".footer-names").forEach((element) => { element.textContent = `${text(bride.name)} & ${text(groom.name)}`; });
+    document.querySelectorAll(".footer-names").forEach((element) => {
+      const connector = language === "hi" ? "एवं" : "&";
+      element.textContent = `${text(bride.name)} ${connector} ${text(groom.name)}`;
+    });
     renderTimeline(wedding, i18n);
-    // Gallery owns its single language-change listener.
   });
 }
 
 function renderNameLetters(element, value) {
   element.setAttribute("aria-label", value);
   element.setAttribute("role", "text");
-  const clusters = typeof Intl.Segmenter === "function"
-    ? [...new Intl.Segmenter(document.documentElement.lang, { granularity: "grapheme" }).segment(value)].map((part) => part.segment)
-    : Array.from(value);
-  const fragment = document.createDocumentFragment();
-  clusters.forEach((cluster, index) => {
-    const letter = document.createElement("span");
-    letter.className = "name-letter";
-    letter.setAttribute("aria-hidden", "true");
-    letter.textContent = cluster === " " ? "\u00a0" : cluster;
-    letter.style.setProperty("--letter-index", String(index));
-    fragment.append(letter);
-  });
-  element.replaceChildren(fragment);
+  element.textContent = value; // Clean, robust, accessible direct text
 }
 
 function renderLineage(wedding, i18n) {
   const host = document.getElementById("lineage");
+  if (!host) return;
   const bride = wedding.couple.bride;
   const groom = wedding.couple.groom;
   const side = (person) => {
     const block = document.createElement("div");
     block.className = "lineage-side";
     const parents = document.createElement("strong");
+    parents.className = "lineage-parents";
     parents.textContent = text(person.parents);
     const grandparents = document.createElement("span");
+    grandparents.className = "lineage-grandparents";
     grandparents.textContent = text(person.grandParents);
     block.append(parents, grandparents);
     return block;
@@ -116,7 +116,7 @@ function renderLineage(wedding, i18n) {
   const center = document.createElement("span");
   center.className = "lineage-center";
   center.textContent = i18n.t("lineageTitle");
-  host.append(side(bride), center, side(groom));
+  host.replaceChildren(side(bride), center, side(groom));
 }
 
 bootstrap().catch((error) => {

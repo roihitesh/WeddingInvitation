@@ -33,45 +33,116 @@
 .gallery-grid .reveal-on-scroll:nth-child(5) { transition-delay: .44s !important; }
 .gallery-grid .reveal-on-scroll:nth-child(6) { transition-delay: .54s !important; }
 
-/* ---------- 2. Couple Names: Living Gold Shimmer ---------- */
+/* ---------- 2. Couple Names: Solid Luxury Maroon with Soft Gold Shimmer ---------- */
+.couple-names {
+  color: var(--accent-maroon) !important;
+  font-family: var(--serif) !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  text-align: center !important;
+}
 .couple-names > span {
-  background: linear-gradient(
-    120deg,
-    var(--accent-maroon) 0%,
-    var(--accent-gold) 30%,
-    var(--accent-maroon) 50%,
-    var(--accent-gold) 70%,
-    var(--accent-maroon) 100%
-  ) !important;
-  background-size: 250% 100% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  animation: name-shimmer 5s ease-in-out infinite !important;
-}
-@keyframes name-shimmer {
-  0%, 100% { background-position: 100% 50%; }
-  50%      { background-position: 0% 50%; }
-}
-
-/* Re-enable letter-by-letter bloom */
-.couple-names .name-letter {
   display: inline-block !important;
-  opacity: 0 !important;
-  animation: letter-bloom .6s cubic-bezier(.2,.8,.2,1)
-             calc(250ms + var(--letter-index) * 42ms) forwards !important;
+  color: var(--accent-maroon) !important;
+  -webkit-text-fill-color: initial !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 2px rgba(110,34,44,.12);
 }
 .couple-names i {
-  opacity: 0 !important;
-  animation: ampersand-bloom .55s ease .55s forwards !important;
+  display: inline-block !important;
+  color: var(--accent-gold) !important;
+  opacity: 1 !important;
+  margin: 0 12px;
+  font-style: italic;
+  font-family: var(--serif) !important;
 }
-@keyframes letter-bloom {
-  from { opacity: 0; transform: translateY(14px) scale(.9); filter: blur(3px); }
-  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+.couple-names .name-letter {
+  display: inline-block !important;
+  opacity: 1 !important;
 }
-@keyframes ampersand-bloom {
-  from { opacity: 0; transform: scale(.7) rotate(-8deg); }
-  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+
+/* Parents and Lineage Typography & Hierarchy */
+.lineage-block {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  max-width: 680px !important;
+  margin: 0 auto 24px !important;
+  padding: 16px 22px !important;
+  border-radius: 12px !important;
+  background: rgba(255,253,249,.82) !important;
+  border: 1px solid rgba(198,154,120,.32) !important;
+  box-shadow: 0 4px 18px rgba(70,94,80,.05) !important;
+  text-align: center !important;
+}
+.lineage-side {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+.lineage-side strong {
+  font-family: var(--serif) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--accent-maroon) !important;
+  letter-spacing: .04em !important;
+}
+.lineage-parents {
+  font-family: var(--serif) !important;
+  font-size: 15px !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+}
+.lineage-grandparents {
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+  line-height: 1.5 !important;
+  display: block !important;
+}
+.lineage-center {
+  font-family: var(--devanagari) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--accent-gold-dark) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  margin: 2px 0 !important;
+}
+
+/* Entry Gate Centered Alignment & Typography */
+.entry-card {
+  text-align: center !important;
+  padding: clamp(28px, 6vw, 56px) clamp(20px, 5vw, 44px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.entry-card .entry-mantra {
+  text-align: center !important;
+  max-width: 540px !important;
+  margin: 0 auto 18px !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  color: var(--accent-gold-dark) !important;
+}
+.entry-names {
+  text-align: center !important;
+  font-size: clamp(28px, 6vw, 44px) !important;
+  color: var(--accent-maroon) !important;
+  margin: 12px 0 !important;
+  font-family: var(--serif) !important;
+}
+.entry-title {
+  text-align: center !important;
+}
+.invoking-mantra {
+  text-align: center !important;
+  font-family: var(--devanagari) !important;
+  font-size: 14px !important;
+  color: var(--accent-maroon) !important;
+  margin-bottom: 8px !important;
 }
 
 /* ---------- 3. Sacred Elements ---------- */
@@ -113,25 +184,61 @@
   transform: translateX(-50%) scaleX(1) !important;
 }
 
-/* ---------- 5. Ceremony Badge Icons ---------- */
-.ceremony-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 17px;
-  z-index: 2;
-  opacity: .8;
-  transition: transform .3s ease, opacity .3s ease;
+/* ---------- 5. Ceremony Event Cards & Designer Frames ---------- */
+.event-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 18px !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
 }
-.event-card:hover .ceremony-badge,
-.event-card:focus-within .ceremony-badge {
-  transform: scale(1.14);
-  opacity: 1;
+@media (min-width: 1180px) {
+  .event-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+.event-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 4px 4px 32px 4px !important;
+  padding: 24px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s ease !important;
+}
+.event-card::before,
+.event-card::after {
+  filter: none !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+}
+.event-card:hover, .event-card:focus-within {
+  transform: translateY(-5px) !important;
+}
+
+/* Card Header Flex Layout (Badge Left, Number Right) */
+.event-card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 14px !important;
+}
+.ceremony-badge {
+  position: static !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 50% !important;
+  font-size: 19px !important;
+  line-height: 1 !important;
+  opacity: .92 !important;
+  transition: transform .3s ease !important;
+}
+.event-card:hover .ceremony-badge {
+  transform: scale(1.14) !important;
 }
 .event-haldi .ceremony-badge   { background: rgba(198,138,88,.16); color: #b77b4e; }
 .event-mehendi .ceremony-badge { background: rgba(113,140,115,.16); color: #526c5b; }
@@ -139,15 +246,45 @@
 .event-baraat .ceremony-badge  { background: rgba(184,117,112,.16); color: #ad716d; }
 .event-phere .ceremony-badge   { background: rgba(139,118,94,.18); color: #8b765e; }
 
-/* Ceremony Event Card Designer Frames */
-.event-card {
-  position: relative !important;
-  border-radius: 4px 4px 34px 4px !important;
-  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s ease !important;
+.event-index {
+  position: static !important;
+  font-family: var(--serif) !important;
+  font-size: 19px !important;
+  font-weight: 600 !important;
+  color: var(--accent-gold-dark) !important;
+  opacity: .5 !important;
 }
-.event-card:hover, .event-card:focus-within {
-  transform: translateY(-5px) scale(1.01) !important;
+.event-card .event-date {
+  font-size: 10px !important;
+  letter-spacing: .08em !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 10px !important;
+  color: var(--accent-gold-dark) !important;
 }
+.event-card h3 {
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  margin: 0 0 8px !important;
+  color: var(--accent-maroon) !important;
+  font-family: var(--serif) !important;
+}
+.event-card .event-tagline {
+  font-size: 11px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 12px !important;
+  color: var(--text-muted) !important;
+}
+.event-card .event-detail {
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+  margin: 3px 0 !important;
+}
+.event-card .event-actions {
+  margin-top: auto !important;
+  padding-top: 14px !important;
+}
+
 .event-card.event-haldi {
   border-color: rgba(229,169,16,.36) !important;
   background: linear-gradient(165deg, #fffdf8, #fff8e8) !important;
@@ -268,106 +405,63 @@
   line-height: 1.4 !important;
 }
 
-/* ---------- 7. Multi-Step RSVP Wizard ---------- */
-.rsvp-progress {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin-bottom: 28px;
+/* ---------- 7. Unified Seamless RSVP Form ---------- */
+.rsvp-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+  width: min(600px, 100%) !important;
+  margin: 0 auto !important;
 }
-.rsvp-progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex: 1;
-  max-width: 120px;
+.rsvp-section-card {
+  background: rgba(255,253,249,.92) !important;
+  border: 1px solid rgba(198,154,120,.35) !important;
+  border-radius: 12px !important;
+  padding: 22px 24px !important;
+  box-shadow: 0 6px 20px rgba(70,94,80,.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  text-align: left !important;
 }
-/* Connecting line between progress dots */
-.rsvp-progress-step:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 13px;
-  left: calc(50% + 17px);
-  width: calc(100% - 34px);
-  height: 2px;
-  background: rgba(70,94,80,.16);
-  z-index: 0;
-  transition: background .4s ease;
+.rsvp-card-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(198,154,120,.22) !important;
+  margin-bottom: 4px !important;
 }
-.rsvp-progress-step.completed:not(:last-child)::after {
-  background: var(--accent-gold);
+.rsvp-section-num {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  background: var(--accent-maroon) !important;
+  color: #fffdf9 !important;
+  display: grid !important;
+  place-items: center !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  flex-shrink: 0 !important;
 }
-.rsvp-progress-dot {
-  position: relative;
-  z-index: 1;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid rgba(70,94,80,.28);
-  background: #fffdf9;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  color: var(--text-muted);
-  padding: 0;
-  cursor: default;
-  transition: all .35s cubic-bezier(.16,1,.3,1);
+.rsvp-section-title {
+  font-family: var(--serif) !important;
+  font-size: 16px !important;
+  color: var(--accent-maroon) !important;
+  font-weight: 500 !important;
+  flex-grow: 1 !important;
 }
-.rsvp-progress-step.active .rsvp-progress-dot {
-  border-color: var(--accent-maroon);
-  color: var(--accent-maroon);
-  transform: scale(1.15);
-  box-shadow: 0 0 0 5px rgba(70,94,80,.08);
-}
-.rsvp-progress-step.completed .rsvp-progress-dot {
-  border-color: var(--accent-gold);
-  background: var(--accent-gold);
-  color: #fff;
-}
-.rsvp-progress-label {
-  margin-top: 6px;
-  font-size: 7px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  text-align: center;
-  white-space: nowrap;
-  transition: color .3s ease;
-}
-.rsvp-progress-step.active .rsvp-progress-label {
-  color: var(--accent-maroon);
-  font-weight: 600;
-}
-
-/* Step containers */
-.rsvp-step {
-  display: none;
-  animation: step-enter .4s cubic-bezier(.16,1,.3,1) both;
-}
-.rsvp-step.active {
-  display: grid;
-  gap: 10px;
-}
-@keyframes step-enter {
-  from { opacity: 0; transform: translateX(18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-/* Step navigation */
-.rsvp-nav {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
-}
-.rsvp-nav .button { flex: 1; min-height: 44px; }
-.button-outline {
-  background: transparent;
-  border: 1px solid var(--accent-maroon);
-  color: var(--accent-maroon);
-}
-.button-outline:hover {
-  background: rgba(70,94,80,.06);
+.rsvp-submit-btn {
+  width: 100% !important;
+  min-height: 48px !important;
+  font-size: 13px !important;
+  letter-spacing: .08em !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 24px rgba(70,94,80,.18) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
 }
 
 /* Guest count quick-pills */
@@ -541,15 +635,18 @@
 
 /* ---------- 10. Responsive ---------- */
 @media (max-width: 650px) {
+  .event-grid {
+    grid-template-columns: 1fr !important;
+  }
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     grid-auto-rows: minmax(140px, auto) !important;
   }
   .gallery-thumb:first-child { grid-row: span 1; }
-  .ceremony-badge { width: 34px; height: 34px; font-size: 14px; }
-  .rsvp-progress-step:not(:last-child)::after {
-    left: calc(50% + 14px);
-    width: calc(100% - 28px);
+  .ceremony-badge { width: 34px; height: 34px; font-size: 15px; }
+  .guest-pills {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
   }
   .gallery-thumb span {
     opacity: 1 !important;

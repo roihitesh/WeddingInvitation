@@ -40,22 +40,24 @@ export function renderTimeline(wedding, i18n) {
     card.className = `event-card event-${event.id} reveal-on-scroll`;
     if (document.documentElement.classList.contains("motion-initialized")) card.classList.add("is-visible");
     
+    const header = document.createElement("div");
+    header.className = "event-card-header";
+
     const badge = document.createElement("span");
     badge.className = "ceremony-badge";
     badge.setAttribute("aria-hidden", "true");
     badge.textContent = ({ haldi: "✺", mehendi: "❧", sangeet: "♫", baraat: "✤", phere: "ॐ" })[event.id] || "✿";
     
-    const date = document.createElement("p");
-    date.className = "event-date";
-    date.textContent = safeDate(event.dateTime, language);
-    const symbol = document.createElement("span");
-    symbol.className = "event-symbol";
-    symbol.setAttribute("aria-hidden", "true");
-    symbol.textContent = ({ haldi: "✺", mehendi: "❧", sangeet: "♫", baraat: "✤", phere: "ॐ" })[event.id] || "✿";
-    date.append(" ", symbol);
     const number = document.createElement("span");
     number.className = "event-index";
     number.textContent = String(index + 1).padStart(2, "0");
+
+    header.append(badge, number);
+    
+    const date = document.createElement("p");
+    date.className = "event-date";
+    date.textContent = safeDate(event.dateTime, language);
+
     const title = document.createElement("h3");
     title.textContent = text(event.title);
     const tagline = document.createElement("p");
@@ -89,8 +91,7 @@ export function renderTimeline(wedding, i18n) {
     details.textContent = t("detailsButton");
     details.addEventListener("click", () => window.dispatchEvent(new CustomEvent("ceremony:open", { detail: { id: event.id } })));
     actions.append(map, calendar, download);
-    card.append(badge, number, date, title, tagline, venue, dress, actions);
-    card.append(details);
+    card.append(header, date, title, tagline, venue, dress, actions, details);
     fragment.append(card);
   });
   grid.replaceChildren(fragment);
