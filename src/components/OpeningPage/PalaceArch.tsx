@@ -216,14 +216,11 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
             </g>
           ))}
 
-          {/* Swag 2: Center Arch Crown Drops */}
-          <g transform="translate(300, 110)">
-            {/* Hanging central floral pendant / latkan */}
-            <line x1="0" y1="0" x2="0" y2="36" stroke="url(#portalArchGold)" strokeWidth="1" />
-            <circle cx="0" cy="12" r="4.5" fill="url(#marigoldGrad)" />
-            <circle cx="0" cy="22" r="4" fill="url(#jasmineGrad)" />
-            <circle cx="0" cy="32" r="5.5" fill="url(#marigoldGrad)" />
-            <path d="M -3 36 L 3 36 L 0 44 Z" fill="url(#portalArchGold)" />
+          {/* Swag 2: Center Arch Crown Apex Garland Accent (Kept high to eliminate frame overlap) */}
+          <g transform="translate(300, 66)">
+            <circle cx="0" cy="5" r="4.5" fill="url(#marigoldGrad)" />
+            <circle cx="0" cy="13" r="3.5" fill="url(#jasmineGrad)" />
+            <path d="M -2.5 15 L 2.5 15 L 0 20 Z" fill="url(#portalArchGold)" />
           </g>
 
           {/* Swag 3: Right Arch Arc */}

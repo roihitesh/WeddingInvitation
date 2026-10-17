@@ -99,8 +99,8 @@
 .palace-portal-container {
   position: relative;
   width: 100%;
-  max-width: 630px;
-  min-height: 750px;
+  max-width: 710px;
+  min-height: 820px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -135,16 +135,16 @@
 /* The Opening Gateway Frame housing the doors and inner sanctum */
 .palace-portal-frame {
   position: relative;
-  width: 88%;
-  height: 680px;
-  margin-top: 32px;
+  width: 90%;
+  height: 750px;
+  margin-top: 28px;
   margin-bottom: 24px;
   border-radius: 8px 8px 4px 4px;
   overflow: hidden;
   box-shadow:
-    0 18px 42px rgba(41, 4, 10, 0.3),
-    0 8px 18px rgba(143, 100, 20, 0.22),
-    inset 0 0 20px rgba(31, 2, 7, 0.5);
+    0 20px 48px rgba(41, 4, 10, 0.32),
+    0 8px 20px rgba(143, 100, 20, 0.24),
+    inset 0 0 24px rgba(31, 2, 7, 0.5);
   background-color: var(--maroon-dark);
 }
 
@@ -260,13 +260,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.8rem 1.4rem 1.4rem;
+  padding: 2.8rem 1.6rem 1.6rem;
   box-sizing: border-box;
 }
 
 .inner-invitation-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -286,20 +286,39 @@
   pointer-events: auto;
 }
 
-/* Top Sanskrit Invocation */
-.top-flourish-container,
-.top-ornamental-motif {
+/* 1. Sacred Lord Ganesha Artwork & Top Invocation */
+.top-ganesha-invocation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+
+.ganesha-artwork-wrapper {
+  margin-bottom: 0.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ganesha-vector-svg {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 3px 8px rgba(110, 66, 6, 0.4));
+}
+
+.mantra-ribbon-block {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  margin-bottom: 0.35rem;
   width: 100%;
 }
 
-.top-flourish-svg,
 .top-flourish-side {
-  width: 52px;
+  width: 54px;
   height: 16px;
   flex-shrink: 0;
 }
@@ -307,27 +326,28 @@
 .top-mantra-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .top-mantra-badge .flourish-symbol {
   color: var(--gold-antique);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .mantra-text {
   font-family: var(--font-serif-body);
-  font-size: 1.05rem;
+  font-size: 1.14rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
+  word-spacing: 0.25em;
   color: var(--maroon-deep);
   margin: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* Custom H&S Monogram Logo Lockup */
+/* 2. Custom H&S Monogram Logo Lockup (Big & Contrasting) */
 .logo-container {
-  margin: 0.2rem 0 0.3rem;
+  margin: 0.25rem 0 0.35rem;
 }
 
 .hs-logo-lockup-wrapper {
@@ -338,13 +358,13 @@
 }
 
 .hs-monogram-emblem-svg {
-  width: 110px;
-  height: 110px;
-  filter: drop-shadow(0 3px 6px rgba(143, 100, 20, 0.25));
+  width: 142px;
+  height: 142px;
+  filter: drop-shadow(0 5px 14px rgba(110, 66, 6, 0.4));
 }
 
 .logo-lockup-text {
-  margin-top: -0.2rem;
+  margin-top: -0.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -352,9 +372,10 @@
 
 .lockup-names-title {
   font-family: var(--font-serif-royal);
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.34em;
+  word-spacing: 0.24em;
   color: var(--maroon-deep);
   text-transform: uppercase;
   margin: 0;
@@ -366,7 +387,7 @@
   justify-content: center;
   gap: 0.4rem;
   margin: 0.15rem 0;
-  width: 140px;
+  width: 160px;
 }
 
 .lockup-rule-line {
@@ -382,16 +403,17 @@
 
 .lockup-celebration-subtitle {
   font-family: var(--font-serif-royal);
-  font-size: 0.64rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
+  word-spacing: 0.18em;
   color: var(--gold-deep);
   margin: 0;
 }
 
-/* Prominent Couple's Names */
+/* 3. Prominent Couple's Names with Generous Word Spacing */
 .names-container {
-  margin: 0.25rem 0 0.45rem;
+  margin: 0.3rem 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -400,58 +422,60 @@
 
 .couple-name {
   font-family: var(--font-serif-royal);
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  word-spacing: 0.22em;
   color: var(--maroon-deep);
   margin: 0;
   text-shadow:
-    0 1px 1px rgba(255, 255, 255, 0.9),
-    0 2px 8px rgba(59, 6, 13, 0.12);
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 2px 8px rgba(59, 6, 13, 0.15);
 }
 
 .ampersand-sign {
   font-family: var(--font-serif-royal);
   font-style: italic;
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   font-weight: 500;
   line-height: 1;
   color: var(--gold-antique);
-  margin: 0.1rem 0;
+  margin: 0.2rem 0;
 }
 
-/* Invitation Message */
+/* 4. Exact Invitation Message with Comfortable Line Height & Word Spacing */
 .message-container {
-  max-width: 400px;
-  margin: 0.25rem auto 0.45rem;
+  max-width: 440px;
+  margin: 0.3rem auto 0.5rem;
   padding: 0 0.5rem;
 }
 
 .invitation-message-text {
   font-family: var(--font-serif-body);
-  font-size: 1.1rem;
-  line-height: 1.55;
+  font-size: 1.16rem;
+  line-height: 1.7;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  word-spacing: 0.16em;
   color: var(--maroon-text);
   margin: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Lotus Divider */
+/* 5. Blooming Lotus Divider */
 .lotus-divider-wrap,
 .lotus-ornamental-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 0.25rem auto 0.55rem;
+  margin: 0.3rem auto 0.6rem;
 }
 
 .lotus-divider-svg {
-  width: 170px;
-  height: 20px;
+  width: 175px;
+  height: 22px;
   display: block;
 }
 
@@ -462,15 +486,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
 .open-invitation-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.72rem 1.6rem;
+  gap: 0.65rem;
+  padding: 0.75rem 1.8rem;
   background: linear-gradient(135deg, var(--maroon-royal) 0%, var(--maroon-deep) 100%);
   border: 1.5px solid var(--gold-highlight);
   border-radius: 30px;
@@ -509,9 +533,10 @@
 
 .cta-text {
   font-family: var(--font-serif-royal);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
+  word-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -541,11 +566,12 @@
 
 .open-invitation-subtitle {
   font-family: var(--font-serif-body);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
+  word-spacing: 0.18em;
   color: var(--gold-deep);
-  margin: 0.45rem 0 0;
+  margin: 0.5rem 0 0;
   opacity: 0.95;
 }
 

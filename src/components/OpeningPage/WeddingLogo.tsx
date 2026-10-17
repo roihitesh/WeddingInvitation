@@ -26,37 +26,38 @@ export const WeddingLogo: React.FC<WeddingLogoProps> = ({
         aria-label="Hitesh & Shivanee Royal Monogram Emblem"
       >
         <defs>
-          {/* Antique Gold Metallic Foil Gradient */}
+          {/* High-Contrast Royal Antique Gold Foil Gradient */}
           <linearGradient id="antiqueGoldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#966e1b" />
-            <stop offset="22%" stopColor="#dfb76c" />
-            <stop offset="48%" stopColor="#fff2c7" />
-            <stop offset="72%" stopColor="#c59b27" />
-            <stop offset="100%" stopColor="#805710" />
+            <stop offset="0%" stopColor="#6e4206" />
+            <stop offset="16%" stopColor="#b88920" />
+            <stop offset="38%" stopColor="#fff8e1" />
+            <stop offset="58%" stopColor="#dfb76c" />
+            <stop offset="78%" stopColor="#966e1b" />
+            <stop offset="100%" stopColor="#4e2c02" />
           </linearGradient>
 
           {/* Secondary Muted Champagne Gold */}
           <linearGradient id="champagneGold" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#fff2c7" />
-            <stop offset="50%" stopColor="#dfb76c" />
-            <stop offset="100%" stopColor="#966e1b" />
+            <stop offset="0%" stopColor="#fffde7" />
+            <stop offset="45%" stopColor="#dfb76c" />
+            <stop offset="100%" stopColor="#80540d" />
           </linearGradient>
 
           {/* Botanical Olive & Gold Leaf Gradient */}
           <linearGradient id="botanicalGoldLeaf" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7a8d5e" />
+            <stop offset="0%" stopColor="#697f4d" />
             <stop offset="50%" stopColor="#c59b27" />
-            <stop offset="100%" stopColor="#5d7344" />
+            <stop offset="100%" stopColor="#4a6132" />
           </linearGradient>
 
-          {/* Embossed Drop Shadow for Royal Stationery Depth */}
+          {/* High-Contrast Embossed Drop Shadow for Royal Stationery Depth */}
           <filter id="royalSealEmboss" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="2.5" stdDeviation="3" floodColor="#220408" floodOpacity="0.4" />
-            <feDropShadow dx="0" dy="1" stdDeviation="1" floodColor="#dfb76c" floodOpacity="0.3" />
+            <feDropShadow dx="0" dy="3" stdDeviation="3.5" floodColor="#2a1202" floodOpacity="0.55" />
+            <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#fff59d" floodOpacity="0.45" />
           </filter>
 
           <filter id="goldShimmerGlow" x="-10%" y="-10%" width="120%" height="120%">
-            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#dfb76c" floodOpacity="0.5" />
+            <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" floodColor="#dfb76c" floodOpacity="0.6" />
           </filter>
         </defs>
 
@@ -67,7 +68,7 @@ export const WeddingLogo: React.FC<WeddingLogoProps> = ({
           r="66"
           fill="none"
           stroke="url(#antiqueGoldMetallic)"
-          strokeWidth="1.8"
+          strokeWidth="2.4"
           filter="url(#royalSealEmboss)"
         />
 
