@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { OpeningPage } from './components/OpeningPage/OpeningPage';
 import { LanguageSelectionPage } from './components/LanguageSelection/LanguageSelectionPage';
 import { WelcomePage } from './components/WelcomePage/WelcomePage';
+import { OurStoryPage } from './components/OurStory/OurStoryPage';
 import { defaultContent } from './config/content.config';
-import { SupportedLanguage } from './types/invitation';
+import { SupportedLanguage, NavSection } from './types/invitation';
 
 export type ScreenState = 'opening' | 'language' | 'invitation';
 
@@ -13,10 +14,12 @@ export type ScreenState = 'opening' | 'language' | 'invitation';
  * 1. Opening Palace Entrance (3D Double Doors)
  * 2. Page 2: Choose Your Invitation Language (English / Hindi Stationery Cards)
  * 3. Page 3: The Royal Wedding Welcome Page (in chosen language with language switcher)
+ * 4. Page 4: Our Love Story (Editorial photo album + continuous vertical timeline)
  */
 export const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
   const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>('en');
+  const [activeSection, setActiveSection] = useState<NavSection>('welcome');
 
   const handleOpenPalace = () => {
     setCurrentScreen('language');
@@ -24,7 +27,12 @@ export const App: React.FC = () => {
 
   const handleSelectLanguage = (lang: SupportedLanguage) => {
     setSelectedLanguage(lang);
+    setActiveSection('welcome');
     setCurrentScreen('invitation');
+  };
+
+  const handleBackToLanguage = () => {
+    setCurrentScreen('language');
   };
 
   return (
@@ -44,14 +52,31 @@ export const App: React.FC = () => {
       )}
 
       {currentScreen === 'invitation' && (
-        <WelcomePage
-          language={selectedLanguage}
-          onLanguageChange={setSelectedLanguage}
-          onBackToLanguageSelection={() => setCurrentScreen('language')}
-        />
+        <>
+          {activeSection === 'welcome' && (
+            <WelcomePage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onBackToLanguageSelection={handleBackToLanguage}
+              onNavigateSection={setActiveSection}
+              onExploreWedding={() => setActiveSection('story')}
+            />
+          )}
+
+          {activeSection === 'story' && (
+            <OurStoryPage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onNavigateSection={setActiveSection}
+              onBackToWelcome={() => setActiveSection('welcome')}
+              onBackToLanguageSelection={handleBackToLanguage}
+            />
+          )}
+        </>
       )}
     </div>
   );
 };
 
 export default App;
+

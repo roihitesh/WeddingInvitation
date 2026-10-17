@@ -114,3 +114,53 @@ export interface WelcomePageProps {
   onSendWishes?: () => void;
   onNavigateSection?: (section: NavSection) => void;
 }
+
+export type TimelineMarkerType =
+  | 'floral'
+  | 'heart'
+  | 'intertwined'
+  | 'travel'
+  | 'lotus'
+  | 'wedding-knot';
+
+export interface StoryPhotoItem {
+  id?: string;
+  src?: string;
+  alt: { en: string; hi: string };
+  caption?: { en?: string; hi?: string };
+  symbolicType: 'first-meeting' | 'first-crush' | 'sharing-feelings' | 'trip-main' | 'trip-snapshot-1' | 'trip-snapshot-2' | 'family-blessings' | 'tying-knot';
+}
+
+export interface StoryMilestoneItem {
+  id: string;
+  order: number;
+  markerType: TimelineMarkerType;
+  heading: { en: string; hi: string };
+  story: { en: string; hi: string };
+  date?: { en?: string; hi?: string };
+  location?: { en?: string; hi?: string };
+  primaryPhoto: StoryPhotoItem;
+  additionalPhotos?: StoryPhotoItem[];
+  isVisible?: boolean;
+}
+
+export interface StoryPageConfig {
+  title: { en: string; hi: string };
+  intro: { en: string; hi: string };
+  milestones: StoryMilestoneItem[];
+  closing: {
+    quote: { en: string; hi: string };
+    coupleNames: string;
+    ctaText: { en: string; hi: string };
+    celebrationFeedback: { en: string; hi: string };
+  };
+}
+
+export interface OurStoryPageProps {
+  language: SupportedLanguage;
+  onLanguageChange: (lang: SupportedLanguage) => void;
+  onNavigateSection: (section: NavSection) => void;
+  onBackToWelcome?: () => void;
+  onBackToLanguageSelection?: () => void;
+  onExploreCelebrations?: () => void;
+}
