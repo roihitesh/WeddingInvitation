@@ -11,7 +11,7 @@ interface PalaceDoorsProps {
 /**
  * Grand Double Palace Doors with:
  * - Traditional Indian wedding Nagada (नगाड़े) and Shehnai (शहनाई) at the center of both doors
- * - Complete, UNBROKEN royal H&S monogram seal intact on one side (no splitting)
+ * - Clean royal architectural door leaves without monogram clutter
  * - 3D perspective outward swinging doors with authentic Indian palace carvings
  */
 export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
@@ -562,59 +562,8 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             <circle cx="0" cy="0" r="5" fill="#fff8e7" />
           </g>
 
-          {/* COMPLETE, UNBROKEN ROYAL H&S BRASS EMBLEM (ON ONE SIDE - RIGHT DOOR) */}
-          <g className="door-unbroken-hs-emblem" transform="translate(4, 290)">
-            {/* Latch Plate Mounting Bracket */}
-            <rect
-              x="-6"
-              y="-32"
-              width="44"
-              height="64"
-              rx="6"
-              fill="url(#brassStudGrad)"
-              stroke="#5a3d0a"
-              strokeWidth="1.2"
-              filter="drop-shadow(2px 4px 8px rgba(0,0,0,0.65))"
-            />
-            {/* Inner Border */}
-            <rect
-              x="-2"
-              y="-28"
-              width="36"
-              height="56"
-              rx="4"
-              stroke="#fff8e7"
-              strokeWidth="0.8"
-              strokeDasharray="2 1.5"
-              fill="none"
-            />
-            {/* Intact Combined Initials "H&S" */}
-            <text
-              x="16"
-              y="-4"
-              fontFamily="'Playfair Display', serif"
-              fontSize="16"
-              fontWeight="bold"
-              fill="#2b1a05"
-              textAnchor="middle"
-            >
-              H&amp;S
-            </text>
-            <text
-              x="16"
-              y="14"
-              fontFamily="'Playfair Display', serif"
-              fontSize="8"
-              letterSpacing="1"
-              fontWeight="bold"
-              fill="#5a3d0a"
-              textAnchor="middle"
-            >
-              VIVAH
-            </text>
-            {/* Auspicious Lotus Bud below text */}
-            <circle cx="16" cy="22" r="2" fill="#2b1a05" />
-          </g>
+          {/* Center Astragal Overlap Molding Strip */}
+          <rect x="0" y="0" width="6" height="720" fill="url(#doorGoldGrad)" opacity="0.9" />
         </svg>
 
         <div className="door-lighting-overlay" />
