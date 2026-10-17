@@ -925,19 +925,26 @@
   display: block;
 }
 
-/* 3. Royal Heritage Emblems (Peacock Left, Elephant Right - Symmetrically Aligned) */
-.royal-heritage-emblem {
+/* 3. Bottom Ceremonial Sculpture Plinth: Mayur & Gajraj gracefully nested on the Urli / Brass Plate */
+.bottom-sculpture-thali-unit {
   position: absolute;
-  top: 50%;
+  bottom: 24px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   z-index: 6;
-  opacity: 0.95;
+}
+
+.plate-sculpture-figure {
   width: 140px;
+  height: 176px;
+  margin-bottom: -36px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .peacock-artwork-svg,
@@ -950,18 +957,18 @@
   transition: transform 0.4s ease;
 }
 
-/* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya (Centered on Base) */
-.bottom-urli-display {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 6;
+.plate-base-bowl {
+  width: 150px;
+  height: 80px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .urli-svg {
-  width: 142px;
-  height: 86px;
+  width: 146px;
+  height: 84px;
   filter: drop-shadow(0 8px 18px rgba(41, 4, 10, 0.25));
 }
 
