@@ -1,1 +1,0 @@
-{"version":3,"mappings":";w6DACKA,EAAA,IAAC,OAAO,oBAAgB,0CAAE,MAAM,UAAM,OAAO,8BAA4B,qBAAC","names":["__vitePreload"],"ignoreList":[],"sources":["../../index.html?html-proxy&index=0.js"],"sourcesContent":["\n      import('./src/main.tsx').catch(() => import('./assets/index-Bx7PsXlF.js'));\n    "],"file":"assets/index-GMOJmfUW.js"}
