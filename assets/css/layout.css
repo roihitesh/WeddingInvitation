@@ -47,7 +47,7 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .event-card.event-mehendi,.event-card.event-sangeet { color:#246b5a; background:linear-gradient(145deg,rgba(230,244,229,.97),rgba(192,224,211,.95)) padding-box,linear-gradient(135deg,#0f382a,#31a79b,#d9bc62) border-box; }
 .event-card.event-mehendi::before,.event-card.event-sangeet::before { opacity:.1; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%230d5c5b' stroke-width='2'%3E%3Cpath d='M50 5C30 25 30 40 50 50c20-10 20-25 0-45ZM50 95C30 75 30 60 50 50c20 10 20 25 0 45ZM5 50c20-20 35-20 45 0-10 20-25 20-45 0Zm90 0c-20-20-35-20-45 0 10 20 25 20 45 0Z'/%3E%3Ccircle cx='50' cy='50' r='12'/%3E%3C/g%3E%3C/svg%3E"); background-size:110px; animation:henna-pulse 4.5s ease-in-out infinite; }
 .event-card.event-baraat,.event-card.event-phere { color:#8e2431; background:linear-gradient(145deg,rgba(255,241,221,.98),rgba(249,220,209,.97)) padding-box,linear-gradient(135deg,#680e1c,#d4af37,#680e1c) border-box; }
-.event-card.event-phere::before { opacity:.1; inset:0; height:auto; filter:none; }
+.event-card.event-phere::before { inset:0 0 auto; height:3px; opacity:1; filter:none; }
 @keyframes haldi-sun { to { transform:rotate(360deg); } } @keyframes henna-pulse { 50% { opacity:.17; } } @keyframes agni-glow { to { opacity:.4; transform:scale(1.05); } }
 .gallery-thumb { border-radius:100px 100px 3px 3px; box-shadow:0 8px 24px rgba(73,43,20,.08); }
 .gallery-thumb img { border-radius:100px 100px 0 0; transform:translate3d(0,var(--gallery-parallax,0px),0) scale(1.04); will-change:transform; }
@@ -134,7 +134,7 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .event-card.event-mehendi::before { background:#718c73; }
 .event-card.event-sangeet::before { background:#a37b91; }
 .event-card.event-baraat::before { background:#b87570; }
-.event-card.event-phere::before { background:#8b765e; }
+.event-card.event-phere::before { background:#c69a78; }
 .event-card.event-haldi,.event-card.event-mehendi,.event-card.event-sangeet,.event-card.event-baraat,.event-card.event-phere { background:#fffdf9; }
 .event-card.event-haldi::before,.event-card.event-mehendi::before,.event-card.event-sangeet::before,.event-card.event-baraat::before,.event-card.event-phere::before { mask-image:none; background-image:none !important; animation:none !important; opacity:1; }
 .event-card .event-detail,.event-card .event-actions,.event-card .event-details-button { max-height:none !important; margin-top:initial; margin-bottom:initial; overflow:visible; opacity:1 !important; transform:none !important; }
