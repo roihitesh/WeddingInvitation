@@ -15,6 +15,8 @@ import { VenueMapDirections } from './VenueMapDirections';
 import { VenueTravelPlan } from './VenueTravelPlan';
 import { VenueGallery } from './VenueGallery';
 import { VenueArtwork } from './VenueArtwork';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './VenuePage.css';
 
 /**
@@ -323,13 +325,12 @@ export const VenuePage: React.FC<VenuePageProps> = ({
       )}
 
       {/* Sacred Traditional Footer */}
-      <footer className="venue-sacred-footer" role="contentinfo">
-        <p className="footer-copyright">
-          {isHindi
-            ? 'हितेश एवं शिवानी का शुभ विवाह · आपका सस्नेह स्वागत है'
-            : 'Hitesh & Shivanee Wedding · Destination & Directions · With Gratitude'}
-        </p>
-      </footer>
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={handleNavSection}
+        activeSection="venue"
+      />
     </div>
   );
 };

@@ -14,6 +14,8 @@ import { AttendanceSelector } from './AttendanceSelector';
 import { GuestCountSelector } from './GuestCountSelector';
 import { EventsAttendingSelector } from './EventsAttendingSelector';
 import { RsvpConfirmationCard } from './RsvpConfirmationCard';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './RsvpPage.css';
 
 /**
@@ -341,13 +343,12 @@ export const RsvpPage: React.FC<RsvpPageProps> = ({
       </div>
 
       {/* Sacred Traditional Footer */}
-      <footer className="rsvp-sacred-footer" role="contentinfo">
-        <p className="footer-copyright">
-          {isHindi
-            ? 'हितेश एवं शिवानी का शुभ विवाह · आपकी शुभकामनाएँ हमारे लिए अनमोल हैं'
-            : 'Hitesh & Shivanee Wedding · Your Presence is Our Greatest Blessing'}
-        </p>
-      </footer>
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={onNavigateSection}
+        activeSection="rsvp"
+      />
     </div>
   );
 };

@@ -8,6 +8,8 @@ import { FeaturedMemoryCard } from './FeaturedMemoryCard';
 import { GalleryPhotoGrid } from './GalleryPhotoGrid';
 import { GalleryClosing } from './GalleryClosing';
 import { GalleryLightbox } from './GalleryLightbox';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './GalleryPage.css';
 
 /**
@@ -142,6 +144,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
           onBackToWelcome={onBackToWelcome}
         />
       </main>
+
+      {/* Page 9: Refined Royal Wedding Footer */}
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={onNavigateSection}
+        activeSection="gallery"
+      />
 
       {/* Full-screen Lightbox Modal */}
       {selectedPhoto && (

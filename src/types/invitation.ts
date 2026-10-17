@@ -426,6 +426,54 @@ export interface GalleryPageProps {
   weddingDetails?: WeddingDetails;
 }
 
+export interface FinalClosingConfig {
+  coupleNames: string;
+  finalInvitationMessage: {
+    en: string;
+    hi: string;
+  };
+  actions: {
+    exploreCelebrations: {
+      en: string;
+      hi: string;
+    };
+    viewMemories: {
+      en: string;
+      hi: string;
+    };
+  };
+  detailsLabels: {
+    weddingDate: { en: string; hi: string };
+    ceremonyTime: { en: string; hi: string };
+    mainVenue: { en: string; hi: string };
+    venueAddress: { en: string; hi: string };
+    getDirections: { en: string; hi: string };
+  };
+  footer: {
+    closingMessage: {
+      en: string;
+      hi: string;
+    };
+    navLinks: {
+      welcome: { en: string; hi: string };
+      story: { en: string; hi: string };
+      celebrations: { en: string; hi: string };
+      venue: { en: string; hi: string };
+      rsvp: { en: string; hi: string };
+      gallery: { en: string; hi: string };
+    };
+    switchLanguage: {
+      en: string;
+      hi: string;
+    };
+    copyright: {
+      en: string;
+      hi: string;
+    };
+  };
+}
+
+
 
 
 

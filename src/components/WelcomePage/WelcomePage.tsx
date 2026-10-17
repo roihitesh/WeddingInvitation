@@ -8,6 +8,9 @@ import { welcomePageContent } from '../../config/welcomePage.config';
 import { OrnamentalBorder } from '../OpeningPage/OrnamentalBorder';
 import { WeddingNav } from './WeddingNav';
 import { WelcomeHero } from './WelcomeHero';
+import { FinalInvitationClosing } from '../FinalClosing/FinalInvitationClosing';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './WelcomePage.css';
 
 /**
@@ -47,15 +50,7 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
     if (onNavigateSection) {
       onNavigateSection(section);
     }
-    if (section === 'welcome') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (section === 'story') {
-      showToast(content.placeholderFeedback.story);
-    } else if (section === 'celebrations') {
-      showToast(content.placeholderFeedback.celebrations);
-    } else if (section === 'venue') {
-      showToast(content.placeholderFeedback.venue);
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleExplore = () => {
@@ -104,21 +99,22 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
           onExplore={handleExplore}
           onWishes={handleWishes}
         />
+
+        {/* Page 9: Final Wedding Invitation & Closing Section */}
+        <FinalInvitationClosing
+          language={language}
+          onNavigateSection={handleNavSection}
+          weddingDetails={weddingDetails}
+        />
       </main>
 
-      {/* 5. Auspicious Footnote Blessing */}
-      <footer className="welcome-page-footer" role="contentinfo">
-        <div className="footer-blessing-wrap" aria-hidden="true">
-          <span className="footer-gold-rule" />
-          <span className="footer-sacred-mantra">॥ शुभम् भवतु ॥</span>
-          <span className="footer-gold-rule" />
-        </div>
-        <p className="footer-copyright">
-          {isHindi
-            ? 'हितेश एवं शिवानी का शुभ विवाह · आपका हार्दिक स्वागत है'
-            : 'Hitesh & Shivanee · Wedding Celebration · With Love & Gratitude'}
-        </p>
-      </footer>
+      {/* Page 9: Refined Royal Wedding Footer */}
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={handleNavSection}
+        activeSection={activeSection}
+      />
 
       {/* Graceful Toast Feedback for Placeholder Destinations */}
       {toastMessage && (

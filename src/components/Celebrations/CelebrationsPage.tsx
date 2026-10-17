@@ -11,6 +11,8 @@ import { CelebrationsIntro } from './CelebrationsIntro';
 import { CelebrationsCountdown } from './CelebrationsCountdown';
 import { EventTimeline } from './EventTimeline';
 import { LotusDivider } from '../OpeningPage/LotusDivider';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './CelebrationsPage.css';
 
 /**
@@ -197,13 +199,12 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
       </div>
 
       {/* Sacred Traditional Footer */}
-      <footer className="celebrations-sacred-footer" role="contentinfo">
-        <p className="footer-copyright">
-          {isHindi
-            ? 'हितेश एवं शिवानी का शुभ विवाह समारोह · सादर आमंत्रण'
-            : 'Hitesh & Shivanee Wedding Celebrations · Cordially Invited'}
-        </p>
-      </footer>
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={handleNavSection}
+        activeSection="celebrations"
+      />
     </div>
   );
 };

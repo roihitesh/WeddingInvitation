@@ -1,0 +1,595 @@
+/**
+ * Page 9: Final Wedding Invitation & Refined Royal Footer Stylesheet
+ * Couple: Hitesh & Shivanee
+ * Palette:
+ * - Antique Ivory: #faf6ee, #f5ebd7, #fffdfa
+ * - Deep Royal Maroon: #520f18, #3b0a13, #6a1420
+ * - Antique Gold: #dfb76c, #b8861d, #fdf0cd, #8c6d23
+ */
+
+/* ==========================================================================
+   1. Final Invitation Section
+   ========================================================================== */
+.final-invitation-section {
+  width: 100%;
+  padding: 60px 20px 80px 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.final-invitation-container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.final-invitation-card {
+  position: relative;
+  background: #fffdf9;
+  border: 1.5px solid #dfb76c;
+  border-radius: 20px;
+  padding: 48px 40px 44px 40px;
+  box-shadow: 
+    0 20px 50px rgba(82, 15, 24, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.8),
+    inset 0 0 24px rgba(223, 183, 108, 0.08);
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Top Palace Arch Ornament */
+.final-card-top-arch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+}
+
+.arch-flourish-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Centered Monogram */
+.final-monogram-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.final-invitation-logo {
+  transform: scale(0.95);
+}
+
+/* Couple Names */
+.final-couple-names-wrap {
+  margin-bottom: 14px;
+}
+
+.final-couple-names.cursive-display {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #520f18;
+  margin: 0 0 6px 0;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(82, 15, 24, 0.06);
+}
+
+.final-couple-subtext {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.final-couple-subtext .star-sparkle {
+  color: #b8861d;
+  font-size: 11px;
+}
+
+.final-couple-subtext .invitation-tagline {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #8c6d23;
+  font-weight: 600;
+}
+
+.final-divider-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 20px 0;
+}
+
+/* Heartfelt Invitation Message */
+.final-message-container {
+  max-width: 680px;
+  margin: 0 auto 32px auto;
+}
+
+.final-invitation-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: #3b0a13;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+}
+
+.final-invitation-quote.font-devanagari {
+  font-family: 'Rozha One', 'Yatra One', serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: 1.7;
+}
+
+/* Configured Wedding Details Summary Card */
+.final-details-summary-card {
+  max-width: 640px;
+  margin: 0 auto 36px auto;
+  background: rgba(250, 246, 238, 0.7);
+  border: 1px solid rgba(223, 183, 108, 0.55);
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px rgba(82, 15, 24, 0.03);
+}
+
+.summary-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.summary-gold-line {
+  height: 1px;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, #dfb76c, transparent);
+}
+
+.summary-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #520f18;
+  font-weight: 700;
+}
+
+.summary-title.font-devanagari {
+  font-family: 'Rozha One', serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.summary-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  text-align: left;
+}
+
+.summary-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #fffdfa;
+  border: 1px solid rgba(223, 183, 108, 0.3);
+  border-radius: 8px;
+}
+
+.detail-icon {
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #8c6d23;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.detail-value {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  color: #2c0a10;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.detail-value.font-devanagari {
+  font-family: 'Rozha One', serif;
+  font-size: 0.98rem;
+}
+
+.summary-directions-row {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.summary-directions-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #520f18;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid #dfb76c;
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.summary-directions-link:hover {
+  color: #8c6d23;
+  border-color: #520f18;
+}
+
+/* Main Action Buttons */
+.final-actions-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.final-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 12.5px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  min-height: 48px;
+}
+
+.final-action-btn.celebrations-btn {
+  background: #520f18;
+  color: #fdf0cd;
+  border: 1.5px solid #dfb76c;
+  box-shadow: 0 4px 14px rgba(82, 15, 24, 0.25);
+}
+
+.final-action-btn.celebrations-btn:hover {
+  background: #6a1420;
+  box-shadow: 0 6px 20px rgba(82, 15, 24, 0.35);
+  transform: translateY(-2px);
+}
+
+.final-action-btn.memories-btn {
+  background: #fffdf9;
+  color: #520f18;
+  border: 1.5px solid #dfb76c;
+  box-shadow: 0 4px 12px rgba(82, 15, 24, 0.08);
+}
+
+.final-action-btn.memories-btn:hover {
+  background: rgba(223, 183, 108, 0.15);
+  border-color: #520f18;
+  transform: translateY(-2px);
+}
+
+.btn-sparkle {
+  font-size: 14px;
+}
+
+.btn-text.font-devanagari {
+  font-family: 'Rozha One', serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* Corner Flourishes */
+.final-corner-flourish {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.final-corner-flourish.corner-tl {
+  top: 10px;
+  left: 10px;
+  border-top: 2px solid #dfb76c;
+  border-left: 2px solid #dfb76c;
+}
+
+.final-corner-flourish.corner-tr {
+  top: 10px;
+  right: 10px;
+  border-top: 2px solid #dfb76c;
+  border-right: 2px solid #dfb76c;
+}
+
+.final-corner-flourish.corner-bl {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 2px solid #dfb76c;
+  border-left: 2px solid #dfb76c;
+}
+
+.final-corner-flourish.corner-br {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid #dfb76c;
+  border-right: 2px solid #dfb76c;
+}
+
+/* ==========================================================================
+   2. Refined Royal Wedding Footer
+   ========================================================================== */
+.royal-wedding-footer {
+  width: 100%;
+  background: #faf6ee;
+  border-top: 1px solid rgba(223, 183, 108, 0.35);
+  padding: 40px 20px 32px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+.royal-footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Top Divider with Lotus Motif */
+.royal-footer-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.footer-line {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, #dfb76c, transparent);
+}
+
+.footer-lotus-motif {
+  color: #dfb76c;
+  font-size: 20px;
+}
+
+/* Monogram */
+.royal-footer-monogram {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.footer-logo-small {
+  transform: scale(0.78);
+}
+
+/* Couple Names Signature */
+.royal-footer-couple {
+  margin-bottom: 10px;
+}
+
+.footer-couple-text.cursive-signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #520f18;
+  letter-spacing: 1px;
+}
+
+/* Sentimental Tagline */
+.royal-footer-message {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  color: #5c4347;
+  font-style: italic;
+  margin: 0 0 24px 0;
+}
+
+.royal-footer-message.font-devanagari {
+  font-family: 'Rozha One', serif;
+  font-size: 1.05rem;
+  font-style: normal;
+}
+
+/* Navigation Links */
+.royal-footer-nav {
+  margin-bottom: 24px;
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 20px;
+}
+
+.footer-nav-item {
+  display: inline-block;
+}
+
+.footer-nav-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #520f18;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-weight: 600;
+}
+
+.footer-nav-btn:hover {
+  color: #b8861d;
+}
+
+.footer-nav-btn.is-active {
+  color: #b8861d;
+  font-weight: 700;
+  border-bottom: 1px solid #dfb76c;
+}
+
+.footer-nav-btn.font-devanagari {
+  font-family: 'Rozha One', serif;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* Bottom Utility Row: Language Switcher & Auspicious Mantra */
+.royal-footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-mantra-pill {
+  padding: 4px 14px;
+  background: rgba(82, 15, 24, 0.05);
+  border: 1px solid rgba(223, 183, 108, 0.4);
+  border-radius: 999px;
+}
+
+.footer-mantra-pill .mantra-text {
+  font-family: 'Rozha One', serif;
+  font-size: 12px;
+  color: #520f18;
+  letter-spacing: 1px;
+}
+
+.footer-lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #fffdfa;
+  border: 1px solid #dfb76c;
+  border-radius: 999px;
+  color: #520f18;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.footer-lang-toggle-btn:hover {
+  background: #520f18;
+  color: #fdf0cd;
+  box-shadow: 0 2px 8px rgba(82, 15, 24, 0.15);
+}
+
+.footer-lang-toggle-btn .lang-icon {
+  font-size: 12px;
+}
+
+/* Copyright / Auspicious line */
+.royal-footer-copyright {
+  border-top: 1px dashed rgba(223, 183, 108, 0.3);
+  padding-top: 16px;
+}
+
+.copyright-text {
+  font-family: 'Cinzel', serif;
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  color: #8c6d23;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 768px) {
+  .final-invitation-section {
+    padding: 40px 16px 60px 16px;
+  }
+
+  .final-invitation-card {
+    padding: 36px 20px 32px 20px;
+  }
+
+  .final-couple-names.cursive-display {
+    font-size: 2.75rem;
+  }
+
+  .final-invitation-quote {
+    font-size: 1.15rem;
+  }
+
+  .final-invitation-quote.font-devanagari {
+    font-size: 1.1rem;
+  }
+
+  .summary-details-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .final-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .final-action-btn {
+    width: 100%;
+  }
+
+  .footer-nav-list {
+    gap: 8px 14px;
+  }
+
+  .footer-couple-text.cursive-signature {
+    font-size: 1.85rem;
+  }
+}
+
+/* ==========================================================================
+   4. Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .final-action-btn,
+  .footer-lang-toggle-btn,
+  .footer-nav-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}

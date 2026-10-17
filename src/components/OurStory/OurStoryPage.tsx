@@ -10,6 +10,8 @@ import { StoryIntro } from './StoryIntro';
 import { VerticalTimeline } from './VerticalTimeline';
 import { StoryClosing } from './StoryClosing';
 import { ImageLightbox } from './ImageLightbox';
+import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
+import '../FinalClosing/FinalClosing.css';
 import './OurStoryPage.css';
 
 /**
@@ -157,18 +159,12 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
       />
 
       {/* Sacred Traditional Footer */}
-      <footer className="story-sacred-footer" role="contentinfo">
-        <div className="footer-mantra">
-          <span className="footer-flourish">꧁</span>
-          <span className="footer-text">
-            {isHindi
-              ? '॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥'
-              : '॥ May the Divine Grace Bless This Holy Union ॥'}
-          </span>
-          <span className="footer-flourish">꧂</span>
-        </div>
-        <p className="footer-credit">Hitesh &amp; Shivanee • Forever &amp; Always</p>
-      </footer>
+      <RoyalWeddingFooter
+        language={language}
+        onLanguageChange={onLanguageChange}
+        onNavigateSection={handleNavSection}
+        activeSection="story"
+      />
     </div>
   );
 };
