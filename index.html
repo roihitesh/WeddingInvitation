@@ -13,9 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/themes.css" />
     <link rel="stylesheet" href="assets/css/typography.css" />
-    <link rel="stylesheet" href="assets/css/envelope.css" />
-    <link rel="stylesheet" href="assets/css/language-gate.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/language-gate.css" />
     <link rel="stylesheet" href="assets/css/creative.css" />
     <link rel="preload" href="assets/audio/ganesha-intro.mp3" as="audio" type="audio/mpeg" />
     <script type="module" src="assets/js/core/app.js?v=20261015-cover-audio"></script>
@@ -46,54 +45,65 @@
           <span class="patrika-top-flourish" aria-hidden="true">꧂</span>
         </div>
 
-        <!-- Royal Hindu Wedding Monogram Logo Crest -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="ganesha-mark" viewBox="0 0 200 200" role="img" aria-label="Shivanee and Hitesh royal wedding monogram crest">
+        <!-- Custom H&S Wedding Identity Logo (Reference 2) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="hs-wedding-logo" viewBox="0 0 240 240" role="img" aria-label="Hitesh and Shivanee Royal Wedding Monogram">
           <defs>
-            <linearGradient id="entryGold" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#bf953f"/>
-              <stop offset="30%" stop-color="#fdf1cb"/>
-              <stop offset="65%" stop-color="#d4af37"/>
-              <stop offset="100%" stop-color="#9b6f1e"/>
+            <linearGradient id="hsGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#b88728" />
+              <stop offset="25%" stop-color="#fcedb3" />
+              <stop offset="50%" stop-color="#e5c065" />
+              <stop offset="75%" stop-color="#fef3cc" />
+              <stop offset="100%" stop-color="#9a6c18" />
             </linearGradient>
-            <linearGradient id="bannerGold" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#8b6014"/>
-              <stop offset="20%" stop-color="#d4af37"/>
-              <stop offset="50%" stop-color="#fff1c2"/>
-              <stop offset="80%" stop-color="#d4af37"/>
-              <stop offset="100%" stop-color="#8b6014"/>
+            <linearGradient id="hsLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#839768" />
+              <stop offset="50%" stop-color="#c9ad5c" />
+              <stop offset="100%" stop-color="#6a824e" />
             </linearGradient>
-            <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#e5c158" flood-opacity="0.6"/>
+            <filter id="hsGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#b88728" flood-opacity="0.35" />
             </filter>
           </defs>
 
-          <!-- Pinnacle Kalash & Sacred Coconut -->
-          <path class="crest-pinnacle" d="M100 6 C98 6 97 9 98 13 L100 17 L102 13 C103 9 102 6 100 6 Z" fill="url(#entryGold)"/>
-          <circle cx="100" cy="22" r="6" fill="url(#entryGold)"/>
-          <path d="M88 26 C92 21 100 21 100 26 C100 21 108 21 112 26 C106 28 94 28 88 26 Z" fill="url(#entryGold)"/>
-          <path d="M92 28 H108 L106 35 C105 38 103 40 100 40 C97 40 95 38 94 35 Z" fill="url(#entryGold)"/>
+          <!-- Circular Gold Ring -->
+          <circle cx="120" cy="92" r="62" fill="none" stroke="url(#hsGoldGrad)" stroke-width="1.8" filter="url(#hsGoldGlow)" />
 
-          <!-- Ornate Royal Temple Arch (Jharokha Mehraab) -->
-          <path class="crest-arch-outer" d="M34 154 V92 C34 52 64 36 100 36 C136 36 166 52 166 92 V154" fill="none" stroke="url(#entryGold)" stroke-width="1.8" stroke-linecap="round"/>
-          <path class="crest-arch-inner" d="M42 154 V94 C42 60 68 44 100 44 C132 44 158 60 158 94 V154" fill="none" stroke="url(#entryGold)" stroke-width="1" stroke-dasharray="3 3"/>
-          <path class="crest-scallops" d="M48 148 C48 88 70 54 100 54 C130 54 152 88 152 148" fill="none" stroke="url(#entryGold)" stroke-width="1.2"/>
-
-          <!-- Sacred Om Blessing -->
-          <text class="crest-om" x="100" y="73" text-anchor="middle" fill="url(#entryGold)">ॐ</text>
-
-          <!-- Couple Monogram Calligraphy -->
-          <g class="crest-monogram" filter="url(#goldGlow)">
-            <text class="crest-letter crest-letter-bride" id="crest-initial-bride" x="76" y="116" text-anchor="middle" fill="url(#entryGold)">S</text>
-            <text class="crest-ampersand" x="100" y="112" text-anchor="middle" fill="url(#entryGold)">&amp;</text>
-            <text class="crest-letter crest-letter-groom" id="crest-initial-groom" x="124" y="116" text-anchor="middle" fill="url(#entryGold)">H</text>
+          <!-- Botanical Olive / Jasmine Leaf Branch Hugging Lower-Left Arc -->
+          <g class="hs-botanical-branch" stroke="url(#hsLeafGrad)" fill="url(#hsLeafGrad)" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M60 88 C56 112 70 140 106 152 C118 156 130 155 142 150" fill="none" stroke-width="1.6" />
+            <path d="M57 96 C48 94 45 87 48 83 C54 84 57 89 57 96 Z" />
+            <path d="M54 108 C44 109 40 102 43 97 C49 98 53 103 54 108 Z" />
+            <path d="M58 120 C50 124 45 119 46 113 C52 113 56 117 58 120 Z" />
+            <path d="M68 132 C58 138 54 133 55 127 C61 126 66 129 68 132 Z" />
+            <path d="M79 143 C72 151 66 148 66 141 C71 139 76 141 79 143 Z" />
+            <path d="M96 151 C90 160 84 158 83 151 C89 148 94 149 96 151 Z" />
+            <path d="M115 156 C112 165 105 165 103 158 C108 154 113 154 115 156 Z" />
+            <path d="M132 153 C134 162 128 165 124 159 C126 154 130 152 132 153 Z" />
+            <path d="M66 102 C70 96 76 98 77 104 C72 106 68 104 66 102 Z" />
+            <path d="M72 116 C77 111 83 113 84 119 C79 120 75 119 72 116 Z" />
+            <path d="M84 130 C90 126 95 129 95 135 C90 135 86 133 84 130 Z" />
+            <path d="M102 140 C108 137 113 140 113 146 C107 146 104 143 102 140 Z" />
           </g>
 
-          <!-- Ornate Royal Ribbon / Scroll -->
-          <path class="crest-ribbon-shadow" d="M38 155 L48 165 L48 158 Z M162 155 L152 165 L152 158 Z" fill="#5c3d0b"/>
-          <path class="crest-ribbon-tails" d="M32 164 L46 155 L46 168 L32 174 L37 169 Z M168 164 L154 155 L154 168 L168 174 L163 169 Z" fill="url(#entryGold)"/>
-          <path class="crest-ribbon-body" d="M44 154 Q100 166 156 154 L154 171 Q100 183 46 171 Z" fill="url(#bannerGold)" stroke="#9b6f1e" stroke-width="0.8" filter="url(#goldGlow)"/>
-          
-          <text class="crest-banner-text" x="100" y="166" text-anchor="middle" fill="#4a0e15">॥ शुभ विवाह ॥</text>
+          <!-- Intertwined Monogram Initials H & S -->
+          <g class="hs-monogram" filter="url(#hsGoldGlow)">
+            <g class="mono-h" fill="url(#hsGoldGrad)">
+              <path d="M86 64 H98 V69 H94 V115 H98 V120 H86 V115 H90 V69 H86 Z" />
+              <path d="M93 90 H118 V94 H93 Z" />
+              <path d="M114 64 H126 V69 H122 V115 H126 V120 H114 V115 H118 V69 H114 Z" />
+            </g>
+            <text x="123" y="98" font-family="'Cormorant Garamond', 'Playfair Display', Georgia, serif" font-size="24" font-style="italic" fill="url(#hsGoldGrad)" text-anchor="middle" opacity="0.9">&amp;</text>
+            <path class="mono-s" d="M148 76 C146 70 141 65 133 65 C124 65 117 71 117 78 C117 86 123 90 131 93 C142 97 148 102 148 110 C148 118 140 123 130 123 C121 123 114 117 112 110 L117 108 C118 114 123 119 130 119 C137 119 143 115 143 109 C143 102 137 98 128 95 C118 91 112 86 112 78 C112 71 119 62 133 62 C141 62 148 67 151 74 Z" fill="url(#hsGoldGrad)" />
+            <!-- Dynamic Initial anchors for app.js -->
+            <text class="crest-letter crest-letter-groom" id="crest-initial-groom" x="105" y="115" opacity="0">H</text>
+            <text class="crest-letter crest-letter-bride" id="crest-initial-bride" x="135" y="115" opacity="0">S</text>
+          </g>
+
+          <!-- Logo Subtitle Typography -->
+          <text x="120" y="186" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', 'Cormorant Garamond', serif" font-size="13" font-weight="600" letter-spacing="4.5" fill="url(#hsGoldGrad)">HITESH &amp; SHIVANEE</text>
+          <line x1="68" y1="195" x2="172" y2="195" stroke="url(#hsGoldGrad)" stroke-width="0.8" opacity="0.5" />
+          <circle cx="120" cy="195" r="2" fill="url(#hsGoldGrad)" />
+          <text x="120" y="210" text-anchor="middle" font-family="'Cinzel', 'DM Sans', sans-serif" font-size="8.5" font-weight="500" letter-spacing="3.8" fill="#a07428">WEDDING CELEBRATION</text>
         </svg>
 
         <p class="entry-eyebrow" data-i18n="entryEyebrow"></p>
@@ -141,7 +151,15 @@
     <canvas class="petal-canvas" id="petal-canvas" aria-hidden="true"></canvas>
 
     <header class="sacred-header" id="site-header" hidden>
-      <a class="header-mark" href="#top" aria-label="Back to invitation">ॐ</a>
+      <a class="header-mark hs-header-mark" href="#top" aria-label="Back to top">
+        <svg viewBox="0 0 240 240" class="header-hs-logo" width="34" height="34" aria-hidden="true">
+          <circle cx="120" cy="92" r="62" fill="none" stroke="currentColor" stroke-width="2.5" />
+          <path d="M60 88 C56 112 70 140 106 152 C118 156 130 155 142 150" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+          <text x="96" y="104" font-family="'Cormorant Garamond', Georgia, serif" font-size="44" font-weight="600" font-style="italic" fill="currentColor" text-anchor="middle">H</text>
+          <text x="120" y="96" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-style="italic" fill="currentColor" text-anchor="middle">&amp;</text>
+          <text x="144" y="104" font-family="'Cormorant Garamond', Georgia, serif" font-size="44" font-weight="600" font-style="italic" fill="currentColor" text-anchor="middle">S</text>
+        </svg>
+      </a>
       <nav aria-label="Invitation navigation">
         <a href="#hero" data-i18n="navStory"></a>
         <a href="#events" data-i18n="navEvents"></a>
@@ -256,7 +274,21 @@
         </div>
       </section>
 
-      <footer class="sacred-footer"><p class="footer-names"></p><p data-i18n="footer"></p><span aria-hidden="true">ॐ</span></footer>
+      <footer class="sacred-footer">
+        <div class="footer-hs-logo-wrap" aria-hidden="true">
+          <svg viewBox="0 0 240 240" class="footer-hs-logo" width="60" height="60">
+            <circle cx="120" cy="92" r="62" fill="none" stroke="#d5ad52" stroke-width="2" />
+            <path d="M60 88 C56 112 70 140 106 152 C118 156 130 155 142 150" fill="none" stroke="#d5ad52" stroke-width="1.8" stroke-linecap="round" />
+            <text x="96" y="104" font-family="'Cormorant Garamond', Georgia, serif" font-size="44" font-weight="600" font-style="italic" fill="#fcf6ba" text-anchor="middle">H</text>
+            <text x="120" y="96" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-style="italic" fill="#d5ad52" text-anchor="middle">&amp;</text>
+            <text x="144" y="104" font-family="'Cormorant Garamond', Georgia, serif" font-size="44" font-weight="600" font-style="italic" fill="#fcf6ba" text-anchor="middle">S</text>
+            <text x="120" y="186" text-anchor="middle" font-family="'Cinzel', serif" font-size="12" font-weight="600" letter-spacing="4" fill="#fcf6ba">HITESH &amp; SHIVANEE</text>
+          </svg>
+        </div>
+        <p class="footer-names"></p>
+        <p data-i18n="footer"></p>
+        <span aria-hidden="true">ॐ</span>
+      </footer>
     </main>
 
     <aside class="floating-controls" id="floating-controls" aria-label="Invitation controls" hidden>

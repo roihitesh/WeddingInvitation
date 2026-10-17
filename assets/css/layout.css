@@ -1,8 +1,18 @@
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 86px; }
-body { margin: 0; background: var(--bg-primary); color: var(--text-primary); font-family: var(--sans); }
 [hidden] { display: none !important; }
+body {
+  margin: 0;
+  background-color: #faf5ea;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, .75) 0%, transparent 65%),
+    url("../images/patrika-jaal.svg");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  color: var(--text-primary);
+  font-family: var(--sans);
+}
 button, input, select, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 .sample-banner { position: relative; z-index: 5; padding: 7px 14px; background: var(--accent-maroon); color: #fff4dc; text-align: center; font-size: 9px; letter-spacing: .14em; }
@@ -112,9 +122,9 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .ambient-canvas { display:none; }
 .sacred-header { min-height:66px; border-color:rgba(70,94,80,.15); background:rgba(250,247,242,.97); box-shadow:0 3px 16px rgba(54,43,39,.04); }
 .header-mark,.header-ornament { color:#718573; text-shadow:none; }
-.sacred-opening { background:radial-gradient(ellipse at 18% 30%,rgba(216,177,167,.16),transparent 38%),radial-gradient(ellipse at 82% 60%,rgba(135,160,138,.15),transparent 42%),#faf7f2; }
+.sacred-opening { background:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,.78),transparent 70%); }
 .sacred-motif { color:#b78e6d; text-shadow:none; }
-.hero-section { background:radial-gradient(ellipse at 15% 25%,rgba(216,177,167,.16),transparent 35%),radial-gradient(ellipse at 85% 45%,rgba(135,160,138,.14),transparent 36%),linear-gradient(180deg,#faf7f2,#f6f0e9); }
+.hero-section { background:radial-gradient(ellipse at 50% 25%,rgba(255,255,255,.72),transparent 75%); }
 .hero-ornament { color:rgba(130,151,132,.22); }
 .couple-names { color:#465e50; }
 .couple-names i { color:#b78e6d; }
@@ -122,7 +132,7 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .tithi { border-color:rgba(70,94,80,.2); background:rgba(255,253,249,.5); }
 .tithi strong,.countdown-cell strong { color:#465e50; }
 .muhurat-block { border-color:rgba(70,94,80,.22); background:rgba(255,253,249,.54); }
-.events-section { background:linear-gradient(180deg,#f7f2ec,#f3ede6); }
+.events-section { background:rgba(255,253,249,.52); }
 .events-section::before { opacity:.09; background-image:radial-gradient(ellipse at center,transparent 0 30px,rgba(102,130,107,.42) 31px 32px,transparent 33px 57px); background-size:230px 230px; mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent); }
 .events-section .section-heading h2,.gallery-section .section-heading h2,.rsvp-section .section-heading h2 { color:#465e50; }
 .section-heading .eyebrow { color:#a47770; }
@@ -149,12 +159,12 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .event-card .event-actions a,.event-details-button { color:#526c5b; border-color:rgba(70,94,80,.28); }
 .event-details-button { border-radius:2px 2px 14px 2px; transition:background .2s ease,border-color .2s ease; }
 .event-details-button:hover { background:#edf1eb; border-color:#829684; }
-.gallery-section { background:radial-gradient(ellipse at 18% 20%,rgba(216,177,167,.14),transparent 34%),#faf7f2; }
+.gallery-section { background:rgba(250,247,242,.45); }
 .gallery-thumb { border:4px solid #fffdf9; outline:1px solid rgba(70,94,80,.2); box-shadow:0 9px 24px rgba(54,43,39,.08); }
 .gallery-thumb,.gallery-thumb img,.gallery-thumb img:hover { border-radius:3px 3px 58px 3px; }
 .gallery-thumb img { transform:none; transition:transform .3s ease; }
 .gallery-thumb:hover img { transform:scale(1.025); }
-.rsvp-section { background:radial-gradient(ellipse at 84% 14%,rgba(216,177,167,.14),transparent 38%),#f5efe8; }
+.rsvp-section { background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.65),rgba(245,239,232,.55)); }
 .rsvp-form { border-color:rgba(70,94,80,.2); border-radius:3px 3px 35px 3px; background:#fffdf9; box-shadow:0 12px 32px rgba(54,43,39,.07); }
 .rsvp-form input:not([type=checkbox]),.rsvp-form select,.rsvp-form textarea { border-color:rgba(70,94,80,.22); background:#fcfaf6; }
 .rsvp-form input:focus,.rsvp-form select:focus,.rsvp-form textarea:focus { border-color:#718c73; box-shadow:0 0 0 3px rgba(113,140,115,.12); }
@@ -173,10 +183,6 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .ceremony-dialog .button-gold { background:#d4b597; }
 .ceremony-dialog .button-maroon { background:#465e50; }
 .toast { border-color:rgba(70,94,80,.3); background:#465e50; }
-.entry-gate { background:radial-gradient(ellipse at 15% 15%,rgba(214,169,160,.32),transparent 40%),radial-gradient(ellipse at 85% 78%,rgba(125,151,129,.27),transparent 43%),#f8f4ed; }
-.entry-card { border-color:rgba(91,119,96,.38); outline-color:rgba(183,142,109,.24); border-radius:3px 3px 42px 3px; background:rgba(255,253,249,.92); box-shadow:0 20px 65px rgba(65,71,57,.13); }
-.entry-mantra { color:#526c5b; }
-.entry-card h1 { color:#465e50; }
 .sacred-opening { position:relative; isolation:isolate; overflow:hidden; }
 .sacred-opening::before { content:""; position:absolute; z-index:-1; top:50%; left:50%; width:min(340px,70vw); aspect-ratio:1; border-radius:50%; opacity:.37; background:repeating-conic-gradient(from 7.5deg,rgba(128,151,132,.3) 0deg 2deg,transparent 2deg 15deg); -webkit-mask:radial-gradient(circle,transparent 0 30%,#000 31% 32%,transparent 33% 37%,#000 38% 39%,transparent 40% 46%,#000 47% 48%,transparent 49%); mask:radial-gradient(circle,transparent 0 30%,#000 31% 32%,transparent 33% 37%,#000 38% 39%,transparent 40% 46%,#000 47% 48%,transparent 49%); transform:translate(-50%,-50%); pointer-events:none; }
 .sacred-opening > * { position:relative; }
@@ -195,11 +201,7 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 .toran-divider::after { content:"✿　❧　✿　❧　✿　❧　✿"; position:absolute; inset:2px 0 auto; color:#bd8e68; text-align:center; font-size:14px; letter-spacing:clamp(8px,3.2vw,40px); text-shadow:0 1px #fffdf9; pointer-events:none; }
 .events-section .section-heading::before { content:"❀　❧　❀"; display:block; margin-bottom:9px; color:#b78e6d; font-family:serif; font-size:17px; letter-spacing:.24em; }
 .reveal-on-scroll,.reveal-on-scroll.is-visible { opacity:1; transform:none; transition:opacity .28s ease; }
-.couple-names .name-letter,.couple-names i { opacity:1; animation:none; }
 .event-symbol { animation:none; }
-.ganesha-mark { animation:none; transform:none !important; transition:none !important; }
-.entry-gate::after { animation:none; }
-.entry-gate,.ceremony-dialog::backdrop { transition-duration:.2s; animation:none; }
 @media (hover:hover) and (pointer:fine) {
   .event-card .event-detail,.event-card .event-actions,.event-card .event-details-button { max-height:none; opacity:1; transform:none; }
 }
@@ -212,32 +214,3 @@ main#invitation { position:relative; z-index:1; overflow:hidden; }
 }
 @keyframes ceremony-fade { from { opacity:0; } to { opacity:1; } }
 
-/* Full-screen invitation cover with a slow, layered reveal. */
-.entry-gate { padding:clamp(12px,3vh,28px); background:radial-gradient(ellipse at 50% 8%,rgba(252,246,225,.98),rgba(241,231,216,.92) 52%,rgba(70,94,80,.24) 100%),linear-gradient(135deg,#465e50,#faf7f2 47%,#c68a58); }
-.entry-gate::before { inset:3.5%; opacity:.22; border:1px solid rgba(183,142,109,.55); background-image:repeating-radial-gradient(circle at 50% 50%,transparent 0 36px,rgba(113,140,115,.1) 37px 38px,transparent 39px 64px); background-size:100% 100%; }
-.entry-gate::after { opacity:.38; animation:gold-dust-drift 15s ease-in-out infinite alternate; }
-.entry-card { display:flex; width:min(1080px,100%); min-height:min(840px,calc(100svh - 28px)); flex-direction:column; align-items:center; justify-content:center; padding:clamp(26px,5vh,58px) clamp(22px,8vw,105px); border:1px solid rgba(183,142,109,.72); border-radius:3px 3px 82px 3px; outline:1px solid rgba(255,253,249,.8); outline-offset:-9px; background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.95),transparent 50%),linear-gradient(145deg,#fffefa 0%,#f8f4ed 60%,#f2eadc 100%); box-shadow:0 35px 100px rgba(40,48,39,.25),inset 0 0 70px rgba(198,138,88,.07); animation:entry-card-arrive 1.35s cubic-bezier(.2,.72,.18,1) both; }
-.entry-card::before,.entry-card::after { color:#b78e6d; font-size:clamp(27px,4vw,42px); }
-.entry-card .gold-rule { width:min(230px,55vw); margin:14px auto; }
-.entry-card .ganesha-mark { width:clamp(112px,17vh,154px); height:clamp(112px,17vh,154px); margin-bottom:2px; filter:drop-shadow(0 0 14px rgba(183,142,109,.3)); }
-.entry-mantra { margin-bottom:9px; color:#8a473e; font-size:clamp(15px,2.2vh,20px); }
-.entry-eyebrow { margin-bottom:6px; color:#9b7657; font-size:10px; letter-spacing:.26em; }
-.entry-card h1 { margin-bottom:7px; color:#465e50; font-size:clamp(39px,6vw,67px); line-height:1.06; }
-.entry-names { margin:5px 0 0; color:#9a7357; font-family:var(--serif); font-size:clamp(20px,3vw,31px); letter-spacing:.11em; }
-.entry-date { margin:5px 0 9px; color:#71816f; font-family:var(--serif); font-size:14px; letter-spacing:.08em; }
-.entry-welcome { max-width:580px; margin:0 auto 17px; color:#786355; font-size:clamp(11px,1.5vw,14px); }
-.entry-language-heading { margin:0 0 11px; color:#7a6656; font-size:10px; letter-spacing:.18em; }
-.language-choice { width:min(620px,100%); gap:14px; margin:0 auto 20px; }
-.language-choice [data-language-card] { min-height:108px; border-color:rgba(113,140,115,.38); border-radius:2px 2px 24px 2px; background:rgba(255,255,255,.66); box-shadow:0 8px 24px rgba(50,60,49,.055); }
-.language-choice [data-language-card]:hover,.language-choice [data-language-card]:focus-visible { border-color:#b78e6d; box-shadow:0 12px 30px rgba(113,140,115,.18),0 0 18px rgba(183,142,109,.2); }
-.language-choice [data-language-card].is-selected { border-color:#8b755f; background:linear-gradient(145deg,#fffdf9,#f0f3ec); box-shadow:inset 0 0 0 1px rgba(113,140,115,.12),0 8px 24px rgba(70,94,80,.1); }
-.language-card-icon { color:#b78e6d; font-size:20px; }.language-native { color:#465e50; font-size:21px; }.language-card-subtext { color:#8c7564; font-size:11px; }
-.entry-card > .button { width:min(370px,100%); min-height:52px; border:1px solid #b78e6d; background:linear-gradient(135deg,#dfc8af,#f8eddb 55%,#d7b696); color:#443c34; font-size:11px; letter-spacing:.16em; box-shadow:0 9px 24px rgba(183,142,109,.17); }
-.entry-card > .gold-rule:last-child { margin-top:19px; margin-bottom:0; }
-.entry-card > * { animation:entry-piece-arrive .82s cubic-bezier(.2,.72,.18,1) both; }
-.entry-card > :nth-child(1) { animation-delay:.12s; }.entry-card > :nth-child(2) { animation-delay:.24s; }.entry-card > :nth-child(3) { animation-delay:.42s; }.entry-card > :nth-child(4) { animation-delay:.58s; }.entry-card > :nth-child(5) { animation-delay:.76s; }.entry-card > :nth-child(6) { animation-delay:.9s; }.entry-card > :nth-child(7) { animation-delay:1.02s; }.entry-card > :nth-child(8) { animation-delay:1.15s; }.entry-card > :nth-child(9) { animation-delay:1.28s; }.entry-card > :nth-child(10) { animation-delay:1.4s; }.entry-card > :nth-child(11) { animation-delay:1.52s; }.entry-card > :nth-child(12) { animation-delay:1.64s; }
-@keyframes entry-card-arrive { from { opacity:0; transform:translateY(18px) scale(.99); } to { opacity:1; transform:translateY(0) scale(1); } }
-@keyframes entry-piece-arrive { from { opacity:0; transform:translateY(13px); } to { opacity:1; transform:translateY(0); } }
-@media(max-width:650px) { .entry-gate { padding:10px; }.entry-gate::before { inset:2%; }.entry-card { min-height:calc(100svh - 20px); padding:25px 18px; border-radius:2px 2px 52px 2px; }.entry-card .ganesha-mark { width:100px; height:100px; }.entry-card h1 { font-size:clamp(36px,10vw,52px); }.entry-welcome { margin-bottom:12px; }.language-choice { gap:8px; }.language-choice [data-language-card] { min-height:92px; padding:9px 7px; }.language-card-subtext { font-size:9px; }.entry-card > .button { min-height:48px; } }
-@media(max-height:720px) and (min-width:651px) { .entry-card { min-height:calc(100svh - 24px); padding-top:18px; padding-bottom:18px; }.entry-card .ganesha-mark { width:94px; height:94px; }.entry-card .gold-rule { margin:7px auto; }.entry-welcome { margin-bottom:10px; }.language-choice { margin-bottom:12px; }.language-choice [data-language-card] { min-height:85px; } }
-@media(prefers-reduced-motion:reduce) { .entry-card,.entry-card > *, .entry-gate::after { animation:none !important; opacity:1; transform:none; } }

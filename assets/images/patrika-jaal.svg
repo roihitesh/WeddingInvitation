@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <defs>
+    <!-- Seamless Traditional Indian Lagan Patrika Damask Jaal Watermark -->
+    <style>
+      .patrika-line { fill: none; stroke: #c59b27; stroke-width: 0.9; stroke-linecap: round; stroke-linejoin: round; }
+      .patrika-fill { fill: #c59b27; }
+      .patrika-accent { fill: none; stroke: #8b2635; stroke-width: 0.6; }
+    </style>
+  </defs>
+
+  <!-- Central Lotus Mandala Florets at Grid Intersections (0,0), (160,0), (0,160), (160,160), (80,80) -->
+  <!-- Center (80, 80) -->
+  <g transform="translate(80, 80)">
+    <circle cx="0" cy="0" r="14" class="patrika-line" stroke-dasharray="1.5 1.5"/>
+    <circle cx="0" cy="0" r="8" class="patrika-line"/>
+    <circle cx="0" cy="0" r="3" class="patrika-fill"/>
+    <!-- 8 Lotus Petals -->
+    <path d="M0 -8 C-4 -14 -4 -20 0 -24 C4 -20 4 -14 0 -8 Z" class="patrika-line"/>
+    <path d="M0 8 C-4 14 -4 20 0 24 C4 20 4 14 0 8 Z" class="patrika-line"/>
+    <path d="M-8 0 C-14 -4 -20 -4 -24 0 C-20 4 -14 4 -8 0 Z" class="patrika-line"/>
+    <path d="M8 0 C14 -4 20 -4 24 0 C20 4 14 4 8 0 Z" class="patrika-line"/>
+    <path d="M-6 -6 C-12 -12 -16 -10 -17 -17 C-10 -16 -12 -12 -6 -6 Z" class="patrika-line"/>
+    <path d="M6 -6 C12 -12 16 -10 17 -17 C10 -16 12 -12 6 -6 Z" class="patrika-line"/>
+    <path d="M-6 6 C-12 12 -16 10 -17 17 C-10 16 -12 12 -6 6 Z" class="patrika-line"/>
+    <path d="M6 6 C12 12 16 10 17 17 C10 16 12 12 6 6 Z" class="patrika-line"/>
+  </g>
+
+  <!-- Corner Lotus Mandalas (tiled seamless) -->
+  <g transform="translate(0, 0)">
+    <circle cx="0" cy="0" r="14" class="patrika-line" stroke-dasharray="1.5 1.5"/>
+    <circle cx="0" cy="0" r="8" class="patrika-line"/>
+    <circle cx="0" cy="0" r="3" class="patrika-fill"/>
+    <path d="M0 8 C-4 14 -4 20 0 24 C4 20 4 14 0 8 Z" class="patrika-line"/>
+    <path d="M8 0 C14 -4 20 -4 24 0 C20 4 14 4 8 0 Z" class="patrika-line"/>
+    <path d="M6 6 C12 12 16 10 17 17 C10 16 12 12 6 6 Z" class="patrika-line"/>
+  </g>
+  <g transform="translate(160, 0)">
+    <circle cx="0" cy="0" r="14" class="patrika-line" stroke-dasharray="1.5 1.5"/>
+    <circle cx="0" cy="0" r="8" class="patrika-line"/>
+    <circle cx="0" cy="0" r="3" class="patrika-fill"/>
+    <path d="M0 8 C-4 14 -4 20 0 24 C4 20 4 14 0 8 Z" class="patrika-line"/>
+    <path d="M-8 0 C-14 -4 -20 -4 -24 0 C-20 4 -14 4 -8 0 Z" class="patrika-line"/>
+    <path d="M-6 6 C-12 12 -16 10 -17 17 C-10 16 -12 12 -6 6 Z" class="patrika-line"/>
+  </g>
+  <g transform="translate(0, 160)">
+    <circle cx="0" cy="0" r="14" class="patrika-line" stroke-dasharray="1.5 1.5"/>
+    <circle cx="0" cy="0" r="8" class="patrika-line"/>
+    <circle cx="0" cy="0" r="3" class="patrika-fill"/>
+    <path d="M0 -8 C-4 -14 -4 -20 0 -24 C4 -20 4 -14 0 -8 Z" class="patrika-line"/>
+    <path d="M8 0 C14 -4 20 -4 24 0 C20 4 14 4 8 0 Z" class="patrika-line"/>
+    <path d="M6 -6 C12 -12 16 -10 17 -17 C10 -16 12 -12 6 -6 Z" class="patrika-line"/>
+  </g>
+  <g transform="translate(160, 160)">
+    <circle cx="0" cy="0" r="14" class="patrika-line" stroke-dasharray="1.5 1.5"/>
+    <circle cx="0" cy="0" r="8" class="patrika-line"/>
+    <circle cx="0" cy="0" r="3" class="patrika-fill"/>
+    <path d="M0 -8 C-4 -14 -4 -20 0 -24 C4 -20 4 -14 0 -8 Z" class="patrika-line"/>
+    <path d="M-8 0 C-14 -4 -20 -4 -24 0 C-20 4 -14 4 -8 0 Z" class="patrika-line"/>
+    <path d="M-6 -6 C-12 -12 -16 -10 -17 -17 C-10 -16 -12 -12 -6 -6 Z" class="patrika-line"/>
+  </g>
+
+  <!-- Traditional Indian Paisley / Kalka (Ambi) Motifs in Quadrants -->
+  <!-- Top Left Ambi -->
+  <g transform="translate(42, 38) rotate(-25)">
+    <path d="M0 0 C-10 12 -12 28 -2 36 C8 44 24 38 22 22 C20 8 10 -2 0 0 C-6 2 -7 8 -3 10 C3 12 10 7 6 2" class="patrika-line"/>
+    <circle cx="8" cy="22" r="3.5" class="patrika-line"/>
+    <circle cx="8" cy="22" r="1.5" class="patrika-fill"/>
+    <path d="M2 14 Q8 18 14 14" class="patrika-accent"/>
+  </g>
+
+  <!-- Top Right Ambi (mirrored) -->
+  <g transform="translate(118, 38) scale(-1, 1) rotate(-25)">
+    <path d="M0 0 C-10 12 -12 28 -2 36 C8 44 24 38 22 22 C20 8 10 -2 0 0 C-6 2 -7 8 -3 10 C3 12 10 7 6 2" class="patrika-line"/>
+    <circle cx="8" cy="22" r="3.5" class="patrika-line"/>
+    <circle cx="8" cy="22" r="1.5" class="patrika-fill"/>
+    <path d="M2 14 Q8 18 14 14" class="patrika-accent"/>
+  </g>
+
+  <!-- Bottom Left Ambi (inverted) -->
+  <g transform="translate(42, 122) scale(1, -1) rotate(-25)">
+    <path d="M0 0 C-10 12 -12 28 -2 36 C8 44 24 38 22 22 C20 8 10 -2 0 0 C-6 2 -7 8 -3 10 C3 12 10 7 6 2" class="patrika-line"/>
+    <circle cx="8" cy="22" r="3.5" class="patrika-line"/>
+    <circle cx="8" cy="22" r="1.5" class="patrika-fill"/>
+    <path d="M2 14 Q8 18 14 14" class="patrika-accent"/>
+  </g>
+
+  <!-- Bottom Right Ambi (mirrored and inverted) -->
+  <g transform="translate(118, 122) scale(-1, -1) rotate(-25)">
+    <path d="M0 0 C-10 12 -12 28 -2 36 C8 44 24 38 22 22 C20 8 10 -2 0 0 C-6 2 -7 8 -3 10 C3 12 10 7 6 2" class="patrika-line"/>
+    <circle cx="8" cy="22" r="3.5" class="patrika-line"/>
+    <circle cx="8" cy="22" r="1.5" class="patrika-fill"/>
+    <path d="M2 14 Q8 18 14 14" class="patrika-accent"/>
+  </g>
+
+  <!-- Connecting Sacred Foliage / Vines -->
+  <path d="M0 80 Q40 68 80 80 Q120 92 160 80" class="patrika-line" opacity="0.45"/>
+  <path d="M80 0 Q68 40 80 80 Q92 120 80 160" class="patrika-line" opacity="0.45"/>
+</svg>
