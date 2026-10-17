@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { OpeningPage } from './components/OpeningPage/OpeningPage';
 import { LanguageSelectionPage } from './components/LanguageSelection/LanguageSelectionPage';
-import { PlaceholderNextScreen } from './components/PlaceholderNextScreen/PlaceholderNextScreen';
+import { WelcomePage } from './components/WelcomePage/WelcomePage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage } from './types/invitation';
 
@@ -11,8 +11,8 @@ export type ScreenState = 'opening' | 'language' | 'invitation';
  * Root Application Component — Hitesh & Shivanee Royal Indian Wedding Invitation.
  * Manages screen transitions:
  * 1. Opening Palace Entrance (3D Double Doors)
- * 2. Page 3: Choose Your Invitation Language (English / Hindi Stationery Cards)
- * 3. Invitation Festivities Preview (in chosen language with language switcher)
+ * 2. Page 2: Choose Your Invitation Language (English / Hindi Stationery Cards)
+ * 3. Page 3: The Royal Wedding Welcome Page (in chosen language with language switcher)
  */
 export const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
@@ -44,10 +44,10 @@ export const App: React.FC = () => {
       )}
 
       {currentScreen === 'invitation' && (
-        <PlaceholderNextScreen
+        <WelcomePage
           language={selectedLanguage}
           onLanguageChange={setSelectedLanguage}
-          onBack={() => setCurrentScreen('language')}
+          onBackToLanguageSelection={() => setCurrentScreen('language')}
         />
       )}
     </div>
