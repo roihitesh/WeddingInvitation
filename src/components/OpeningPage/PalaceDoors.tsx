@@ -4,7 +4,7 @@ import { doorThemes, defaultDoorTheme } from '../../config/doorThemes.config';
 
 interface PalaceDoorsProps {
   isOpen: boolean;
-  onOpen: () => void;
+  onOpen?: () => void;
   theme?: DoorTheme;
 }
 
@@ -12,31 +12,18 @@ interface PalaceDoorsProps {
  * Grand Double Palace Doors with:
  * - Traditional Indian wedding Nagada (नगाड़े) and Shehnai (शहनाई) at the center of both doors
  * - Clean royal architectural door leaves without monogram clutter
- * - 3D perspective outward swinging doors with authentic Indian palace carvings
+ * - 3D perspective outward swinging doors that automatically open on page load
  */
 export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
   isOpen,
-  onOpen,
   theme = defaultDoorTheme,
 }) => {
   const currentTheme = doorThemes[theme] || doorThemes[defaultDoorTheme];
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onOpen();
-    }
-  };
-
   return (
     <div
       className={`palace-doors-3d-stage ${isOpen ? 'doors-open' : 'doors-closed'}`}
-      role="button"
-      tabIndex={0}
-      onClick={!isOpen ? onOpen : undefined}
-      onKeyDown={!isOpen ? handleKeyDown : undefined}
-      aria-label={`${currentTheme.name} palace doors - click to enter`}
-      aria-expanded={isOpen}
+      aria-hidden="true"
     >
       {/* LEFT PALACE DOOR */}
       <div className="palace-door-leaf door-left" aria-hidden="true">
@@ -568,13 +555,6 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
 
         <div className="door-lighting-overlay" />
       </div>
-
-      {/* Subtle Hint on Closed Doors */}
-      {!isOpen && (
-        <div className="closed-doors-tap-hint" aria-hidden="true">
-          <span className="hint-pill">✦ द्वार खोलें · Open Palace Gate ✦</span>
-        </div>
-      )}
     </div>
   );
 };

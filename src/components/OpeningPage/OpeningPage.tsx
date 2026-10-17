@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { OpeningPageProps, DoorTheme } from '../../types/invitation';
+import { OpeningPageProps } from '../../types/invitation';
 import { defaultContent } from '../../config/content.config';
 import { doorThemes, defaultDoorTheme } from '../../config/doorThemes.config';
 import { WeddingLogo } from './WeddingLogo';
@@ -9,15 +9,13 @@ import { PalaceSanctum } from './PalaceSanctum';
 import { TopFlourish } from './TopFlourish';
 import { LotusDivider } from './LotusDivider';
 import { OrnamentalBorder } from './OrnamentalBorder';
-import { ThemeSwitcher } from './ThemeSwitcher';
 import { RoyalSideCourt } from './RoyalSideCourt';
 import './OpeningPage.css';
 
 /**
  * Opening Page of the Royal Indian Wedding Invitation for Hitesh and Shivanee.
  * Recreates the unforgettable experience of standing before a grand Indian palace entrance.
- * Features customizable royal door finishes (Peacock Sapphire & Gold, Royal Maroon, Emerald, Teak).
- * The magnificent closed double doors slowly open in 3D after loading, unveiling
+ * The magnificent double doors automatically and slowly open in 3D after loading, unveiling
  * the illuminated royal invitation card inside with crystal-clear, high-contrast typography.
  */
 export const OpeningPage: React.FC<OpeningPageProps> = ({
@@ -28,8 +26,8 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
   const { couple, invitationMessage, openCtaText, openSubtitle, mantraTop, lockupNames } =
     content;
 
-  // Active palace door theme (defaults to 'peacock-sapphire')
-  const [doorTheme, setDoorTheme] = useState<DoorTheme>(initialTheme);
+  // Active palace door theme
+  const doorTheme = initialTheme;
 
   // Door state: false = closed, true = opened
   const [isDoorsOpen, setIsDoorsOpen] = useState<boolean>(false);
@@ -50,12 +48,6 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
 
     return () => window.clearTimeout(autoOpenTimer);
   }, []);
-
-  const handleManualOpen = () => {
-    if (!isDoorsOpen) {
-      setIsDoorsOpen(true);
-    }
-  };
 
   const handleProceedNext = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
@@ -86,10 +78,7 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
       {/* 1b. Royal Side Courtyard: Hanging Deepams with live flickering flames, cascading toran, royal peacock & elephant, and pushpa vrishti petals */}
       <RoyalSideCourt />
 
-      {/* 2. Palace Door Theme Switcher (discreet live preview control) */}
-      <ThemeSwitcher currentTheme={doorTheme} onSelectTheme={setDoorTheme} />
-
-      {/* 3. Palace Portal Stage & Architecture */}
+      {/* 2. Palace Portal Stage & Architecture */}
       <section
         className="palace-portal-container"
         aria-labelledby="invitation-heading"
@@ -188,12 +177,8 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
             </div>
           </PalaceSanctum>
 
-          {/* 3D Double Palace Doors (Sits in front, slowly opens outward) */}
-          <PalaceDoors
-            isOpen={isDoorsOpen}
-            onOpen={handleManualOpen}
-            theme={doorTheme}
-          />
+          {/* 3D Double Palace Doors (Sits in front, slowly opens outward automatically) */}
+          <PalaceDoors isOpen={isDoorsOpen} theme={doorTheme} />
         </div>
       </section>
     </main>
