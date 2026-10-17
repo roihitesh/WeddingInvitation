@@ -49,8 +49,12 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
     return () => window.clearTimeout(autoOpenTimer);
   }, []);
 
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+
   const handleProceedNext = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     if (onOpenInvitation) {
       onOpenInvitation();
     }

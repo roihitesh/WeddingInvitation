@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="ogBg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stopColor="#3d0a12" />
+      <stop offset="60%" stopColor="#24050a" />
+      <stop offset="100%" stopColor="#120205" />
+    </radialGradient>
+    <linearGradient id="ogGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fff9e6" />
+      <stop offset="35%" stopColor="#dfb76c" />
+      <stop offset="70%" stopColor="#fdf0cd" />
+      <stop offset="100%" stopColor="#966c1b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="630" fill="url(#ogBg)" />
+
+  <!-- Outer Double Gold Ornamental Frame -->
+  <rect x="30" y="30" width="1140" height="570" rx="20" fill="none" stroke="url(#ogGold)" stroke-width="3" />
+  <rect x="46" y="46" width="1108" height="538" rx="14" fill="none" stroke="url(#ogGold)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.8" />
+
+  <!-- Corner Filigree Ornaments -->
+  <g stroke="url(#ogGold)" stroke-width="2.5" fill="none">
+    <path d="M 56 90 L 56 56 L 90 56" />
+    <path d="M 1144 90 L 1144 56 L 1110 56" />
+    <path d="M 56 540 L 56 574 L 90 574" />
+    <path d="M 1144 540 L 1144 574 L 1110 574" />
+  </g>
+
+  <!-- Top Auspicious Invocation -->
+  <text x="600" y="110" text-anchor="middle" font-family="serif" font-size="20" letter-spacing="4" fill="#dfb76c">
+    ॥ ॐ श्री गणेशाय नमः ॥
+  </text>
+
+  <!-- Royal Monogram Seal -->
+  <circle cx="600" cy="180" r="48" fill="#1b0407" stroke="url(#ogGold)" stroke-width="2.5" />
+  <circle cx="600" cy="180" r="42" fill="none" stroke="url(#ogGold)" stroke-width="1" stroke-dasharray="3 3" />
+  <text x="600" y="192" text-anchor="middle" font-family="'Cinzel', serif" font-size="28" font-weight="700" fill="url(#ogGold)">
+    H&amp;S
+  </text>
+
+  <!-- Couple Names in Cursive Script -->
+  <text x="600" y="310" text-anchor="middle" font-family="'Great Vibes', cursive, serif" font-size="76" font-weight="400" fill="url(#ogGold)">
+    Hitesh &amp; Shivanee
+  </text>
+
+  <!-- Subtitle Tagline -->
+  <text x="600" y="375" text-anchor="middle" font-family="'Cinzel', serif" font-size="22" letter-spacing="6" text-transform="uppercase" fill="#fdf0cd">
+    Royal Indian Wedding Invitation
+  </text>
+
+  <!-- Ornamental Lotus Divider -->
+  <path d="M 450 420 Q 525 435 600 420 Q 675 435 750 420" fill="none" stroke="url(#ogGold)" stroke-width="2" />
+  <circle cx="600" cy="420" r="4" fill="url(#ogGold)" />
+
+  <!-- Invitation Message -->
+  <text x="600" y="475" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="26" font-style="italic" fill="#f5ebd7">
+    “Together with our families, we joyfully invite you to celebrate our wedding.”
+  </text>
+
+  <!-- Auspicious Bottom Blessing -->
+  <text x="600" y="540" text-anchor="middle" font-family="serif" font-size="18" letter-spacing="3" fill="#b8861d">
+    ॥ शुभम् भवतु ॥
+  </text>
+</svg>

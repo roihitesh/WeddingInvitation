@@ -7,7 +7,7 @@ import {
 } from '../../types/invitation';
 import { defaultRsvpConfig } from '../../config/rsvpPage.config';
 import { defaultWeddingDetails } from '../../config/weddingDetails.config';
-import { submitRsvp } from '../../services/rsvpService';
+import { submitRsvp, isBackendConfigured } from '../../services/rsvpService';
 import { WeddingNav } from '../WelcomePage/WeddingNav';
 import { RsvpIntro } from './RsvpIntro';
 import { AttendanceSelector } from './AttendanceSelector';
@@ -203,6 +203,23 @@ export const RsvpPage: React.FC<RsvpPageProps> = ({
               noValidate
               aria-label="RSVP Response Form"
             >
+              {/* Backend Storage Readiness Status Notice */}
+              {!isBackendConfigured() && (
+                <aside className="rsvp-backend-status-banner" role="status">
+                  <span className="notice-icon">ℹ️</span>
+                  <div className="notice-content">
+                    <strong className="notice-title">
+                      {isHindi ? 'ऑनलाइन स्टोरेज सेटअप मोड' : 'RSVP Backend Setup Notice'}
+                    </strong>
+                    <p className={`notice-text ${isHindi ? 'font-devanagari' : ''}`}>
+                      {isHindi
+                        ? 'आरएसवीपी स्टोरेज अभी कॉन्फ़िगर नहीं है (डेटाबेस सेटअप अपेक्षित है)। कृपया व्यवस्थापक से संपर्क करें।'
+                        : 'RSVP storage is not ready: database backend credentials are awaiting configuration.'}
+                    </p>
+                  </div>
+                </aside>
+              )}
+
               {/* Server / Network Error Banner */}
               {serverError && (
                 <aside className="rsvp-server-error-banner" role="alert">

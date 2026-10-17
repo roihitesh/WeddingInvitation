@@ -1,44 +1,157 @@
-# Wedding invitation
+# Hitesh & Shivanee · Royal Indian Wedding Invitation 💍✨
 
-A static, bilingual Traditional Hindu wedding invitation built with semantic HTML, CSS, and native JavaScript modules. It needs no build step or framework.
+A luxury, bilingual Indian wedding invitation website built with **React 19**, **TypeScript**, and **Vite**. Inspired by grand Rajasthani palace architecture, antique ivory paper textures, deep royal maroon headings, and antique gold ornaments.
 
-## View it on your computer
+---
 
-From this folder, run:
+## 🏛️ Complete Visitor Experience (Pages 1 to 9)
 
-```sh
-python3 -m http.server 8000
+1. **Opening Palace Entrance**:
+   - 3D double doors with royal crest that gently part open to reveal the sanctum.
+   - H&S monogram seal, couple names in cursive typography, and sacred Ganesh invocation.
+   - Duplicate-click guard for smooth transition into the invitation.
+
+2. **Bilingual Language Selection**:
+   - Two handcrafted stationery cards (English contemporary elegance & Hindi Devanagari Patrika).
+   - Language choice is remembered in browser storage and preserved across navigation.
+
+3. **Royal Wedding Welcome Page**:
+   - Centered H&S royal monogram and Grand Mughal scalloped arch.
+   - Live Muhurat countdown against Indian Standard Time (`Asia/Kolkata`) when an auspicious date is configured.
+   - Graceful kalash card when the official date announcement awaits.
+
+4. **Our Story (6 Relationship Milestones)**:
+   - Continuous gold timeline connecting all 6 relationship milestones:
+     1. First Meeting (A quiet coffee conversation)
+     2. Those First Butterflies (Stolen glances & smiles)
+     3. Sharing Our Feelings (Walking by starlit archways)
+     4. Traveling Together (Lake Pichola, Udaipur)
+     5. Family Blessings (Uniting hearts & traditions)
+     6. Tying the Knot (The sacred forever vow)
+   - Bespoke royal art folios for pending couple photos (no misleading stranger stock photography).
+   - Responsive alternating editorial layout.
+
+5. **Wedding Celebrations**:
+   - Haldi, Mehendi, Sangeet, Wedding Ceremony, and Reception.
+   - Highlighting the sacred Wedding Ceremony with special royal borders.
+   - Hides unconfigured fields automatically.
+
+6. **Wedding Venue & Directions**:
+   - Royal Heritage Palace destination information.
+   - One-click Google Maps transit directions link when configured.
+
+7. **RSVP & Guest Confirmation**:
+   - Private digital response card with name validation and attendance choice.
+   - Dynamic guest count selector (required only when attending).
+   - In-memory duplicate submission protection.
+   - Secure Supabase backend integration with Row-Level Security (RLS).
+   - Clear status notice if backend credentials are not yet configured.
+
+8. **Wedding Photo Gallery (Our Memories)**:
+   - Category filtering (All Memories, Our Journey, Travel Diaries, Special Moments, Celebrations).
+   - Editorial masonry layout preserving natural landscape, portrait, and square aspect ratios.
+   - Full-screen royal Lightbox modal with keyboard arrows (`Left`/`Right`), `Escape` to close, and mobile swipe gestures.
+
+9. **Final Invitation & Refined Royal Footer**:
+   - Centered monogram and cursive *Hitesh & Shivanee* signature.
+   - Heartfelt bilingual closing message from the couple and family.
+   - Compact summary of configured wedding particulars (strictly zero invented data).
+   - Full section navigation links and compact language toggle.
+
+---
+
+## 🛠️ Local Development & Setup
+
+### Prerequisites
+- Node.js 20+ and npm
+
+### Quick Start
+```bash
+# 1. Clone repository
+git clone git@github.com:roihitesh/WeddingInvitation.git
+cd WeddingInvitation
+
+# 2. Run local development server
+npm run dev
+
+# 3. Open in browser
+# http://localhost:8000
 ```
 
-Open <http://localhost:8000>. Click **Enter Auspicious Invitation**, then click the kumkum seal to open the invitation. The server must remain running while you view it. To open the sample tenant, use <http://localhost:8000/?id=sample-sharma-verma>.
-
-## Make it yours
-
-Edit `config/weddings/demo-wedding.js` and replace the sample couple names, family acknowledgements, muhurat, ceremony times, venue, map links, photos, RSVP deadline, and page title. The current demo uses Hitesh and Shivanee, 26 November 2027, and Sheraton Grand Palace Indore as a sample venue. Each ceremony card opens a details popup with an original, browser-generated Bollywood-inspired instrumental cue. For a specific Bollywood recording, add a licensed audio URL to that event's `musicUrl`; use music you have permission to share. Each user-facing string has English and Hindi values. Replace the SVG sample artwork in `assets/images/` with your own image files, then update the `gallery` URLs. The three available themes are in `config/templates/`.
-
-To add a tenant, create a file under `config/weddings/`, register its imported `weddingData` in `config/tenants.js`, and use `?id=your-tenant-id` or `#your-tenant-id` in the URL. Unknown IDs fall back to the demo. To add a language, add its code to `supportedLanguages`, translated UI strings and couple/event values, and native label/short label/icon/subtext in `languageOptions`. The picker and floating switch build themselves from that tenant configuration. Returning guests keep their saved language preselected, and every fresh page load starts at the language gate. This is static multi-tenancy: anyone who knows a tenant URL can view that invitation; it does not provide private accounts or access control.
-
-## RSVP collection
-
-The form is intentionally disconnected until `googleSheetEndpoint` is set in the tenant config. It does not store replies in the browser or GitHub. To collect replies in Google Sheets, deploy a Google Apps Script web app that validates and appends form fields to a sheet, then put its HTTPS web-app URL in that field. The static site sends a simple form POST with `no-cors`; browsers cannot read the Apps Script response, so the success message means the request was sent, not that the script confirmed the row was saved. Test the full flow with sample data before sharing. A public form URL is not a secret; never place private keys or service credentials in this repository.
-
-## Host it
-
-This project can be deployed as a static site by GitHub Pages, Netlify, or Vercel. GitHub Pages serves public repositories on GitHub Free; using a private repository as its source requires an eligible paid plan. Netlify and Vercel can connect to a private GitHub repository. A hosted invitation link is public to anyone who has it, even while the source repository stays private.
-
-The GitHub repository is `roihitesh/WeddingInvitation`. Push code to GitHub, then connect the repository in your chosen host and deploy the repository root. No build command is required.
-
-## Project layout
-
-```text
-index.html
-config/
-  tenants.js
-  templates/                  Theme presets
-  weddings/                   One configuration module per invitation
-assets/
-  css/                         Theme, typography, envelope, and page styles
-  images/                      Replaceable sample gallery and preview art
-  js/core/                     Tenant routing, language, sound, app setup
-  js/components/               Envelope, countdown, itinerary, gallery, RSVP
+### Run Automated Tests
+```bash
+npm test
 ```
+Executes the native Node test suite verifying couple data, bilingual copy, countdown safety, milestone order, venue visibility, RSVP validation, and gallery filters.
+
+### Production Build
+```bash
+npm run build
+```
+Type-checks with `tsc` and generates the optimized production bundle in `dist/`.
+
+---
+
+## 🔐 Supabase RSVP Backend Setup
+
+To enable real-time cloud storage of guest responses:
+
+1. Create a Supabase project at [supabase.com](https://supabase.com).
+2. Run the following SQL query in the **Supabase SQL Editor**:
+
+```sql
+create table public.rsvps (
+  id uuid primary key default gen_random_uuid(),
+  guest_name text not null,
+  attendance text not null, -- 'attending' or 'declined'
+  guest_count integer not null default 0,
+  selected_events text[] default '{}',
+  message text,
+  created_at timestamptz default now()
+);
+
+-- Enable Row Level Security (RLS)
+alter table public.rsvps enable row level security;
+
+-- Policy 1: Allow public visitors to submit their RSVP (INSERT only)
+create policy "Allow anonymous guest submissions"
+  on public.rsvps
+  for insert
+  to anon
+  with check (true);
+
+-- Policy 2: Prevent public guests from reading other guests' responses (SELECT restricted)
+-- Only authenticated wedding hosts with service access or admin dashboard can view responses
+```
+
+3. Copy `.env.example` to `.env.local` and configure your credentials:
+```env
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+*Note: Never paste your `service_role` key into client-side code or `.env` files.*
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+1. Import the repository in [Vercel](https://vercel.com).
+2. Framework Preset: **Vite**.
+3. Build Command: `npm run build`.
+4. Output Directory: `dist`.
+5. Environment Variables:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+6. Click **Deploy**. The included `vercel.json` ensures all client-side routes and assets rewrite correctly.
+
+### Deploy to GitHub Pages
+The project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys to `gh-pages` automatically upon every push to the `main` branch.
+
+---
+
+## 📄 License & Attribution
+Designed and crafted with love for **Hitesh & Shivanee**.
+Made with love, shared with family, remembered forever.
+॥ शुभम् भवतु ॥

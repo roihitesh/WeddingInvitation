@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { OpeningPage } from './components/OpeningPage/OpeningPage';
 import { LanguageSelectionPage } from './components/LanguageSelection/LanguageSelectionPage';
 import { WelcomePage } from './components/WelcomePage/WelcomePage';
@@ -12,35 +12,89 @@ import { SupportedLanguage, NavSection } from './types/invitation';
 
 export type ScreenState = 'opening' | 'language' | 'invitation';
 
+const VALID_SECTIONS: NavSection[] = ['welcome', 'story', 'celebrations', 'venue', 'rsvp', 'gallery'];
+
+function getInitialLanguage(): SupportedLanguage {
+  if (typeof window === 'undefined') return 'en';
+  const params = new URLSearchParams(window.location.search);
+  const langParam = params.get('lang');
+  if (langParam === 'hi' || langParam === 'en') {
+    return langParam;
+  }
+  const stored = localStorage.getItem('hs_wedding_lang');
+  if (stored === 'hi' || stored === 'en') {
+    return stored;
+  }
+  return 'en';
+}
+
+function getInitialSectionFromHash(): NavSection | null {
+  if (typeof window === 'undefined') return null;
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  if (VALID_SECTIONS.includes(hash as NavSection)) {
+    return hash as NavSection;
+  }
+  return null;
+}
+
 /**
  * Root Application Component — Hitesh & Shivanee Royal Indian Wedding Invitation.
- * Manages screen transitions:
- * 1. Opening Palace Entrance (3D Double Doors)
- * 2. Page 2: Choose Your Invitation Language (English / Hindi Stationery Cards)
- * 3. Page 3: The Royal Wedding Welcome Page (in chosen language with language switcher)
- * 4. Page 4: Our Love Story (Editorial photo album + continuous vertical timeline)
- * 5. Page 5: Wedding Celebrations (Haldi, Mehendi, Sangeet, Wedding Ceremony, Reception)
- * 6. Page 6: Wedding Venue & Directions (Palace destination, Google Maps navigation, transit)
- * 7. Page 7: RSVP & Guest Confirmation (Digital response card with Supabase persistence)
  */
 export const App: React.FC = () => {
-  const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
-  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>('en');
-  const [activeSection, setActiveSection] = useState<NavSection>('welcome');
+  const initialHashSection = getInitialSectionFromHash();
+  const [currentScreen, setCurrentScreen] = useState<ScreenState>(() => {
+    // If a guest deep-links to a hash section, take them straight to invitation
+    if (initialHashSection) return 'invitation';
+    return 'opening';
+  });
+  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>(getInitialLanguage);
+  const [activeSection, setActiveSection] = useState<NavSection>(() => {
+    return initialHashSection || 'welcome';
+  });
+
+  // Persist language choice
+  const handleLanguageChange = (lang: SupportedLanguage) => {
+    setSelectedLanguage(lang);
+    try {
+      localStorage.setItem('hs_wedding_lang', lang);
+    } catch {
+      // Ignore localStorage errors in private browsing
+    }
+  };
 
   const handleOpenPalace = () => {
     setCurrentScreen('language');
   };
 
   const handleSelectLanguage = (lang: SupportedLanguage) => {
-    setSelectedLanguage(lang);
+    handleLanguageChange(lang);
     setActiveSection('welcome');
     setCurrentScreen('invitation');
+    window.location.hash = '#welcome';
   };
 
   const handleBackToLanguage = () => {
     setCurrentScreen('language');
   };
+
+  const handleNavigateSection = (section: NavSection) => {
+    setActiveSection(section);
+    window.location.hash = `#${section}`;
+  };
+
+  // Sync with browser back/forward buttons (hashchange)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const sectionFromHash = getInitialSectionFromHash();
+      if (sectionFromHash) {
+        setCurrentScreen('invitation');
+        setActiveSection(sectionFromHash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   return (
     <div className="app-root">
@@ -63,9 +117,9 @@ export const App: React.FC = () => {
           {activeSection === 'welcome' && (
             <WelcomePage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
+              onLanguageChange={handleLanguageChange}
               onBackToLanguageSelection={handleBackToLanguage}
-              onNavigateSection={setActiveSection}
+              onNavigateSection={handleNavigateSection}
               onExploreWedding={() => setActiveSection('story')}
               onSendWishes={() => setActiveSection('rsvp')}
             />
@@ -74,8 +128,8 @@ export const App: React.FC = () => {
           {activeSection === 'story' && (
             <OurStoryPage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
-              onNavigateSection={setActiveSection}
+              onLanguageChange={handleLanguageChange}
+              onNavigateSection={handleNavigateSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToLanguageSelection={handleBackToLanguage}
               onExploreCelebrations={() => setActiveSection('celebrations')}
@@ -85,8 +139,8 @@ export const App: React.FC = () => {
           {activeSection === 'celebrations' && (
             <CelebrationsPage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
-              onNavigateSection={setActiveSection}
+              onLanguageChange={handleLanguageChange}
+              onNavigateSection={handleNavigateSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToStory={() => setActiveSection('story')}
               onBackToLanguageSelection={handleBackToLanguage}
@@ -97,8 +151,8 @@ export const App: React.FC = () => {
           {activeSection === 'venue' && (
             <VenuePage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
-              onNavigateSection={setActiveSection}
+              onLanguageChange={handleLanguageChange}
+              onNavigateSection={handleNavigateSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToCelebrations={() => setActiveSection('celebrations')}
               onBackToLanguageSelection={handleBackToLanguage}
@@ -108,8 +162,8 @@ export const App: React.FC = () => {
           {activeSection === 'rsvp' && (
             <RsvpPage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
-              onNavigateSection={setActiveSection}
+              onLanguageChange={handleLanguageChange}
+              onNavigateSection={handleNavigateSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToLanguageSelection={handleBackToLanguage}
             />
@@ -118,8 +172,8 @@ export const App: React.FC = () => {
           {activeSection === 'gallery' && (
             <GalleryPage
               language={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
-              onNavigateSection={setActiveSection}
+              onLanguageChange={handleLanguageChange}
+              onNavigateSection={handleNavigateSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToLanguageSelection={handleBackToLanguage}
             />

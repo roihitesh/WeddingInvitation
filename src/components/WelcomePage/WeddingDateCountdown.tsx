@@ -42,12 +42,15 @@ export const WeddingDateCountdown: React.FC<WeddingDateCountdownProps> = ({
 }) => {
   const { dateISO, timeZone = 'Asia/Kolkata' } = weddingDetails;
 
-  const calculateTimeRemaining = (targetISO: string): TimeRemaining => {
+  const calculateTimeRemaining = (targetISO: string): TimeRemaining | null => {
     const target = new Date(targetISO).getTime();
+    if (isNaN(target)) {
+      return null;
+    }
     const now = Date.now();
     const diff = target - now;
 
-    if (isNaN(target) || diff <= 0) {
+    if (diff <= 0) {
       return { days: 0, hours: 0, minutes: 0, seconds: 0, isPassed: true };
     }
 
@@ -59,9 +62,9 @@ export const WeddingDateCountdown: React.FC<WeddingDateCountdownProps> = ({
     return { days, hours, minutes, seconds, isPassed: false };
   };
 
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(
-    dateISO ? calculateTimeRemaining(dateISO) : null
-  );
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(() => {
+    return dateISO ? calculateTimeRemaining(dateISO) : null;
+  });
 
   useEffect(() => {
     if (!dateISO) {
@@ -79,13 +82,20 @@ export const WeddingDateCountdown: React.FC<WeddingDateCountdownProps> = ({
     return () => clearInterval(interval);
   }, [dateISO, timeZone]);
 
-  // Formatted date string if date is configured
-  const formattedDate = dateISO
-    ? new Intl.DateTimeFormat(isHindi ? 'hi-IN' : 'en-IN', {
+  // Safely format date string if date is configured and valid
+  const formattedDate = React.useMemo(() => {
+    if (!dateISO) return null;
+    try {
+      const parsedDate = new Date(dateISO);
+      if (isNaN(parsedDate.getTime())) return null;
+      return new Intl.DateTimeFormat(isHindi ? 'hi-IN' : 'en-IN', {
         dateStyle: 'full',
         timeZone,
-      }).format(new Date(dateISO))
-    : null;
+      }).format(parsedDate);
+    } catch {
+      return null;
+    }
+  }, [dateISO, isHindi, timeZone]);
 
   return (
     <section className="wedding-date-countdown-card" aria-label="Wedding Date and Countdown">
@@ -103,8 +113,8 @@ export const WeddingDateCountdown: React.FC<WeddingDateCountdownProps> = ({
         </svg>
       </div>
 
-      {/* Case 1: Wedding Date is NOT configured yet (Graceful Placeholder per specs) */}
-      {!dateISO && (
+      {/* Case 1: Wedding Date is NOT configured yet or invalid (Graceful Placeholder per specs) */}
+      {(!dateISO || !timeRemaining) && (
         <div className="awaiting-date-container">
           <div className="sacred-kalash-icon" aria-hidden="true">
             <svg viewBox="0 0 44 44" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">

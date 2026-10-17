@@ -117,23 +117,17 @@ export async function submitRsvp(record: RsvpRecord): Promise<RsvpSubmissionResu
     }
   }
 
-  // 4. Fallback when VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are not yet configured in .env
+  // 4. Fallback when VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are not configured
   console.info(
-    '[RSVP Service Demo Mode]: Supabase credentials not detected in .env. RSVP payload logged for verification:',
+    '[RSVP Service]: Supabase credentials not configured in environment. RSVP submission halted:',
     record
   );
 
-  recentSubmissions.add(submissionKey);
-  setTimeout(() => recentSubmissions.delete(submissionKey), 60000);
-
-  // Simulate network round-trip for realistic feedback
-  await new Promise((resolve) => setTimeout(resolve, 800));
-
   return {
-    success: true,
+    success: false,
     isDemoMode: true,
-    responseId: `demo-${Date.now()}`,
-    message: 'Response verified and logged in demonstration mode.',
+    message:
+      'RSVP storage is not ready: database backend is not configured. Please supply VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.',
   };
 }
 
@@ -141,5 +135,5 @@ export async function submitRsvp(record: RsvpRecord): Promise<RsvpSubmissionResu
  * Checks whether live Supabase backend is configured and ready.
  */
 export function isBackendConfigured(): boolean {
-  return Boolean(supabaseUrl && supabaseAnonKey);
+  return Boolean(supabaseUrl && supabaseAnonKey && supabaseClient);
 }
