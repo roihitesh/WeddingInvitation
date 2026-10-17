@@ -1,0 +1,916 @@
+/* ==========================================================================
+   Page 7: RSVP & Guest Confirmation — Hitesh & Shivanee
+   Digital Royal Indian Response Card
+   ========================================================================== */
+
+:root {
+  --rsvp-bg-ivory: #faf6ee;
+  --rsvp-card-bg: #fffdf9;
+  --rsvp-maroon: #520f18;
+  --rsvp-maroon-dark: #3b060d;
+  --rsvp-maroon-bright: #721625;
+  --rsvp-gold: #dfb76c;
+  --rsvp-gold-dark: #b8861d;
+  --rsvp-gold-light: #fbeed2;
+  --rsvp-text-dark: #2b1f1d;
+  --rsvp-text-muted: #6b5c58;
+  --rsvp-shadow-soft: 0 12px 36px rgba(60, 20, 25, 0.08);
+  --rsvp-shadow-selected: 0 14px 40px rgba(82, 15, 24, 0.16);
+}
+
+.rsvp-page-root {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--rsvp-bg-ivory);
+  color: var(--rsvp-text-dark);
+  font-family: "Cinzel", "Playfair Display", "Georgia", serif;
+  overflow-x: hidden;
+  padding-bottom: 3rem;
+}
+
+/* Ambient Background Layers */
+.rsvp-ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.rsvp-paper-texture {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.65) 0%, rgba(247, 238, 222, 0.9) 100%);
+  opacity: 0.9;
+}
+
+.rsvp-jaali-watermark {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M35 5 L65 35 L35 65 L5 35 Z' fill='none' stroke='%23dfb76c' stroke-width='0.6' stroke-opacity='0.16'/%3E%3Ccircle cx='35' cy='35' r='8' fill='none' stroke='%23dfb76c' stroke-width='0.5' stroke-opacity='0.16'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.7;
+}
+
+.rsvp-warm-lighting-top {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(223, 183, 108, 0.22) 0%, rgba(223, 183, 108, 0) 70%);
+}
+
+.rsvp-warm-lighting-bottom {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(114, 22, 37, 0.12) 0%, rgba(114, 22, 37, 0) 70%);
+}
+
+.rsvp-inner-container {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem 1.5rem;
+}
+
+/* ==========================================================================
+   Section 1: RSVP Intro
+   ========================================================================== */
+
+.rsvp-intro-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem 1rem;
+}
+
+.rsvp-monogram-wrap {
+  margin-bottom: 1rem;
+}
+
+.rsvp-intro-logo svg {
+  width: 90px;
+  height: 90px;
+}
+
+.rsvp-chapter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 1.1rem;
+  border: 1px solid var(--rsvp-gold);
+  border-radius: 9999px;
+  background: rgba(255, 253, 249, 0.85);
+  box-shadow: 0 3px 10px rgba(184, 134, 29, 0.08);
+  margin-bottom: 1.25rem;
+}
+
+.rsvp-main-heading {
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  letter-spacing: 0.03em;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 8px rgba(82, 15, 24, 0.08);
+}
+
+.rsvp-intro-quote-wrap {
+  max-width: 680px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.rsvp-intro-text {
+  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--rsvp-text-dark);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0;
+}
+
+.rsvp-intro-divider {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Section 2: Response Card Form Stage
+   ========================================================================== */
+
+.rsvp-form-stage {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.rsvp-palace-arch-frame {
+  width: 100%;
+  margin-bottom: -15px;
+}
+
+.arch-svg-top {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rsvp-response-card-form {
+  position: relative;
+  background: var(--rsvp-card-bg);
+  border: 2px solid var(--rsvp-gold);
+  border-radius: 20px;
+  padding: 2.8rem 2.4rem;
+  box-shadow: var(--rsvp-shadow-soft);
+}
+
+/* Server Error Banner */
+.rsvp-server-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid #f87171;
+  border-radius: 8px;
+  padding: 0.85rem 1.15rem;
+  color: #991b1b;
+  font-size: 0.92rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Field Groups */
+.rsvp-field-group {
+  margin-bottom: 2rem;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.65rem;
+}
+
+.label-icon {
+  font-size: 1.15rem;
+}
+
+.legend-required {
+  color: #dc2626;
+  font-size: 1.1rem;
+}
+
+.rsvp-text-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fffdfa;
+  border: 1.5px solid rgba(223, 183, 108, 0.7);
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  font-family: inherit;
+  font-size: 1.05rem;
+  color: var(--rsvp-text-dark);
+  transition: all 0.25s ease;
+}
+
+.rsvp-text-input:focus {
+  outline: none;
+  border-color: var(--rsvp-gold-dark);
+  background: #ffffff;
+  box-shadow: 0 0 14px rgba(223, 183, 108, 0.35);
+}
+
+.input-has-error {
+  border-color: #dc2626 !important;
+  background: #fff7f7;
+}
+
+.field-error-text {
+  color: #dc2626;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0 0;
+}
+
+/* ==========================================================================
+   Attendance Selection Cards
+   ========================================================================== */
+
+.attendance-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.attendance-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.85rem;
+}
+
+.legend-star {
+  color: var(--rsvp-gold-dark);
+  font-size: 0.85rem;
+}
+
+.attendance-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.attendance-card {
+  position: relative;
+  background: #fffdf9;
+  border: 1.5px solid rgba(223, 183, 108, 0.65);
+  border-radius: 14px;
+  padding: 1.4rem 1.2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.attendance-card:hover {
+  border-color: var(--rsvp-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--rsvp-shadow-soft);
+}
+
+.attendance-card.card-selected {
+  border: 2px solid var(--rsvp-gold-dark);
+  background: linear-gradient(135deg, #fffdf9 0%, #faf3e5 100%);
+  box-shadow: var(--rsvp-shadow-selected);
+  transform: translateY(-2px);
+}
+
+.card-radio-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rsvp-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-selected .card-radio-indicator {
+  border-color: var(--rsvp-maroon);
+}
+
+.indicator-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.card-selected .indicator-inner {
+  background: var(--rsvp-maroon);
+}
+
+.card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #faf4e6;
+  border: 1px solid var(--rsvp-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  margin: 0 0 0.25rem 0;
+}
+
+.card-subtext {
+  font-size: 0.82rem;
+  color: var(--rsvp-text-muted);
+  line-height: 1.4;
+  margin: 0;
+  font-style: italic;
+}
+
+.selected-ribbon {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  color: var(--rsvp-maroon);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Subfields Animation */
+.rsvp-attending-subfields-anim {
+  animation: fadeInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Guest Count Stepper
+   ========================================================================== */
+
+.guest-count-container {
+  background: #faf5eb;
+  border: 1px solid rgba(223, 183, 108, 0.45);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+}
+
+.count-label-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.count-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  margin: 0;
+}
+
+.count-hint-text {
+  font-size: 0.78rem;
+  color: var(--rsvp-text-muted);
+  font-style: italic;
+}
+
+.guest-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 0.9rem;
+}
+
+.stepper-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--rsvp-gold);
+  background: #fffdf9;
+  color: var(--rsvp-maroon);
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.stepper-btn:hover:not(:disabled) {
+  background: var(--rsvp-maroon);
+  color: #fff9ea;
+  border-color: var(--rsvp-maroon);
+  transform: scale(1.08);
+}
+
+.stepper-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepper-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140px;
+}
+
+.stepper-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  line-height: 1;
+}
+
+.stepper-unit {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rsvp-gold-dark);
+  margin-top: 0.25rem;
+}
+
+.count-quick-pills {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.count-pill-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--rsvp-gold);
+  background: #fffdf9;
+  color: var(--rsvp-text-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.count-pill-btn:hover:not(:disabled) {
+  border-color: var(--rsvp-maroon);
+  color: var(--rsvp-maroon);
+}
+
+.count-pill-btn.pill-active {
+  background: var(--rsvp-maroon);
+  color: #fff9ea;
+  border-color: var(--rsvp-maroon);
+}
+
+/* ==========================================================================
+   Events Attending Multi-Select
+   ========================================================================== */
+
+.events-attending-group {
+  background: #faf5eb;
+  border: 1px solid rgba(223, 183, 108, 0.45);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+}
+
+.events-label-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.events-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  margin: 0;
+}
+
+.events-hint-text {
+  font-size: 0.78rem;
+  color: var(--rsvp-text-muted);
+  font-style: italic;
+}
+
+.events-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.event-check-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fffdf9;
+  border: 1px solid rgba(223, 183, 108, 0.5);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.event-check-card:hover {
+  border-color: var(--rsvp-gold);
+}
+
+.event-check-card.event-check-selected {
+  border-color: var(--rsvp-gold-dark);
+  background: #fff8eb;
+}
+
+.check-box-indicator {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--rsvp-gold);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.event-check-selected .check-box-indicator {
+  background: var(--rsvp-maroon);
+  border-color: var(--rsvp-maroon);
+}
+
+.check-mark {
+  color: #fff9ea;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.event-name-text {
+  font-size: 0.88rem;
+  color: var(--rsvp-text-dark);
+  font-weight: 600;
+}
+
+/* Message Textarea */
+.rsvp-textarea-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fffdfa;
+  border: 1.5px solid rgba(223, 183, 108, 0.7);
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--rsvp-text-dark);
+  line-height: 1.6;
+  resize: vertical;
+  transition: all 0.25s ease;
+}
+
+.rsvp-textarea-input:focus {
+  outline: none;
+  border-color: var(--rsvp-gold-dark);
+  background: #ffffff;
+  box-shadow: 0 0 14px rgba(223, 183, 108, 0.35);
+}
+
+.textarea-char-count {
+  display: block;
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--rsvp-text-muted);
+  margin-top: 0.3rem;
+}
+
+/* Submit Action Button */
+.rsvp-submit-action-row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.rsvp-submit-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #520f18 0%, #721625 100%);
+  border: 1.5px solid var(--rsvp-gold);
+  border-radius: 9999px;
+  padding: 1.05rem 2.8rem;
+  color: #fff9ea;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(82, 15, 24, 0.25), 0 0 14px rgba(223, 183, 108, 0.3);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.rsvp-submit-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(82, 15, 24, 0.35), 0 0 20px rgba(223, 183, 108, 0.45);
+  border-color: #ffe6a3;
+}
+
+.rsvp-submit-btn:disabled {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+.rsvp-privacy-notice {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--rsvp-text-muted);
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Section 3: Confirmation Card
+   ========================================================================== */
+
+.rsvp-confirmation-card {
+  position: relative;
+  background: linear-gradient(135deg, #fffdf9 0%, #faf3e6 100%);
+  border: 2px solid var(--rsvp-gold);
+  border-radius: 20px;
+  padding: 3.5rem 2.4rem;
+  box-shadow: 0 16px 45px rgba(82, 15, 24, 0.12), 0 0 24px rgba(223, 183, 108, 0.2);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.confirmation-monogram-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.confirmation-monogram-logo svg {
+  width: 90px;
+  height: 90px;
+}
+
+.conf-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--rsvp-gold);
+  pointer-events: none;
+}
+
+.conf-corner.corner-tl { top: 6px; left: 6px; border-top: 2.5px solid var(--rsvp-gold); border-left: 2.5px solid var(--rsvp-gold); }
+.conf-corner.corner-tr { top: 6px; right: 6px; border-top: 2.5px solid var(--rsvp-gold); border-right: 2.5px solid var(--rsvp-gold); }
+.conf-corner.corner-bl { bottom: 6px; left: 6px; border-bottom: 2.5px solid var(--rsvp-gold); border-left: 2.5px solid var(--rsvp-gold); }
+.conf-corner.corner-br { bottom: 6px; right: 6px; border-bottom: 2.5px solid var(--rsvp-gold); border-right: 2.5px solid var(--rsvp-gold); }
+
+.confirmation-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.pill-attending {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.pill-declined {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.confirmation-guest-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+  margin: 0 0 0.85rem 0;
+}
+
+.confirmation-message-text {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.8;
+  color: #3d2f2b;
+  font-style: italic;
+  margin: 0 0 1.5rem 0;
+}
+
+.confirmation-summary-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fffdf9;
+  border: 1px solid rgba(223, 183, 108, 0.45);
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.summary-label {
+  color: var(--rsvp-text-muted);
+}
+
+.summary-value {
+  font-weight: 700;
+  color: var(--rsvp-maroon);
+}
+
+.summary-sep {
+  color: var(--rsvp-gold);
+}
+
+.confirmation-note-subtext {
+  font-size: 0.92rem;
+  color: var(--rsvp-text-muted);
+  font-style: italic;
+  margin: 0 0 1.5rem 0;
+}
+
+.confirmation-demo-banner {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto 1.5rem auto;
+  max-width: 520px;
+}
+
+.confirmation-divider {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.confirmation-return-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #520f18 0%, #721625 100%);
+  border: 1.5px solid var(--rsvp-gold);
+  border-radius: 9999px;
+  padding: 0.85rem 2.2rem;
+  color: #fff9ea;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.confirmation-return-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: #ffe6a3;
+}
+
+/* Footer */
+.rsvp-sacred-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 3.5rem;
+  padding: 2rem 1rem 1rem 1rem;
+  border-top: 1px solid rgba(223, 183, 108, 0.3);
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  color: var(--rsvp-text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .rsvp-inner-container {
+    padding: 1.5rem 1rem 3rem 1rem;
+  }
+
+  .rsvp-response-card-form {
+    padding: 2rem 1.4rem;
+  }
+
+  .attendance-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .confirmation-summary-strip {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .summary-sep {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-submit-btn,
+  .attendance-card,
+  .count-pill-btn,
+  .confirmation-return-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -5,6 +5,7 @@ import { WelcomePage } from './components/WelcomePage/WelcomePage';
 import { OurStoryPage } from './components/OurStory/OurStoryPage';
 import { CelebrationsPage } from './components/Celebrations/CelebrationsPage';
 import { VenuePage } from './components/Venue/VenuePage';
+import { RsvpPage } from './components/RSVP/RsvpPage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
 
@@ -19,6 +20,7 @@ export type ScreenState = 'opening' | 'language' | 'invitation';
  * 4. Page 4: Our Love Story (Editorial photo album + continuous vertical timeline)
  * 5. Page 5: Wedding Celebrations (Haldi, Mehendi, Sangeet, Wedding Ceremony, Reception)
  * 6. Page 6: Wedding Venue & Directions (Palace destination, Google Maps navigation, transit)
+ * 7. Page 7: RSVP & Guest Confirmation (Digital response card with Supabase persistence)
  */
 export const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
@@ -64,6 +66,7 @@ export const App: React.FC = () => {
               onBackToLanguageSelection={handleBackToLanguage}
               onNavigateSection={setActiveSection}
               onExploreWedding={() => setActiveSection('story')}
+              onSendWishes={() => setActiveSection('rsvp')}
             />
           )}
 
@@ -97,6 +100,16 @@ export const App: React.FC = () => {
               onNavigateSection={setActiveSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToCelebrations={() => setActiveSection('celebrations')}
+              onBackToLanguageSelection={handleBackToLanguage}
+            />
+          )}
+
+          {activeSection === 'rsvp' && (
+            <RsvpPage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onNavigateSection={setActiveSection}
+              onBackToWelcome={() => setActiveSection('welcome')}
               onBackToLanguageSelection={handleBackToLanguage}
             />
           )}

@@ -59,7 +59,7 @@ export interface LanguageSelectionPageProps {
   config?: LanguageSelectionConfig;
 }
 
-export type NavSection = 'welcome' | 'story' | 'celebrations' | 'venue';
+export type NavSection = 'welcome' | 'story' | 'celebrations' | 'venue' | 'rsvp';
 
 export interface WeddingDetails {
   groom: string;
@@ -302,5 +302,76 @@ export interface VenuePageProps {
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
 }
+
+export type AttendanceStatus = 'attending' | 'declined';
+
+export interface RsvpFormData {
+  fullName: string;
+  attendance: AttendanceStatus | null;
+  guestCount: number;
+  selectedEvents: string[];
+  message: string;
+}
+
+export interface RsvpRecord {
+  id?: string;
+  guestName: string;
+  attendance: AttendanceStatus;
+  guestCount: number;
+  selectedEvents: string[];
+  message?: string;
+  createdAt?: string;
+}
+
+export interface RsvpPageConfig {
+  heading: { en: string; hi: string };
+  message: { en: string; hi: string };
+  maxGuests: number;
+  eventsAttendanceEnabled: boolean;
+  labels: {
+    fullName: { en: string; hi: string };
+    fullNamePlaceholder: { en: string; hi: string };
+    attendanceQuestion: { en: string; hi: string };
+    acceptOption: { en: string; hi: string };
+    acceptSubtext: { en: string; hi: string };
+    declineOption: { en: string; hi: string };
+    declineSubtext: { en: string; hi: string };
+    guestCountLabel: { en: string; hi: string };
+    guestCountHint: { en: string; hi: string };
+    eventsLabel: { en: string; hi: string };
+    eventsHint: { en: string; hi: string };
+    messageLabel: { en: string; hi: string };
+    messagePlaceholder: { en: string; hi: string };
+    submitCta: { en: string; hi: string };
+    submitting: { en: string; hi: string };
+    successAccepted: { en: string; hi: string };
+    successDeclined: { en: string; hi: string };
+    successNote: { en: string; hi: string };
+    returnHome: { en: string; hi: string };
+    backendNotice?: { en: string; hi: string };
+  };
+  validation: {
+    nameRequired: { en: string; hi: string };
+    attendanceRequired: { en: string; hi: string };
+    guestCountInvalid: { en: string; hi: string };
+  };
+}
+
+export interface RsvpSubmissionResult {
+  success: boolean;
+  message: string;
+  responseId?: string;
+  isDemoMode?: boolean;
+}
+
+export interface RsvpPageProps {
+  language: SupportedLanguage;
+  onLanguageChange: (lang: SupportedLanguage) => void;
+  onNavigateSection: (section: NavSection) => void;
+  onBackToWelcome?: () => void;
+  onBackToLanguageSelection?: () => void;
+  weddingDetails?: WeddingDetails;
+}
+
 
 

@@ -32,6 +32,7 @@ export const WeddingNav: React.FC<WeddingNavProps> = ({
     { key: 'story', label: isHindi ? 'हमारी कहानी' : 'Our Story' },
     { key: 'celebrations', label: isHindi ? 'मांगलिक कार्यक्रम' : 'Celebrations' },
     { key: 'venue', label: isHindi ? 'विवाह स्थल' : 'Venue' },
+    { key: 'rsvp', label: isHindi ? 'उपस्थिति' : 'RSVP' },
   ];
 
   const handleNavClick = (section: NavSection) => {
