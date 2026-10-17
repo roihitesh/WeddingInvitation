@@ -109,43 +109,42 @@ export const LanguageCardEnglish: React.FC<LanguageCardEnglishProps> = ({
 
       {/* Card Content Layer */}
       <div className="card-inner-body">
-        {/* Decorative Top Tag */}
-        <span className="card-experience-pill">{config.label}</span>
+        <div className="card-top-content">
+          {/* Blooming Gold Lotus Icon */}
+          <div className="card-lotus-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 60 30" width="54" height="27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M30 4 C27 12 24 20 18 22 C24 22 28 17 30 11 C32 17 36 22 42 22 C36 20 33 12 30 4 Z"
+                fill="url(#enGoldGrad)"
+              />
+              <path
+                d="M30 11 C26 18 19 22 10 24 C17 25 24 23 27 19 C28 23 29 25 30 26 C31 25 32 23 33 19 C36 23 43 25 50 24 C41 22 34 18 30 11 Z"
+                fill="url(#enGoldGrad)"
+                opacity="0.85"
+              />
+            </svg>
+          </div>
 
-        {/* Blooming Gold Lotus Icon */}
-        <div className="card-lotus-icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 60 30" width="54" height="27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M30 4 C27 12 24 20 18 22 C24 22 28 17 30 11 C32 17 36 22 42 22 C36 20 33 12 30 4 Z"
-              fill="url(#enGoldGrad)"
-            />
-            <path
-              d="M30 11 C26 18 19 22 10 24 C17 25 24 23 27 19 C28 23 29 25 30 26 C31 25 32 23 33 19 C36 23 43 25 50 24 C41 22 34 18 30 11 Z"
-              fill="url(#enGoldGrad)"
-              opacity="0.85"
-            />
-          </svg>
+          {/* Primary Language Title */}
+          <h3 className="card-language-title">{config.title}</h3>
+
+          {/* Emotional Tagline */}
+          <p className="card-tagline">“{config.tagline}”</p>
+
+          {/* Snippet Note */}
+          {config.mantraSnippet && (
+            <p className="card-snippet-note">{config.mantraSnippet}</p>
+          )}
+
+          {/* Decorative Divider */}
+          <div className="card-divider-flourish" aria-hidden="true">
+            <span className="flourish-line" />
+            <span className="flourish-symbol">✦</span>
+            <span className="flourish-line" />
+          </div>
         </div>
 
-        {/* Primary Language Title */}
-        <h3 className="card-language-title">{config.title}</h3>
-
-        {/* Emotional Tagline */}
-        <p className="card-tagline">“{config.tagline}”</p>
-
-        {/* Snippet Note */}
-        {config.mantraSnippet && (
-          <p className="card-snippet-note">{config.mantraSnippet}</p>
-        )}
-
-        {/* Decorative Divider */}
-        <div className="card-divider-flourish" aria-hidden="true">
-          <span className="flourish-line" />
-          <span className="flourish-symbol">✦</span>
-          <span className="flourish-line" />
-        </div>
-
-        {/* Primary Call to Action Button */}
+        {/* Primary Call to Action Button - Anchored to bottom */}
         <button
           type="button"
           tabIndex={-1} // Handled by parent card for full-card touch target

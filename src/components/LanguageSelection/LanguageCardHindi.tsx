@@ -125,53 +125,52 @@ export const LanguageCardHindi: React.FC<LanguageCardHindiProps> = ({
 
       {/* Card Content Layer */}
       <div className="card-inner-body">
-        {/* Traditional Auspicious Pill Tag */}
-        <span className="card-experience-pill pill-hindi">{config.label}</span>
+        <div className="card-top-content">
+          {/* Auspicious Sacred Swastik / Ganesha Mandala Motif */}
+          <div className="card-lotus-icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 60 30" width="54" height="27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(30, 15)">
+                {/* Traditional Auspicious Mandala Sunburst */}
+                <circle cx="0" cy="0" r="10" stroke="url(#hiGoldGrad)" strokeWidth="1" strokeDasharray="2 1.5" />
+                <circle cx="0" cy="0" r="5" fill="#520f18" />
+                <circle cx="0" cy="0" r="2" fill="url(#hiGoldGrad)" />
+                {/* Symmetrical Petal Rays */}
+                {[0, 45, 90, 135, 180, 225, 270, 315].map((ang, i) => (
+                  <line
+                    key={i}
+                    x1="0"
+                    y1="0"
+                    x2="12"
+                    y2="0"
+                    stroke="url(#hiGoldGrad)"
+                    strokeWidth="0.8"
+                    transform={`rotate(${ang})`}
+                  />
+                ))}
+              </g>
+            </svg>
+          </div>
 
-        {/* Auspicious Sacred Swastik / Ganesha Mandala Motif */}
-        <div className="card-lotus-icon-wrap" aria-hidden="true">
-          <svg viewBox="0 0 60 30" width="54" height="27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(30, 15)">
-              {/* Traditional Auspicious Mandala Sunburst */}
-              <circle cx="0" cy="0" r="10" stroke="url(#hiGoldGrad)" strokeWidth="1" strokeDasharray="2 1.5" />
-              <circle cx="0" cy="0" r="5" fill="#520f18" />
-              <circle cx="0" cy="0" r="2" fill="url(#hiGoldGrad)" />
-              {/* Symmetrical Petal Rays */}
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((ang, i) => (
-                <line
-                  key={i}
-                  x1="0"
-                  y1="0"
-                  x2="12"
-                  y2="0"
-                  stroke="url(#hiGoldGrad)"
-                  strokeWidth="0.8"
-                  transform={`rotate(${ang})`}
-                />
-              ))}
-            </g>
-          </svg>
+          {/* Primary Language Title in Devanagari */}
+          <h3 className="card-language-title title-hindi">{config.title}</h3>
+
+          {/* Culturally Meaningful Hindi Tagline */}
+          <p className="card-tagline tagline-hindi">“{config.tagline}”</p>
+
+          {/* Traditional Invocation Mantra Snippet */}
+          {config.mantraSnippet && (
+            <p className="card-snippet-note note-hindi">{config.mantraSnippet}</p>
+          )}
+
+          {/* Decorative Divider */}
+          <div className="card-divider-flourish" aria-hidden="true">
+            <span className="flourish-line" />
+            <span className="flourish-symbol">卐</span>
+            <span className="flourish-line" />
+          </div>
         </div>
 
-        {/* Primary Language Title in Devanagari */}
-        <h3 className="card-language-title title-hindi">{config.title}</h3>
-
-        {/* Culturally Meaningful Hindi Tagline */}
-        <p className="card-tagline tagline-hindi">“{config.tagline}”</p>
-
-        {/* Traditional Invocation Mantra Snippet */}
-        {config.mantraSnippet && (
-          <p className="card-snippet-note note-hindi">{config.mantraSnippet}</p>
-        )}
-
-        {/* Decorative Divider */}
-        <div className="card-divider-flourish" aria-hidden="true">
-          <span className="flourish-line" />
-          <span className="flourish-symbol">卐</span>
-          <span className="flourish-line" />
-        </div>
-
-        {/* Primary Call to Action Button */}
+        {/* Primary Call to Action Button - Anchored to bottom */}
         <button
           type="button"
           tabIndex={-1}

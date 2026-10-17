@@ -289,36 +289,24 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  height: 100%;
-  padding: 1.45rem 1.35rem 1.25rem;
+  flex: 1;
+  min-height: 100%;
+  padding: 1.8rem 1.4rem 1.35rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: center;
 }
 
-/* Top Experience Tag Pill */
-.card-experience-pill {
-  font-family: var(--font-serif-royal, 'Playfair Display', serif);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-deep, #8f6414);
-  padding: 0.2rem 0.7rem;
-  border-radius: 14px;
-  background: rgba(223, 183, 108, 0.15);
-  border: 1px solid rgba(197, 155, 39, 0.4);
-}
-
-.pill-hindi {
-  color: var(--maroon-royal, #520f18);
-  background: rgba(82, 15, 24, 0.08);
-  border-color: rgba(82, 15, 24, 0.25);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
+.card-top-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
 }
 
 /* Card Decorative Lotus / Mandala Icon */
@@ -414,10 +402,11 @@
   font-size: 0.75rem;
 }
 
-/* Card Call to Action Button */
+/* Card Call to Action Button - Firmly bottom-aligned */
 .card-cta-button {
   width: 100%;
-  padding: 0.68rem 1.25rem;
+  margin-top: auto !important;
+  padding: 0.72rem 1.25rem;
   border-radius: 28px;
   font-family: var(--font-serif-royal, 'Playfair Display', serif);
   font-size: 0.82rem;
@@ -578,16 +567,18 @@
   }
 
   .card-inner-body {
-    padding: 1.25rem 1.15rem 1.1rem;
+    padding: 1.45rem 1.15rem 1.15rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
-  .card-experience-pill {
-    font-size: 0.65rem;
-    padding: 0.18rem 0.65rem;
-  }
-
-  .pill-hindi {
-    font-size: 0.72rem;
+  .card-top-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .card-lotus-icon-wrap {
@@ -628,6 +619,7 @@
   }
 
   .card-cta-button {
+    margin-top: auto !important;
     min-height: 44px;
     display: flex;
     align-items: center;
