@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { OpeningPageProps } from '../../types/invitation';
+import { OpeningPageProps, DoorTheme } from '../../types/invitation';
 import { defaultContent } from '../../config/content.config';
+import { doorThemes, defaultDoorTheme } from '../../config/doorThemes.config';
 import { WeddingLogo } from './WeddingLogo';
 import { PalaceArch } from './PalaceArch';
 import { PalaceDoors } from './PalaceDoors';
@@ -8,23 +9,31 @@ import { PalaceSanctum } from './PalaceSanctum';
 import { TopFlourish } from './TopFlourish';
 import { LotusDivider } from './LotusDivider';
 import { OrnamentalBorder } from './OrnamentalBorder';
+import { ThemeSwitcher } from './ThemeSwitcher';
 import './OpeningPage.css';
 
 /**
  * Opening Page of the Royal Indian Wedding Invitation for Hitesh and Shivanee.
  * Recreates the unforgettable experience of standing before a grand Indian palace entrance.
+ * Features customizable royal door finishes (Peacock Sapphire & Gold, Royal Maroon, Emerald, Teak).
  * The magnificent closed double doors slowly open in 3D after loading, unveiling
  * the illuminated royal invitation card inside with crystal-clear, high-contrast typography.
  */
 export const OpeningPage: React.FC<OpeningPageProps> = ({
   content = defaultContent,
+  initialTheme = defaultDoorTheme,
   onOpenInvitation,
 }) => {
   const { couple, invitationMessage, openCtaText, openSubtitle, mantraTop, lockupNames } =
     content;
 
+  // Active palace door theme (defaults to 'peacock-sapphire')
+  const [doorTheme, setDoorTheme] = useState<DoorTheme>(initialTheme);
+
   // Door state: false = closed, true = opened
   const [isDoorsOpen, setIsDoorsOpen] = useState<boolean>(false);
+
+  const activeThemeConfig = doorThemes[doorTheme] || doorThemes[defaultDoorTheme];
 
   // Automatically and slowly open the doors after page loading
   useEffect(() => {
@@ -63,14 +72,20 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
 
   return (
     <main
-      className={`opening-page-viewport ${isDoorsOpen ? 'doors-are-open' : 'doors-are-closed'}`}
+      className={`opening-page-viewport ${
+        isDoorsOpen ? 'doors-are-open' : 'doors-are-closed'
+      }`}
+      data-theme={doorTheme}
       role="region"
       aria-label="Hitesh & Shivanee Royal Palace Wedding Invitation"
     >
       {/* 1. Thin, intricate gold ornamental border framing the entire viewport */}
       <OrnamentalBorder />
 
-      {/* 2. Palace Portal Stage & Architecture */}
+      {/* 2. Palace Door Theme Switcher (discreet live preview control) */}
+      <ThemeSwitcher currentTheme={doorTheme} onSelectTheme={setDoorTheme} />
+
+      {/* 3. Palace Portal Stage & Architecture */}
       <section
         className="palace-portal-container"
         aria-labelledby="invitation-heading"
@@ -79,7 +94,10 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
         <PalaceArch />
 
         {/* Palace Gateway Opening Frame (Perspective Stage) */}
-        <div className="palace-portal-frame">
+        <div
+          className="palace-portal-frame"
+          style={{ backgroundColor: activeThemeConfig.portalFrameBg }}
+        >
           {/* Inner Sanctum: Hosts the royal invitation card INSIDE the open portal */}
           <PalaceSanctum isOpen={isDoorsOpen}>
             <div
@@ -97,16 +115,31 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
 
               {/* Prominent Couple's Names */}
               <div className="names-container" id="invitation-heading">
-                <h1 className="couple-name name-groom">{couple.groom}</h1>
+                <h1
+                  className="couple-name name-groom"
+                  style={{ color: activeThemeConfig.textHeadline }}
+                >
+                  {couple.groom}
+                </h1>
                 <span className="ampersand-sign" aria-hidden="true">
                   {couple.ampersand || '&'}
                 </span>
-                <h1 className="couple-name name-bride">{couple.bride}</h1>
+                <h1
+                  className="couple-name name-bride"
+                  style={{ color: activeThemeConfig.textHeadline }}
+                >
+                  {couple.bride}
+                </h1>
               </div>
 
               {/* Exact Invitation Message */}
               <div className="message-container">
-                <p className="invitation-message-text">“{invitationMessage}”</p>
+                <p
+                  className="invitation-message-text"
+                  style={{ color: activeThemeConfig.textMessage }}
+                >
+                  “{invitationMessage}”
+                </p>
               </div>
 
               {/* Antique Gold Lotus Divider */}
@@ -117,6 +150,7 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
                 <button
                   type="button"
                   className="open-invitation-btn"
+                  style={{ background: activeThemeConfig.ctaGradient }}
                   onClick={handleProceedNext}
                   onKeyDown={handleBtnKeyDown}
                   aria-label={`${openCtaText} - ${openSubtitle || 'A celebration of love, family and forever'}`}
@@ -148,7 +182,11 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
           </PalaceSanctum>
 
           {/* 3D Double Palace Doors (Sits in front, slowly opens outward) */}
-          <PalaceDoors isOpen={isDoorsOpen} onOpen={handleManualOpen} />
+          <PalaceDoors
+            isOpen={isDoorsOpen}
+            onOpen={handleManualOpen}
+            theme={doorTheme}
+          />
         </div>
       </section>
     </main>

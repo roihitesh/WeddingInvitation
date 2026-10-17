@@ -2,6 +2,12 @@
  * Type definitions for Hitesh & Shivanee's Royal Wedding Invitation
  */
 
+export type DoorTheme =
+  | 'peacock-sapphire'
+  | 'royal-maroon'
+  | 'emerald-gold'
+  | 'imperial-teak';
+
 export interface CoupleInfo {
   groom: string;
   bride: string;
@@ -21,5 +27,6 @@ export interface OpeningPageContent {
 
 export interface OpeningPageProps {
   content?: OpeningPageContent;
+  initialTheme?: DoorTheme;
   onOpenInvitation?: () => void;
 }

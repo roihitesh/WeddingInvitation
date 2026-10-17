@@ -1,20 +1,27 @@
 import React from 'react';
+import { DoorTheme } from '../../types/invitation';
+import { doorThemes, defaultDoorTheme } from '../../config/doorThemes.config';
 
 interface PalaceDoorsProps {
   isOpen: boolean;
   onOpen: () => void;
+  theme?: DoorTheme;
 }
 
 /**
- * Grand Maroon & Antique Gold Double Palace Doors.
- * Pure architectural double doors without text clutter.
- * Features 3D perspective outward swinging doors with authentic Indian palace carvings,
- * brass boss studs (shingaar keel), jaali cutwork panels, and antique brass door knockers (kunda).
+ * Grand Double Palace Doors supporting royal architectural themes:
+ * - Peacock Sapphire & Gold (Jodhpur Meherangarh Fort)
+ * - Royal Maroon & Antique Gold (Udaipur City Palace)
+ * - Royal Emerald & Antique Gold (Jaipur Sheesh Mahal)
+ * - Imperial Teak & Temple Brass (Royal Haveli)
  */
 export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
   isOpen,
   onOpen,
+  theme = defaultDoorTheme,
 }) => {
+  const currentTheme = doorThemes[theme] || doorThemes[defaultDoorTheme];
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -29,7 +36,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
       tabIndex={0}
       onClick={!isOpen ? onOpen : undefined}
       onKeyDown={!isOpen ? handleKeyDown : undefined}
-      aria-label="Palace double doors - click to enter"
+      aria-label={`${currentTheme.name} palace doors - click to enter`}
       aria-expanded={isOpen}
     >
       {/* LEFT PALACE DOOR */}
@@ -42,12 +49,12 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           preserveAspectRatio="none"
         >
           <defs>
-            {/* Deep Royal Maroon Door Lacquer */}
-            <linearGradient id="doorMaroonLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4a0f18" />
-              <stop offset="35%" stopColor="#3b0a12" />
-              <stop offset="75%" stopColor="#29040a" />
-              <stop offset="100%" stopColor="#1f0207" />
+            {/* Themed Door Lacquer Gradient (Left) */}
+            <linearGradient id="doorLacquarLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={currentTheme.doorGradStops[0]} />
+              <stop offset="35%" stopColor={currentTheme.doorGradStops[1]} />
+              <stop offset="75%" stopColor={currentTheme.doorGradStops[2]} />
+              <stop offset="100%" stopColor={currentTheme.doorGradStops[3]} />
             </linearGradient>
 
             {/* Antique Gold Metallic Trim */}
@@ -62,11 +69,11 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             {/* Recessed Panel Inner Shadow */}
             <radialGradient id="panelDepthLeft" cx="80%" cy="30%" r="70%">
               <stop offset="0%" stopColor="#dfb76c" stopOpacity="0.12" />
-              <stop offset="60%" stopColor="#1a0206" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#0a0102" stopOpacity="0.75" />
+              <stop offset="60%" stopColor={currentTheme.recessedDepthBase} stopOpacity="0.4" />
+              <stop offset="100%" stopColor={currentTheme.recessedDepthBase} stopOpacity="0.8" />
             </radialGradient>
 
-            {/* Brass Stud Shadow */}
+            {/* Brass Stud Highlight */}
             <radialGradient id="brassStudGrad" cx="35%" cy="30%" r="65%">
               <stop offset="0%" stopColor="#fff8e7" />
               <stop offset="40%" stopColor="#dfb76c" />
@@ -76,7 +83,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           </defs>
 
           {/* Door Base Plate */}
-          <rect width="280" height="720" fill="url(#doorMaroonLeft)" />
+          <rect width="280" height="720" fill="url(#doorLacquarLeft)" />
           <rect width="280" height="720" fill="url(#panelDepthLeft)" />
 
           {/* Outer Carved Beveled Margin */}
@@ -99,7 +106,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             stroke="url(#doorGoldGrad)"
             strokeWidth="0.8"
             strokeDasharray="4 3"
-            opacity="0.8"
+            opacity="0.85"
           />
 
           {/* UPPER CARVED ARCHED PANEL */}
@@ -114,7 +121,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
                 V 210
                 Z
               "
-              fill="#2b0409"
+              fill={currentTheme.recessedUpper}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
             />
@@ -132,7 +139,6 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               <line x1="250" y1="90" x2="90" y2="200" />
               <line x1="250" y1="130" x2="130" y2="210" />
             </g>
-            {/* Arched Panel Crest */}
             <circle cx="150" cy="85" r="14" stroke="url(#doorGoldGrad)" strokeWidth="1" fill="none" opacity="0.7" />
             <circle cx="150" cy="85" r="5" fill="url(#doorGoldGrad)" opacity="0.8" />
           </g>
@@ -144,7 +150,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               y="228"
               width="228"
               height="260"
-              fill="#240307"
+              fill={currentTheme.recessedCenter}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
               rx="4"
@@ -157,9 +163,8 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               stroke="url(#doorGoldGrad)"
               strokeWidth="0.8"
               strokeDasharray="3 3"
-              opacity="0.6"
+              opacity="0.65"
             />
-            {/* Lotus Medallion Rosette */}
             <g transform="translate(150, 358)">
               <circle r="36" stroke="url(#doorGoldGrad)" strokeWidth="1.2" fill="none" opacity="0.8" />
               <circle r="26" stroke="url(#doorGoldGrad)" strokeWidth="0.8" strokeDasharray="3 2" fill="none" opacity="0.7" />
@@ -168,7 +173,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
                   key={i}
                   d="M 0 0 C -4 -12 0 -22 0 -22 C 0 -22 4 -12 0 0 Z"
                   fill="url(#doorGoldGrad)"
-                  opacity="0.75"
+                  opacity="0.8"
                   transform={`rotate(${angle})`}
                 />
               ))}
@@ -176,14 +181,14 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             </g>
           </g>
 
-          {/* LOWER CARVED GEOMETRIC PANEL */}
+          {/* LOWER CARVED GEOMETRIC CHEVRON PANEL */}
           <g className="door-panel-lower">
             <rect
               x="36"
               y="506"
               width="228"
               height="180"
-              fill="#240307"
+              fill={currentTheme.recessedLower}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
               rx="4"
@@ -196,9 +201,9 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               stroke="url(#doorGoldGrad)"
               strokeWidth="0.8"
               strokeDasharray="3 3"
-              opacity="0.6"
+              opacity="0.65"
             />
-            <g stroke="url(#doorGoldGrad)" strokeWidth="1" opacity="0.4">
+            <g stroke="url(#doorGoldGrad)" strokeWidth="1" opacity="0.45">
               <path d="M 60 596 L 150 550 L 240 596" fill="none" />
               <path d="M 60 616 L 150 570 L 240 616" fill="none" />
               <path d="M 60 636 L 150 590 L 240 636" fill="none" />
@@ -245,14 +250,13 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               strokeDasharray="2 2"
               fill="none"
             />
-            {/* Medallion letter H */}
             <text
               x="-12"
               y="6"
               fontFamily="'Playfair Display', serif"
               fontSize="16"
               fontWeight="bold"
-              fill="#2a0409"
+              fill="#1a1205"
               textAnchor="middle"
             >
               H
@@ -260,7 +264,6 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           </g>
         </svg>
 
-        {/* Dynamic 3D lighting shadow overlay as door swings */}
         <div className="door-lighting-overlay" />
       </div>
 
@@ -274,21 +277,22 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="doorMaroonRight" x1="100%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#4a0f18" />
-              <stop offset="35%" stopColor="#3b0a12" />
-              <stop offset="75%" stopColor="#29040a" />
-              <stop offset="100%" stopColor="#1f0207" />
+            {/* Themed Door Lacquer Gradient (Right) */}
+            <linearGradient id="doorLacquarRight" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={currentTheme.doorGradStops[0]} />
+              <stop offset="35%" stopColor={currentTheme.doorGradStops[1]} />
+              <stop offset="75%" stopColor={currentTheme.doorGradStops[2]} />
+              <stop offset="100%" stopColor={currentTheme.doorGradStops[3]} />
             </linearGradient>
 
             <radialGradient id="panelDepthRight" cx="20%" cy="30%" r="70%">
               <stop offset="0%" stopColor="#dfb76c" stopOpacity="0.12" />
-              <stop offset="60%" stopColor="#1a0206" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#0a0102" stopOpacity="0.75" />
+              <stop offset="60%" stopColor={currentTheme.recessedDepthBase} stopOpacity="0.4" />
+              <stop offset="100%" stopColor={currentTheme.recessedDepthBase} stopOpacity="0.8" />
             </radialGradient>
           </defs>
 
-          <rect width="280" height="720" fill="url(#doorMaroonRight)" />
+          <rect width="280" height="720" fill="url(#doorLacquarRight)" />
           <rect width="280" height="720" fill="url(#panelDepthRight)" />
 
           <rect
@@ -309,7 +313,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             stroke="url(#doorGoldGrad)"
             strokeWidth="0.8"
             strokeDasharray="4 3"
-            opacity="0.8"
+            opacity="0.85"
           />
 
           {/* UPPER CARVED ARCHED PANEL */}
@@ -324,7 +328,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
                 V 210
                 Z
               "
-              fill="#2b0409"
+              fill={currentTheme.recessedUpper}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
             />
@@ -352,7 +356,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               y="228"
               width="228"
               height="260"
-              fill="#240307"
+              fill={currentTheme.recessedCenter}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
               rx="4"
@@ -365,7 +369,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               stroke="url(#doorGoldGrad)"
               strokeWidth="0.8"
               strokeDasharray="3 3"
-              opacity="0.6"
+              opacity="0.65"
             />
             <g transform="translate(130, 358)">
               <circle r="36" stroke="url(#doorGoldGrad)" strokeWidth="1.2" fill="none" opacity="0.8" />
@@ -375,7 +379,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
                   key={i}
                   d="M 0 0 C -4 -12 0 -22 0 -22 C 0 -22 4 -12 0 0 Z"
                   fill="url(#doorGoldGrad)"
-                  opacity="0.75"
+                  opacity="0.8"
                   transform={`rotate(${angle})`}
                 />
               ))}
@@ -383,14 +387,14 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             </g>
           </g>
 
-          {/* LOWER CARVED GEOMETRIC PANEL */}
+          {/* LOWER CARVED GEOMETRIC CHEVRON PANEL */}
           <g className="door-panel-lower">
             <rect
               x="16"
               y="506"
               width="228"
               height="180"
-              fill="#240307"
+              fill={currentTheme.recessedLower}
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
               rx="4"
@@ -403,9 +407,9 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               stroke="url(#doorGoldGrad)"
               strokeWidth="0.8"
               strokeDasharray="3 3"
-              opacity="0.6"
+              opacity="0.65"
             />
-            <g stroke="url(#doorGoldGrad)" strokeWidth="1" opacity="0.4">
+            <g stroke="url(#doorGoldGrad)" strokeWidth="1" opacity="0.45">
               <path d="M 40 596 L 130 550 L 220 596" fill="none" />
               <path d="M 40 616 L 130 570 L 220 616" fill="none" />
               <path d="M 40 636 L 130 590 L 220 636" fill="none" />
@@ -452,14 +456,13 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               strokeDasharray="2 2"
               fill="none"
             />
-            {/* Medallion letter S */}
             <text
               x="12"
               y="6"
               fontFamily="'Playfair Display', serif"
               fontSize="16"
               fontWeight="bold"
-              fill="#2a0409"
+              fill="#1a1205"
               textAnchor="middle"
             >
               S
@@ -473,14 +476,13 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           </g>
         </svg>
 
-        {/* Dynamic 3D lighting shadow overlay as door swings */}
         <div className="door-lighting-overlay" />
       </div>
 
-      {/* Subtle Hint on the closed doors before opening */}
+      {/* Subtle Hint on Closed Doors */}
       {!isOpen && (
         <div className="closed-doors-tap-hint" aria-hidden="true">
-          <span className="hint-pill">✦ Entering the Royal Palace ✦</span>
+          <span className="hint-pill">✦ {currentTheme.name} ✦</span>
         </div>
       )}
     </div>
