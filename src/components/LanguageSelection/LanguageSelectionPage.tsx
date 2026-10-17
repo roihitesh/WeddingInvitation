@@ -57,7 +57,11 @@ export const LanguageSelectionPage: React.FC<LanguageSelectionPageProps> = ({
         {/* Top Header: Couple's Monogram Emblem & Lockup */}
         <header className="selection-header">
           <div className="logo-section">
-            <WeddingLogo namesText="HITESH & SHIVANEE" />
+            <WeddingLogo
+              namesText="Hitesh & Shivani"
+              cursiveNames={true}
+              hideSubtitle={true}
+            />
           </div>
 
           <LotusDivider />
@@ -66,7 +70,9 @@ export const LanguageSelectionPage: React.FC<LanguageSelectionPageProps> = ({
           <div className="welcome-message-block">
             <h1 className="welcome-main-heading">{config.heading}</h1>
             <p className="welcome-story-subtext">“{config.subheading}”</p>
-            <p className="welcome-instruction-pill">{config.promptNote}</p>
+            {config.promptNote ? (
+              <p className="welcome-instruction-pill">{config.promptNote}</p>
+            ) : null}
           </div>
         </header>
 

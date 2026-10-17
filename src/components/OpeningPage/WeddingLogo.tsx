@@ -4,17 +4,21 @@ interface WeddingLogoProps {
   className?: string;
   namesText?: string;
   hideLockupNames?: boolean;
+  cursiveNames?: boolean;
+  hideSubtitle?: boolean;
 }
 
 /**
- * Custom H&S Wedding Emblem & Logo Lockup for Hitesh and Shivanee.
+ * Custom H&S Wedding Emblem & Logo Lockup for Hitesh and Shivani.
  * Inspired by Indian royal seals with intertwined H & S monogram in antique gold,
- * delicate botanical leaves, lotus flourishes, and generous letter-spaced typography lockup.
+ * delicate botanical leaves, lotus flourishes, and generous cursive / royal typography lockup.
  */
 export const WeddingLogo: React.FC<WeddingLogoProps> = ({
   className = '',
-  namesText = 'HITESH & SHIVANEE',
+  namesText = 'Hitesh & Shivani',
   hideLockupNames = false,
+  cursiveNames = false,
+  hideSubtitle = false,
 }) => {
   return (
     <div className={`hs-logo-lockup-wrapper ${className}`}>
@@ -174,14 +178,20 @@ export const WeddingLogo: React.FC<WeddingLogoProps> = ({
       {/* Complete Logo Lockup: Names directly below emblem */}
       <div className="logo-lockup-text">
         {!hideLockupNames && (
-          <h2 className="lockup-names-title">{namesText}</h2>
+          <h2 className={cursiveNames ? 'lockup-names-cursive' : 'lockup-names-title'}>
+            {namesText}
+          </h2>
         )}
-        <div className="lockup-rule-wrap" aria-hidden="true">
-          <span className="lockup-rule-line" />
-          <span className="lockup-rule-diamond">✦</span>
-          <span className="lockup-rule-line" />
-        </div>
-        <p className="lockup-celebration-subtitle">WEDDING CELEBRATION</p>
+        {!hideSubtitle && (
+          <>
+            <div className="lockup-rule-wrap" aria-hidden="true">
+              <span className="lockup-rule-line" />
+              <span className="lockup-rule-diamond">✦</span>
+              <span className="lockup-rule-line" />
+            </div>
+            <p className="lockup-celebration-subtitle">WEDDING CELEBRATION</p>
+          </>
+        )}
       </div>
     </div>
   );

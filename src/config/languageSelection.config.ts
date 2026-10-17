@@ -10,7 +10,7 @@ export const defaultLanguageSelectionConfig: LanguageSelectionConfig = {
   heading: 'A Celebration of Love, Family & Forever',
   subheading:
     'Every beautiful story deserves to be celebrated. Choose your invitation and join us in making our special day unforgettable.',
-  promptNote: 'Please select your preferred invitation experience below',
+  promptNote: '',
   cards: {
     en: {
       code: 'en',

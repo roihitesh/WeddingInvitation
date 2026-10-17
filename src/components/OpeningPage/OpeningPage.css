@@ -381,6 +381,19 @@
   margin: 0;
 }
 
+.lockup-names-cursive {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: 2.85rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--maroon-royal, #520f18);
+  margin: 0.15rem 0 0.25rem;
+  line-height: 1.15;
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 2px 10px rgba(110, 66, 6, 0.18);
+}
+
 .lockup-rule-wrap {
   display: flex;
   align-items: center;
