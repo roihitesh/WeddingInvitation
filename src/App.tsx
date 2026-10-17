@@ -3,6 +3,7 @@ import { OpeningPage } from './components/OpeningPage/OpeningPage';
 import { LanguageSelectionPage } from './components/LanguageSelection/LanguageSelectionPage';
 import { WelcomePage } from './components/WelcomePage/WelcomePage';
 import { OurStoryPage } from './components/OurStory/OurStoryPage';
+import { CelebrationsPage } from './components/Celebrations/CelebrationsPage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
 
@@ -15,6 +16,7 @@ export type ScreenState = 'opening' | 'language' | 'invitation';
  * 2. Page 2: Choose Your Invitation Language (English / Hindi Stationery Cards)
  * 3. Page 3: The Royal Wedding Welcome Page (in chosen language with language switcher)
  * 4. Page 4: Our Love Story (Editorial photo album + continuous vertical timeline)
+ * 5. Page 5: Wedding Celebrations (Haldi, Mehendi, Sangeet, Wedding Ceremony, Reception)
  */
 export const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
@@ -69,6 +71,18 @@ export const App: React.FC = () => {
               onLanguageChange={setSelectedLanguage}
               onNavigateSection={setActiveSection}
               onBackToWelcome={() => setActiveSection('welcome')}
+              onBackToLanguageSelection={handleBackToLanguage}
+              onExploreCelebrations={() => setActiveSection('celebrations')}
+            />
+          )}
+
+          {activeSection === 'celebrations' && (
+            <CelebrationsPage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onNavigateSection={setActiveSection}
+              onBackToWelcome={() => setActiveSection('welcome')}
+              onBackToStory={() => setActiveSection('story')}
               onBackToLanguageSelection={handleBackToLanguage}
             />
           )}

@@ -164,3 +164,59 @@ export interface OurStoryPageProps {
   onBackToLanguageSelection?: () => void;
   onExploreCelebrations?: () => void;
 }
+
+export type CelebrationEventType =
+  | 'haldi'
+  | 'mehendi'
+  | 'sangeet'
+  | 'wedding'
+  | 'reception';
+
+export interface CelebrationEvent {
+  id: string;
+  type: CelebrationEventType;
+  title: { en: string; hi: string };
+  subtitle?: { en?: string; hi?: string };
+  description: { en: string; hi: string };
+  date?: { en?: string; hi?: string };
+  dateISO?: string | null;
+  time?: { en?: string; hi?: string };
+  venueName?: { en?: string; hi?: string };
+  venueAddress?: { en?: string; hi?: string };
+  mapUrl?: string | null;
+  dressCode?: { en?: string; hi?: string };
+  imageSrc?: string;
+  isProminent?: boolean;
+  isEnabled: boolean;
+}
+
+export interface CelebrationsPageConfig {
+  heading: { en: string; hi: string };
+  intro: { en: string; hi: string };
+  events: CelebrationEvent[];
+  labels: {
+    date: { en: string; hi: string };
+    time: { en: string; hi: string };
+    venue: { en: string; hi: string };
+    dressCode: { en: string; hi: string };
+    viewMap: { en: string; hi: string };
+    eventDetails: { en: string; hi: string };
+    days: { en: string; hi: string };
+    hours: { en: string; hi: string };
+    minutes: { en: string; hi: string };
+    seconds: { en: string; hi: string };
+    countdownHeading: { en: string; hi: string };
+  };
+}
+
+export interface CelebrationsPageProps {
+  language: SupportedLanguage;
+  onLanguageChange: (lang: SupportedLanguage) => void;
+  onNavigateSection: (section: NavSection) => void;
+  onBackToWelcome?: () => void;
+  onBackToStory?: () => void;
+  onBackToLanguageSelection?: () => void;
+  weddingDetails?: WeddingDetails;
+  onViewVenue?: () => void;
+}
+
