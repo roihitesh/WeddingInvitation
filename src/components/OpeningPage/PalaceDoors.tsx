@@ -9,11 +9,10 @@ interface PalaceDoorsProps {
 }
 
 /**
- * Grand Double Palace Doors supporting royal architectural themes:
- * - Peacock Sapphire & Gold (Jodhpur Meherangarh Fort)
- * - Royal Maroon & Antique Gold (Udaipur City Palace)
- * - Royal Emerald & Antique Gold (Jaipur Sheesh Mahal)
- * - Imperial Teak & Temple Brass (Royal Haveli)
+ * Grand Double Palace Doors with:
+ * - Traditional Indian wedding Nagada (नगाड़े) and Shehnai (शहनाई) at the center of both doors
+ * - Complete, UNBROKEN royal H&S monogram seal intact on one side (no splitting)
+ * - 3D perspective outward swinging doors with authentic Indian palace carvings
  */
 export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
   isOpen,
@@ -80,6 +79,12 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               <stop offset="85%" stopColor="#8f6414" />
               <stop offset="100%" stopColor="#4d3408" />
             </radialGradient>
+
+            {/* Crimson Silk Tassel Red */}
+            <linearGradient id="tasselRed" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#d32f2f" />
+              <stop offset="100%" stopColor="#7f0000" />
+            </linearGradient>
           </defs>
 
           {/* Door Base Plate */}
@@ -125,7 +130,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               stroke="url(#doorGoldGrad)"
               strokeWidth="1.5"
             />
-            {/* Jaali Cutwork Lattice in Upper Arch */}
+            {/* Jaali Cutwork Lattice */}
             <g stroke="url(#doorGoldGrad)" strokeWidth="0.8" opacity="0.45">
               <line x1="50" y1="50" x2="250" y2="190" />
               <line x1="90" y1="50" x2="260" y2="170" />
@@ -143,7 +148,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             <circle cx="150" cy="85" r="5" fill="url(#doorGoldGrad)" opacity="0.8" />
           </g>
 
-          {/* CENTER CARVED LOTUS ROSETTE PANEL */}
+          {/* CENTER PANEL: AUSPICIOUS WEDDING SHEHNAI & NAGADA (LEFT SIDE) */}
           <g className="door-panel-center">
             <rect
               x="36"
@@ -165,19 +170,95 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               strokeDasharray="3 3"
               opacity="0.65"
             />
-            <g transform="translate(150, 358)">
-              <circle r="36" stroke="url(#doorGoldGrad)" strokeWidth="1.2" fill="none" opacity="0.8" />
-              <circle r="26" stroke="url(#doorGoldGrad)" strokeWidth="0.8" strokeDasharray="3 2" fill="none" opacity="0.7" />
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <path
-                  key={i}
-                  d="M 0 0 C -4 -12 0 -22 0 -22 C 0 -22 4 -12 0 0 Z"
-                  fill="url(#doorGoldGrad)"
-                  opacity="0.8"
-                  transform={`rotate(${angle})`}
-                />
+
+            {/* Sacred Lotus Crest Header above Nagada */}
+            <g transform="translate(150, 268)">
+              <circle r="18" stroke="url(#doorGoldGrad)" strokeWidth="1" fill="none" opacity="0.7" />
+              <circle r="4" fill="url(#doorGoldGrad)" />
+              {/* Petal flourishes */}
+              <path d="M 0 -18 C -6 -10 6 -10 0 -18 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+              <path d="M -18 0 C -10 -6 -10 6 -18 0 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+              <path d="M 18 0 C 10 -6 10 6 18 0 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+            </g>
+
+            {/* LEFT NAGADA (नगाड़ा / Kettledrum) */}
+            <g className="nagada-drum-left" transform="translate(118, 385)">
+              {/* Copper/Brass Kettle Drum Bowl */}
+              <path
+                d="M -34 0 C -34 32 34 32 34 0 Z"
+                fill="url(#brassStudGrad)"
+                stroke="#5a3d0a"
+                strokeWidth="1.2"
+              />
+              {/* Drumhead Rim Ring */}
+              <ellipse cx="0" cy="0" rx="34" ry="10" fill="#fdf8e6" stroke="url(#doorGoldGrad)" strokeWidth="1.4" />
+              {/* Inner Tanned Leather Skin Head */}
+              <ellipse cx="0" cy="0" rx="28" ry="7" fill="#f3e8cf" stroke="#8f6414" strokeWidth="0.8" />
+              {/* Center Sound Spot (Syahi) */}
+              <ellipse cx="0" cy="0" rx="10" ry="3" fill="#2d1c07" opacity="0.75" />
+
+              {/* Traditional Leather Zigzag Lacing Cords (Chot / Badhi) */}
+              <g stroke="#6e4612" strokeWidth="1" opacity="0.85">
+                <line x1="-30" y1="5" x2="-22" y2="24" />
+                <line x1="-22" y1="24" x2="-12" y2="8" />
+                <line x1="-12" y1="8" x2="0" y2="26" />
+                <line x1="0" y1="26" x2="12" y2="8" />
+                <line x1="12" y1="8" x2="22" y2="24" />
+                <line x1="22" y1="24" x2="30" y2="5" />
+              </g>
+
+              {/* Wooden Drumstick (Danka / Chob) */}
+              <g transform="translate(-18, -12) rotate(32)">
+                <path d="M 0 0 L 0 38" stroke="#dfb76c" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="0" cy="0" r="4.5" fill="url(#brassStudGrad)" stroke="#4d3408" strokeWidth="0.8" />
+              </g>
+            </g>
+
+            {/* LEFT SHEHNAI (शहनाई / Auspicious Wedding Oboe) */}
+            <g className="shehnai-pipe-left" transform="translate(196, 325) rotate(-34)">
+              {/* Slender Tapered Wooden Body */}
+              <path
+                d="M -4 -48 L 4 -48 L 7 36 L -7 36 Z"
+                fill="#2c1a0e"
+                stroke="url(#doorGoldGrad)"
+                strokeWidth="1"
+              />
+              {/* Brass Sound Holes */}
+              {[-32, -20, -8, 4, 16, 28].map((y, i) => (
+                <circle key={`hole-l-${i}`} cx="0" cy={y} r="2" fill="url(#brassStudGrad)" />
               ))}
-              <circle r="6" fill="url(#doorGoldGrad)" />
+
+              {/* Flared Brass Bell (Pyala) at the base */}
+              <path
+                d="M -7 36 C -18 42 -22 56 0 56 C 22 56 18 42 7 36 Z"
+                fill="url(#brassStudGrad)"
+                stroke="#5a3d0a"
+                strokeWidth="1.2"
+              />
+              <ellipse cx="0" cy="56" rx="16" ry="4" fill="#fff8e7" opacity="0.6" />
+
+              {/* Top Reed Mouthpiece (Patti / Nal) */}
+              <path d="M -2 -48 L 2 -48 L 1 -58 L -1 -58 Z" fill="url(#doorGoldGrad)" />
+              <ellipse cx="0" cy="-58" rx="2.5" ry="1.2" fill="#dfb76c" />
+
+              {/* Auspicious Silk Tassels (Latkan) hanging from bell */}
+              <g transform="translate(0, 56)">
+                <line x1="0" y1="0" x2="-8" y2="16" stroke="#c59b27" strokeWidth="1" />
+                <circle cx="-8" cy="16" r="2.5" fill="url(#tasselRed)" />
+                <path d="M -10 18 L -6 18 L -8 26 Z" fill="url(#tasselRed)" />
+
+                <line x1="0" y1="0" x2="8" y2="16" stroke="#c59b27" strokeWidth="1" />
+                <circle cx="8" cy="16" r="2.5" fill="url(#tasselRed)" />
+                <path d="M 6 18 L 10 18 L 8 26 Z" fill="url(#tasselRed)" />
+              </g>
+            </g>
+
+            {/* Bottom Auspicious Decorative Scroll */}
+            <g transform="translate(150, 452)" stroke="url(#doorGoldGrad)" fill="none" opacity="0.7">
+              <path d="M -48 0 C -24 8 24 8 48 0" strokeWidth="1.2" />
+              <circle cx="0" cy="5" r="3" fill="url(#doorGoldGrad)" />
+              <circle cx="-24" cy="4" r="1.5" fill="url(#doorGoldGrad)" />
+              <circle cx="24" cy="4" r="1.5" fill="url(#doorGoldGrad)" />
             </g>
           </g>
 
@@ -221,7 +302,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           </g>
 
           {/* LEFT DOOR KNOCKER (BRASS KUNDA & ROSETTE) */}
-          <g className="door-knocker left-knocker" transform="translate(254, 380)">
+          <g className="door-knocker left-knocker" transform="translate(254, 400)">
             <circle cx="0" cy="0" r="16" fill="url(#doorGoldGrad)" />
             <circle cx="0" cy="0" r="18" stroke="#4d3408" strokeWidth="1" fill="none" />
             <circle cx="0" cy="0" r="13" stroke="#fff8e7" strokeWidth="0.8" strokeDasharray="2 2" fill="none" />
@@ -235,33 +316,8 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             <circle cx="0" cy="0" r="5" fill="#fff8e7" />
           </g>
 
-          {/* LEFT HALF OF THE ROYAL BRASS LATCH SEAL (MEDALLION) */}
-          <g className="door-center-seal-left" transform="translate(280, 310)">
-            <path
-              d="M 0 -28 A 28 28 0 0 0 0 28 Z"
-              fill="url(#brassStudGrad)"
-              stroke="#5a3d0a"
-              strokeWidth="1"
-            />
-            <path
-              d="M 0 -22 A 22 22 0 0 0 0 22 Z"
-              stroke="#fff8e7"
-              strokeWidth="0.8"
-              strokeDasharray="2 2"
-              fill="none"
-            />
-            <text
-              x="-12"
-              y="6"
-              fontFamily="'Playfair Display', serif"
-              fontSize="16"
-              fontWeight="bold"
-              fill="#1a1205"
-              textAnchor="middle"
-            >
-              H
-            </text>
-          </g>
+          {/* Center Astragal Overlap Lip */}
+          <rect x="274" y="0" width="6" height="720" fill="url(#doorGoldGrad)" opacity="0.9" />
         </svg>
 
         <div className="door-lighting-overlay" />
@@ -277,7 +333,6 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           preserveAspectRatio="none"
         >
           <defs>
-            {/* Themed Door Lacquer Gradient (Right) */}
             <linearGradient id="doorLacquarRight" x1="100%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={currentTheme.doorGradStops[0]} />
               <stop offset="35%" stopColor={currentTheme.doorGradStops[1]} />
@@ -349,7 +404,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             <circle cx="130" cy="85" r="5" fill="url(#doorGoldGrad)" opacity="0.8" />
           </g>
 
-          {/* CENTER CARVED LOTUS ROSETTE PANEL */}
+          {/* CENTER PANEL: AUSPICIOUS WEDDING SHEHNAI & NAGADA (RIGHT SIDE - MIRRORED) */}
           <g className="door-panel-center">
             <rect
               x="16"
@@ -371,19 +426,85 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
               strokeDasharray="3 3"
               opacity="0.65"
             />
-            <g transform="translate(130, 358)">
-              <circle r="36" stroke="url(#doorGoldGrad)" strokeWidth="1.2" fill="none" opacity="0.8" />
-              <circle r="26" stroke="url(#doorGoldGrad)" strokeWidth="0.8" strokeDasharray="3 2" fill="none" opacity="0.7" />
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <path
-                  key={i}
-                  d="M 0 0 C -4 -12 0 -22 0 -22 C 0 -22 4 -12 0 0 Z"
-                  fill="url(#doorGoldGrad)"
-                  opacity="0.8"
-                  transform={`rotate(${angle})`}
-                />
+
+            {/* Sacred Lotus Crest Header above Nagada */}
+            <g transform="translate(130, 268)">
+              <circle r="18" stroke="url(#doorGoldGrad)" strokeWidth="1" fill="none" opacity="0.7" />
+              <circle r="4" fill="url(#doorGoldGrad)" />
+              <path d="M 0 -18 C -6 -10 6 -10 0 -18 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+              <path d="M -18 0 C -10 -6 -10 6 -18 0 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+              <path d="M 18 0 C 10 -6 10 6 18 0 Z" fill="url(#doorGoldGrad)" opacity="0.8" />
+            </g>
+
+            {/* RIGHT NAGADA (नगाड़ा / Kettledrum) */}
+            <g className="nagada-drum-right" transform="translate(162, 385)">
+              <path
+                d="M -34 0 C -34 32 34 32 34 0 Z"
+                fill="url(#brassStudGrad)"
+                stroke="#5a3d0a"
+                strokeWidth="1.2"
+              />
+              <ellipse cx="0" cy="0" rx="34" ry="10" fill="#fdf8e6" stroke="url(#doorGoldGrad)" strokeWidth="1.4" />
+              <ellipse cx="0" cy="0" rx="28" ry="7" fill="#f3e8cf" stroke="#8f6414" strokeWidth="0.8" />
+              <ellipse cx="0" cy="0" rx="10" ry="3" fill="#2d1c07" opacity="0.75" />
+
+              <g stroke="#6e4612" strokeWidth="1" opacity="0.85">
+                <line x1="-30" y1="5" x2="-22" y2="24" />
+                <line x1="-22" y1="24" x2="-12" y2="8" />
+                <line x1="-12" y1="8" x2="0" y2="26" />
+                <line x1="0" y1="26" x2="12" y2="8" />
+                <line x1="12" y1="8" x2="22" y2="24" />
+                <line x1="22" y1="24" x2="30" y2="5" />
+              </g>
+
+              {/* Wooden Drumstick (Danka / Chob) */}
+              <g transform="translate(18, -12) rotate(-32)">
+                <path d="M 0 0 L 0 38" stroke="#dfb76c" strokeWidth="3" strokeLinecap="round" />
+                <circle cx="0" cy="0" r="4.5" fill="url(#brassStudGrad)" stroke="#4d3408" strokeWidth="0.8" />
+              </g>
+            </g>
+
+            {/* RIGHT SHEHNAI (शहनाई / Auspicious Wedding Oboe - Angled toward Center) */}
+            <g className="shehnai-pipe-right" transform="translate(84, 325) rotate(34)">
+              <path
+                d="M -4 -48 L 4 -48 L 7 36 L -7 36 Z"
+                fill="#2c1a0e"
+                stroke="url(#doorGoldGrad)"
+                strokeWidth="1"
+              />
+              {[-32, -20, -8, 4, 16, 28].map((y, i) => (
+                <circle key={`hole-r-${i}`} cx="0" cy={y} r="2" fill="url(#brassStudGrad)" />
               ))}
-              <circle r="6" fill="url(#doorGoldGrad)" />
+
+              <path
+                d="M -7 36 C -18 42 -22 56 0 56 C 22 56 18 42 7 36 Z"
+                fill="url(#brassStudGrad)"
+                stroke="#5a3d0a"
+                strokeWidth="1.2"
+              />
+              <ellipse cx="0" cy="56" rx="16" ry="4" fill="#fff8e7" opacity="0.6" />
+
+              <path d="M -2 -48 L 2 -48 L 1 -58 L -1 -58 Z" fill="url(#doorGoldGrad)" />
+              <ellipse cx="0" cy="-58" rx="2.5" ry="1.2" fill="#dfb76c" />
+
+              {/* Silk Tassels */}
+              <g transform="translate(0, 56)">
+                <line x1="0" y1="0" x2="-8" y2="16" stroke="#c59b27" strokeWidth="1" />
+                <circle cx="-8" cy="16" r="2.5" fill="url(#tasselRed)" />
+                <path d="M -10 18 L -6 18 L -8 26 Z" fill="url(#tasselRed)" />
+
+                <line x1="0" y1="0" x2="8" y2="16" stroke="#c59b27" strokeWidth="1" />
+                <circle cx="8" cy="16" r="2.5" fill="url(#tasselRed)" />
+                <path d="M 6 18 L 10 18 L 8 26 Z" fill="url(#tasselRed)" />
+              </g>
+            </g>
+
+            {/* Bottom Auspicious Decorative Scroll */}
+            <g transform="translate(130, 452)" stroke="url(#doorGoldGrad)" fill="none" opacity="0.7">
+              <path d="M -48 0 C -24 8 24 8 48 0" strokeWidth="1.2" />
+              <circle cx="0" cy="5" r="3" fill="url(#doorGoldGrad)" />
+              <circle cx="-24" cy="4" r="1.5" fill="url(#doorGoldGrad)" />
+              <circle cx="24" cy="4" r="1.5" fill="url(#doorGoldGrad)" />
             </g>
           </g>
 
@@ -427,7 +548,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
           </g>
 
           {/* RIGHT DOOR KNOCKER */}
-          <g className="door-knocker right-knocker" transform="translate(26, 380)">
+          <g className="door-knocker right-knocker" transform="translate(26, 400)">
             <circle cx="0" cy="0" r="16" fill="url(#doorGoldGrad)" />
             <circle cx="0" cy="0" r="18" stroke="#4d3408" strokeWidth="1" fill="none" />
             <circle cx="0" cy="0" r="13" stroke="#fff8e7" strokeWidth="0.8" strokeDasharray="2 2" fill="none" />
@@ -441,38 +562,58 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
             <circle cx="0" cy="0" r="5" fill="#fff8e7" />
           </g>
 
-          {/* RIGHT HALF OF THE ROYAL BRASS LATCH SEAL (MEDALLION) */}
-          <g className="door-center-seal-right" transform="translate(0, 310)">
-            <path
-              d="M 0 -28 A 28 28 0 0 1 0 28 Z"
+          {/* COMPLETE, UNBROKEN ROYAL H&S BRASS EMBLEM (ON ONE SIDE - RIGHT DOOR) */}
+          <g className="door-unbroken-hs-emblem" transform="translate(4, 290)">
+            {/* Latch Plate Mounting Bracket */}
+            <rect
+              x="-6"
+              y="-32"
+              width="44"
+              height="64"
+              rx="6"
               fill="url(#brassStudGrad)"
               stroke="#5a3d0a"
-              strokeWidth="1"
+              strokeWidth="1.2"
+              filter="drop-shadow(2px 4px 8px rgba(0,0,0,0.65))"
             />
-            <path
-              d="M 0 -22 A 22 22 0 0 1 0 22 Z"
+            {/* Inner Border */}
+            <rect
+              x="-2"
+              y="-28"
+              width="36"
+              height="56"
+              rx="4"
               stroke="#fff8e7"
               strokeWidth="0.8"
-              strokeDasharray="2 2"
+              strokeDasharray="2 1.5"
               fill="none"
             />
+            {/* Intact Combined Initials "H&S" */}
             <text
-              x="12"
-              y="6"
+              x="16"
+              y="-4"
               fontFamily="'Playfair Display', serif"
               fontSize="16"
               fontWeight="bold"
-              fill="#1a1205"
+              fill="#2b1a05"
               textAnchor="middle"
             >
-              S
+              H&amp;S
             </text>
-          </g>
-
-          {/* Center Astragal Overlap Molding Strip */}
-          <g className="center-astragal-lip">
-            <rect x="0" y="0" width="8" height="720" fill="url(#doorGoldGrad)" />
-            <line x1="4" y1="0" x2="4" y2="720" stroke="#fff8e7" strokeWidth="1" opacity="0.6" />
+            <text
+              x="16"
+              y="14"
+              fontFamily="'Playfair Display', serif"
+              fontSize="8"
+              letterSpacing="1"
+              fontWeight="bold"
+              fill="#5a3d0a"
+              textAnchor="middle"
+            >
+              VIVAH
+            </text>
+            {/* Auspicious Lotus Bud below text */}
+            <circle cx="16" cy="22" r="2" fill="#2b1a05" />
           </g>
         </svg>
 

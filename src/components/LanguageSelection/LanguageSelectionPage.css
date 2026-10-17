@@ -118,8 +118,31 @@
 }
 
 .logo-section {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
   animation: logoSoftFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+/* Larger, more prominent H&S Monogram Logo on Page 3 */
+.logo-section .hs-monogram-emblem-svg {
+  width: 152px;
+  height: 152px;
+  filter: drop-shadow(0 4px 10px rgba(143, 100, 20, 0.3));
+}
+
+.logo-section .lockup-names-title {
+  font-size: 0.96rem;
+  letter-spacing: 0.32em;
+  font-weight: 700;
+}
+
+.logo-section .lockup-celebration-subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+}
+
+.logo-section .lockup-rule-wrap {
+  width: 165px;
+  margin: 0.2rem 0;
 }
 
 @keyframes logoSoftFade {
