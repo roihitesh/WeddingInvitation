@@ -100,7 +100,7 @@
   position: relative;
   width: 100%;
   max-width: 710px;
-  min-height: 820px;
+  min-height: 920px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -136,14 +136,14 @@
 .palace-portal-frame {
   position: relative;
   width: 90%;
-  height: 750px;
-  margin-top: 28px;
+  height: 850px;
+  margin-top: 32px;
   margin-bottom: 24px;
   border-radius: 8px 8px 4px 4px;
   overflow: hidden;
   box-shadow:
-    0 20px 48px rgba(41, 4, 10, 0.32),
-    0 8px 20px rgba(143, 100, 20, 0.24),
+    0 24px 56px rgba(41, 4, 10, 0.35),
+    0 8px 24px rgba(143, 100, 20, 0.28),
     inset 0 0 24px rgba(31, 2, 7, 0.5);
   background-color: var(--maroon-dark);
 }
@@ -259,8 +259,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2.8rem 1.6rem 1.6rem;
+  justify-content: flex-start;
+  padding: 5.8rem 1.8rem 2.2rem;
   box-sizing: border-box;
 }
 
@@ -292,20 +292,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.65rem;
   width: 100%;
 }
 
 .ganesha-artwork-wrapper {
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .ganesha-vector-svg {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   filter: drop-shadow(0 3px 8px rgba(110, 66, 6, 0.4));
 }
 
@@ -347,7 +347,7 @@
 
 /* 2. Custom H&S Monogram Logo Lockup (Big & Contrasting) */
 .logo-container {
-  margin: 0.25rem 0 0.35rem;
+  margin: 0.35rem 0 0.45rem;
 }
 
 .hs-logo-lockup-wrapper {
@@ -887,4 +887,362 @@
     font-size: 0.62rem;
   }
 }
+
+/* ==========================================================================
+   12. Royal Side Courtyard: Live Wedding Artwork (Left & Right Flanks)
+   Theme: Rajasthani Palace Columns, Hanging Brass Deepams with Live Flames,
+   Cascading Genda-Mogra Torans, Royal Peacock & Elephant, and Pushpa Vrishti
+   ========================================================================== */
+.royal-side-court-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+/* Side Flank Columns (Fixed Left & Right Viewport Sides) */
+.palace-side-flank {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.palace-side-flank.flank-left {
+  left: 20px;
+}
+
+.palace-side-flank.flank-right {
+  right: 20px;
+}
+
+.flank-pillar-svg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.88;
+  filter: drop-shadow(0 4px 16px rgba(110, 66, 6, 0.16));
+}
+
+/* 1. Hanging Brass Diya Lamp with Live Golden Flame */
+.hanging-deepam-unit {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 6;
+}
+
+.hanging-deepam-unit.deepam-left {
+  left: 42px;
+}
+
+.hanging-deepam-unit.deepam-right {
+  right: 42px;
+}
+
+.deepam-chain {
+  width: 3px;
+  height: 65px;
+  background: repeating-linear-gradient(
+    180deg,
+    #dfb76c 0px,
+    #dfb76c 4px,
+    #6e4206 4px,
+    #6e4206 9px
+  );
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  border-radius: 1px;
+}
+
+.deepam-fixture-svg {
+  width: 86px;
+  height: 134px;
+  filter: drop-shadow(0 6px 14px rgba(110, 66, 6, 0.35));
+}
+
+/* Live Animated Flickering Diya Flame */
+.live-diya-flame-group {
+  transform-origin: 45px 68px;
+  animation: flameFlicker 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 6px rgba(255, 179, 0, 0.7));
+  }
+  25% {
+    transform: scale(1.05, 0.98) rotate(1.2deg);
+    filter: drop-shadow(0 0 10px rgba(255, 152, 0, 0.85));
+  }
+  50% {
+    transform: scale(0.96, 1.04) rotate(-1.5deg);
+    filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.75));
+  }
+  75% {
+    transform: scale(1.08, 0.96) rotate(1.8deg);
+    filter: drop-shadow(0 0 12px rgba(255, 143, 0, 0.9));
+  }
+  100% {
+    transform: scale(1.02, 1) rotate(-0.5deg);
+    filter: drop-shadow(0 0 9px rgba(255, 179, 0, 0.8));
+  }
+}
+
+.flame-outer-aura {
+  animation: auraBreathe 3.2s ease-in-out infinite alternate;
+  transform-origin: 45px 62px;
+}
+
+@keyframes auraBreathe {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0.55;
+  }
+}
+
+.deepam-ambient-glow {
+  position: absolute;
+  top: 80px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 193, 7, 0.28) 0%,
+    rgba(255, 152, 0, 0.1) 45%,
+    transparent 72%
+  );
+  filter: blur(14px);
+  pointer-events: none;
+  animation: diyaPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes diyaPulse {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.16);
+    opacity: 0.9;
+  }
+}
+
+/* 2. Cascading Fresh Marigold & Jasmine Toran Strings */
+.cascading-toran-unit {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+}
+
+.cascading-toran-unit.toran-left {
+  left: 6px;
+  transform-origin: top center;
+  animation: toranSway 5.8s ease-in-out infinite alternate;
+}
+
+.cascading-toran-unit.toran-right {
+  right: 6px;
+  transform-origin: top center;
+  animation: toranSway 6.4s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes toranSway {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1.6deg);
+  }
+}
+
+.toran-string-svg {
+  width: 58px;
+  height: 440px;
+  display: block;
+}
+
+/* 3. Royal Heritage Emblems (Peacock Left, Elephant Right) */
+.royal-heritage-emblem {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 6;
+  opacity: 0.95;
+}
+
+.royal-heritage-emblem.emblem-peacock {
+  left: 12px;
+}
+
+.royal-heritage-emblem.emblem-elephant {
+  right: 12px;
+}
+
+.peacock-artwork-svg,
+.elephant-artwork-svg {
+  width: 138px;
+  height: 178px;
+  filter: drop-shadow(0 6px 16px rgba(110, 66, 6, 0.28));
+  transition: transform 0.4s ease;
+}
+
+.heritage-caption {
+  font-family: var(--font-serif-royal);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-top: 0.35rem;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+/* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya */
+.bottom-urli-display {
+  position: absolute;
+  bottom: 22px;
+  z-index: 6;
+}
+
+.bottom-urli-display.urli-left {
+  left: 8px;
+}
+
+.bottom-urli-display.urli-right {
+  right: 8px;
+}
+
+.urli-svg {
+  width: 142px;
+  height: 86px;
+  filter: drop-shadow(0 8px 18px rgba(41, 4, 10, 0.25));
+}
+
+.urli-diya-flicker {
+  animation: flameFlicker 2.4s infinite alternate;
+}
+
+/* 5. Pushpa Vrishti (Auspicious Shower of Live Drifting Rose & Marigold Petals) */
+.pushpa-vrishti-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 12;
+}
+
+.wedding-petal {
+  position: absolute;
+  border-radius: 50% 0 50% 50%;
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgba(110, 66, 6, 0.2));
+  animation: petalDrift 14s linear infinite;
+}
+
+.wedding-petal.petal-rose {
+  background: linear-gradient(135deg, #e53935 0%, #b71c1c 50%, #880e4f 100%);
+  width: 14px;
+  height: 18px;
+}
+
+.wedding-petal.petal-marigold {
+  background: linear-gradient(135deg, #ffb300 0%, #fb8c00 60%, #e65100 100%);
+  width: 13px;
+  height: 16px;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.wedding-petal.petal-jasmine {
+  background: radial-gradient(circle, #ffffff 40%, #fff9c4 100%);
+  width: 9px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Left Side Petal Coordinates & Staggered Delays */
+.p1 { top: -5%; left: 6%; animation-duration: 13s; animation-delay: 0s; }
+.p2 { top: -5%; left: 14%; animation-duration: 16s; animation-delay: 2.8s; }
+.p3 { top: -5%; left: 3%; animation-duration: 14s; animation-delay: 5.5s; }
+.p4 { top: -5%; left: 18%; animation-duration: 17s; animation-delay: 7.8s; }
+.p5 { top: -5%; left: 10%; animation-duration: 15s; animation-delay: 10.2s; }
+.p6 { top: -5%; left: 2%; animation-duration: 18s; animation-delay: 12.5s; }
+
+/* Right Side Petal Coordinates & Staggered Delays */
+.p7 { top: -5%; right: 6%; animation-duration: 14s; animation-delay: 1.2s; }
+.p8 { top: -5%; right: 15%; animation-duration: 16.5s; animation-delay: 3.8s; }
+.p9 { top: -5%; right: 3%; animation-duration: 13.5s; animation-delay: 6.5s; }
+.p10 { top: -5%; right: 19%; animation-duration: 17.5s; animation-delay: 9s; }
+.p11 { top: -5%; right: 11%; animation-duration: 15s; animation-delay: 11.2s; }
+.p12 { top: -5%; right: 2%; animation-duration: 18.5s; animation-delay: 13.5s; }
+
+@keyframes petalDrift {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  88% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(105vh) translateX(42px) rotate(380deg) rotateY(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive scaling for side flanks on smaller displays */
+@media (max-width: 1280px) {
+  .palace-side-flank {
+    transform: scale(0.85);
+  }
+  .palace-side-flank.flank-left {
+    left: 2px;
+    transform-origin: left center;
+  }
+  .palace-side-flank.flank-right {
+    right: 2px;
+    transform-origin: right center;
+  }
+}
+
+@media (max-width: 1080px) {
+  /* On medium screens, tuck the architectural pillars away so the central card remains unhindered,
+     while keeping the auspicious live Pushpa Vrishti floating gently */
+  .palace-side-flank {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-diya-flame-group,
+  .flame-outer-aura,
+  .deepam-ambient-glow,
+  .cascading-toran-unit,
+  .wedding-petal {
+    animation: none !important;
+  }
+}
+
 

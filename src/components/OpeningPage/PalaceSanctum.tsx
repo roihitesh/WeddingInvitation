@@ -28,7 +28,7 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
       {/* Inner Palace Pavilion Arch Silhouette */}
       <svg
         className="sanctum-inner-arch-svg"
-        viewBox="0 0 540 760"
+        viewBox="0 0 540 850"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
@@ -51,14 +51,14 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
         </defs>
 
         {/* Inner Card Paper Surface */}
-        <rect width="540" height="760" fill="url(#innerCardPaperGrad)" />
+        <rect width="540" height="850" fill="url(#innerCardPaperGrad)" />
 
         {/* Inset Gold Architectural Framing Lines */}
         <rect
           x="16"
           y="16"
           width="508"
-          height="728"
+          height="818"
           rx="6"
           stroke="url(#innerSanctumGold)"
           strokeWidth="1.2"
@@ -67,7 +67,7 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
           x="22"
           y="22"
           width="496"
-          height="716"
+          height="806"
           rx="4"
           stroke="url(#innerSanctumGold)"
           strokeWidth="0.6"
@@ -78,7 +78,7 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
         {/* Distant Inner Palace Pavilion Cusped Arch Silhouette */}
         <path
           d="
-            M 60 720
+            M 60 810
             V 260
             C 60 210 85 180 135 158
             C 160 146 186 140 216 140
@@ -86,7 +86,7 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
             C 286 116 304 128 324 140
             C 354 140 380 146 405 158
             C 455 180 480 210 480 260
-            V 720
+            V 810
           "
           stroke="url(#innerSanctumGold)"
           strokeWidth="1.4"

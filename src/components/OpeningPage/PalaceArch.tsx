@@ -13,7 +13,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
   return (
     <svg
       className={`palace-arch-svg ${className}`}
-      viewBox="0 0 600 760"
+      viewBox="0 0 600 860"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
@@ -64,7 +64,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           x="16"
           y="16"
           width="568"
-          height="728"
+          height="828"
           rx="12"
           stroke="url(#portalArchGold)"
           strokeWidth="2"
@@ -75,7 +75,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           x="24"
           y="24"
           width="552"
-          height="712"
+          height="812"
           rx="8"
           stroke="url(#portalArchGold)"
           strokeWidth="0.8"
@@ -108,7 +108,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
         {/* Outer Heavy Arch Line */}
         <path
           d="
-            M 52 710
+            M 52 810
             V 260
             C 52 215 76 182 115 162
             C 138 149 166 142 195 142
@@ -118,7 +118,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
             C 362 114 384 128 405 142
             C 434 142 462 149 485 162
             C 524 182 548 215 548 260
-            V 710
+            V 810
           "
           stroke="url(#portalArchGold)"
           strokeWidth="2.8"
@@ -129,7 +129,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
         {/* Inner Delicate Cusped Scallop */}
         <path
           d="
-            M 66 710
+            M 66 810
             V 266
             C 66 226 86 196 122 177
             C 144 165 168 159 194 159
@@ -139,7 +139,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
             C 367 133 386 145 406 159
             C 432 159 456 165 478 177
             C 514 196 534 226 534 266
-            V 710
+            V 810
           "
           stroke="url(#portalArchGold)"
           strokeWidth="1.2"
@@ -184,11 +184,11 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
         </g>
 
         {/* TRADITIONAL MARIGOLD & JASMINE WEDDING FLORAL GARLAND (TORAN) */}
-        {/* Drapes along the arch curve like real auspicious wedding festoons */}
+        {/* Drapes high along the arch shoulder to leave inner sacred space completely clear */}
         <g className="wedding-toran-festoon">
           {/* Swag 1: Left Arch Arc */}
           <path
-            d="M 70 270 Q 140 230 200 180"
+            d="M 70 270 Q 130 220 185 170"
             stroke="#c59b27"
             strokeWidth="1"
             strokeDasharray="2 2"
@@ -198,10 +198,10 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           {/* Alternating Marigold and Jasmine blooms along left drape */}
           {[
             { x: 80, y: 260, type: 'm' },
-            { x: 105, y: 242, type: 'j' },
-            { x: 130, y: 224, type: 'm' },
-            { x: 155, y: 206, type: 'j' },
-            { x: 180, y: 190, type: 'm' },
+            { x: 104, y: 236, type: 'j' },
+            { x: 128, y: 212, type: 'm' },
+            { x: 154, y: 190, type: 'j' },
+            { x: 180, y: 170, type: 'm' },
           ].map((flower, i) => (
             <g key={`tf-l-${i}`} transform={`translate(${flower.x}, ${flower.y})`}>
               <circle
@@ -216,7 +216,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
             </g>
           ))}
 
-          {/* Swag 2: Center Arch Crown Apex Garland Accent (Kept high to eliminate frame overlap) */}
+          {/* Swag 2: Center Arch Crown Apex Garland Accent */}
           <g transform="translate(300, 66)">
             <circle cx="0" cy="5" r="4.5" fill="url(#marigoldGrad)" />
             <circle cx="0" cy="13" r="3.5" fill="url(#jasmineGrad)" />
@@ -225,7 +225,7 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
 
           {/* Swag 3: Right Arch Arc */}
           <path
-            d="M 530 270 Q 460 230 400 180"
+            d="M 530 270 Q 470 220 415 170"
             stroke="#c59b27"
             strokeWidth="1"
             strokeDasharray="2 2"
@@ -234,10 +234,10 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           />
           {[
             { x: 520, y: 260, type: 'm' },
-            { x: 495, y: 242, type: 'j' },
-            { x: 470, y: 224, type: 'm' },
-            { x: 445, y: 206, type: 'j' },
-            { x: 420, y: 190, type: 'm' },
+            { x: 496, y: 236, type: 'j' },
+            { x: 472, y: 212, type: 'm' },
+            { x: 446, y: 190, type: 'j' },
+            { x: 420, y: 170, type: 'm' },
           ].map((flower, i) => (
             <g key={`tf-r-${i}`} transform={`translate(${flower.x}, ${flower.y})`}>
               <circle
@@ -259,8 +259,8 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           <rect x="44" y="256" width="20" height="6" rx="1" strokeWidth="1" />
           <path d="M 46 262 L 62 262 L 58 270 L 50 270 Z" strokeWidth="1" />
           {/* Left Base Plinth */}
-          <rect x="44" y="700" width="20" height="8" rx="1" strokeWidth="1" />
-          <path d="M 48 700 L 60 700 L 62 692 L 46 692 Z" strokeWidth="1" />
+          <rect x="44" y="800" width="20" height="8" rx="1" strokeWidth="1" />
+          <path d="M 48 800 L 60 800 L 62 792 L 46 792 Z" strokeWidth="1" />
         </g>
 
         {/* RIGHT PILLAR CAPITAL & MOLDED BASE */}
@@ -269,8 +269,8 @@ export const PalaceArch: React.FC<PalaceArchProps> = ({ className = '' }) => {
           <rect x="536" y="256" width="20" height="6" rx="1" strokeWidth="1" />
           <path d="M 538 262 L 554 262 L 550 270 L 542 270 Z" strokeWidth="1" />
           {/* Right Base Plinth */}
-          <rect x="536" y="700" width="20" height="8" rx="1" strokeWidth="1" />
-          <path d="M 540 700 L 552 700 L 554 692 L 538 692 Z" strokeWidth="1" />
+          <rect x="536" y="800" width="20" height="8" rx="1" strokeWidth="1" />
+          <path d="M 540 800 L 552 800 L 554 792 L 538 792 Z" strokeWidth="1" />
         </g>
       </g>
     </svg>

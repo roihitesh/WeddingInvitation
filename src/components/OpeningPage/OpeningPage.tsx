@@ -10,6 +10,7 @@ import { TopFlourish } from './TopFlourish';
 import { LotusDivider } from './LotusDivider';
 import { OrnamentalBorder } from './OrnamentalBorder';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { RoyalSideCourt } from './RoyalSideCourt';
 import './OpeningPage.css';
 
 /**
@@ -81,6 +82,9 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
     >
       {/* 1. Thin, intricate gold ornamental border framing the entire viewport */}
       <OrnamentalBorder />
+
+      {/* 1b. Royal Side Courtyard: Hanging Deepams with live flickering flames, cascading toran, royal peacock & elephant, and pushpa vrishti petals */}
+      <RoyalSideCourt />
 
       {/* 2. Palace Door Theme Switcher (discreet live preview control) */}
       <ThemeSwitcher currentTheme={doorTheme} onSelectTheme={setDoorTheme} />
