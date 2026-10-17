@@ -743,7 +743,7 @@
 /* ==========================================================================
    11. Royal Side Courtyard: Live Wedding Artwork (Left & Right Flanks)
    Theme: Rajasthani Palace Columns, Hanging Brass Deepams with Live Flames,
-   Cascading Genda-Mogra Torans, Royal Peacock & Elephant, and Pushpa Vrishti
+   Cascading Genda-Mogra Torans, Symmetrical Royal Elephants, and Pushpa Vrishti
    ========================================================================== */
 .royal-side-court-container {
   position: fixed;
@@ -925,7 +925,7 @@
   display: block;
 }
 
-/* 3. Bottom Ceremonial Sculpture Plinth: Mayur & Gajraj gracefully nested on the Urli / Brass Plate */
+/* 3. Bottom Ceremonial Sculpture Plinth: Symmetrical Royal Elephants (Gajraj) gracefully nested on the Urli / Brass Plates */
 .bottom-sculpture-thali-unit {
   position: absolute;
   bottom: 24px;

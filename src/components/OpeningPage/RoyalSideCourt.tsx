@@ -7,8 +7,8 @@ import React from 'react';
  * 1. Traditional Hanging Brass Deepams / Diyas with live flickering golden flames and ambient light aura.
  * 2. Cascading Fresh Marigold (गेंदें) & Jasmine (मोगरा) Toran Strings with golden brass ghungroo bells swaying in the breeze.
  * 3. Royal Heritage Emblems in antique gold filigree:
- *    - Left: Majestic Royal Peacock (मयूर) perched on lotus vines.
- *    - Right: Auspicious Royal Ceremonial Elephant (गजराज) raising trunk in blessing (मंगल आशीर्वाद).
+ *    - Left: Auspicious Royal Ceremonial Elephant (गजराज) raising trunk in blessing (मंगल आशीर्वाद), mirrored toward center.
+ *    - Right: Auspicious Royal Ceremonial Elephant (गजराज) raising trunk in blessing (मंगल आशीर्वाद), facing toward center.
  * 4. Carved Sandstone Palace Columns & Jharokha Arches.
  * 5. Traditional Hammered Brass Urli Bowls with floating lotuses and illuminated floating diyas at the bottom corners.
  * 6. Live "Pushpa Vrishti" (auspicious shower of drifting rose and marigold petals) on the side flanks.
@@ -17,7 +17,7 @@ export const RoyalSideCourt: React.FC = () => {
   return (
     <div className="royal-side-court-container" aria-hidden="true">
       {/* ====================================================================
-          LEFT FLANK: Palace Pillar, Hanging Deepam, Toran, Royal Peacock, Urli
+          LEFT FLANK: Palace Pillar, Hanging Deepam, Toran, Royal Elephant, Urli
           ==================================================================== */}
       <aside className="palace-side-flank flank-left">
         {/* Architectural Palace Column & Jharokha Bracket */}
@@ -270,17 +270,17 @@ export const RoyalSideCourt: React.FC = () => {
           </svg>
         </div>
 
-        {/* 3. Bottom Ornamental Brass Plate with Standing Royal Peacock (Mayur) */}
+        {/* 3. Bottom Ornamental Brass Plate with Standing Royal Elephant (Gajraj - Left Flank facing center) */}
         <div className="bottom-sculpture-thali-unit plinth-left">
-          {/* Standing Royal Peacock Sculpture */}
+          {/* Standing Royal Elephant Sculpture (Mirrored to face inward towards invitation card) */}
           <div className="plate-sculpture-figure">
             <svg
-              className="peacock-artwork-svg"
+              className="elephant-artwork-svg"
               viewBox="0 0 140 180"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               role="img"
-              aria-label="Royal Peacock Standing on Ceremonial Brass Plate"
+              aria-label="Auspicious Royal Elephant Standing on Ceremonial Brass Plate"
             >
               {/* Prabhavali Oval Frame */}
               <ellipse
@@ -303,65 +303,82 @@ export const RoyalSideCourt: React.FC = () => {
                 opacity="0.4"
               />
 
-              {/* Perched Branch / Lotus Base */}
+              {/* Lotus Base */}
               <path
                 d="M 22 148 C 45 140 95 140 118 148 C 114 154 90 156 70 156 C 50 156 26 154 22 148 Z"
                 fill="url(#flankGoldTrim)"
               />
-              {/* Blooming Lotus beneath */}
               <g transform="translate(70, 154)">
                 <path d="M 0 -8 C -14 -12 -18 4 0 6 C 18 4 14 -12 0 -8 Z" fill="url(#flankGoldTrim)" opacity="0.9" />
                 <path d="M -12 4 C -24 0 -18 8 -8 8 Z" fill="url(#flankGoldTrim)" opacity="0.7" />
                 <path d="M 12 4 C 24 0 18 8 8 8 Z" fill="url(#flankGoldTrim)" opacity="0.7" />
               </g>
 
-              {/* Peacock Train (Majestic Feathers Fan) */}
-              <g opacity="0.85">
-                {[
-                  { angle: -48, len: 65 },
-                  { angle: -32, len: 74 },
-                  { angle: -16, len: 80 },
-                  { angle: 0, len: 84 },
-                  { angle: 16, len: 80 },
-                  { angle: 32, len: 74 },
-                  { angle: 48, len: 65 },
-                ].map((feather, idx) => (
-                  <g key={`p-fth-${idx}`} transform={`translate(70, 126) rotate(${feather.angle})`}>
-                    <line x1="0" y1="0" x2="0" y2={-feather.len} stroke="url(#flankGoldTrim)" strokeWidth="1.2" />
-                    {/* Eye of Peacock Feather */}
-                    <g transform={`translate(0, ${-feather.len + 8})`}>
-                      <ellipse cx="0" cy="0" rx="6" ry="9" fill="url(#flankGoldTrim)" />
-                      <ellipse cx="0" cy="0" rx="4" ry="6" fill="#1b4d3e" />
-                      <circle cx="0" cy="0" r="2.2" fill="#dfb76c" />
-                    </g>
-                  </g>
-                ))}
-              </g>
+              {/* Royal Ceremonial Elephant with Raised Trunk Holding Lotus (Gajraj Ashirwad - Mirrored to face inward towards invitation card) */}
+              <g transform="translate(104, 70) scale(-1, 1)">
+                {/* Elephant Body */}
+                <path
+                  d="
+                    M 72 78
+                    C 72 65 70 48 56 42
+                    C 45 37 32 40 24 48
+                    C 16 56 18 78 18 78
+                    L 24 78 L 26 62
+                    L 40 62 L 40 78
+                    L 48 78 L 50 62
+                    L 64 62 L 66 78
+                    Z
+                  "
+                  fill="url(#flankGoldTrim)"
+                />
 
-              {/* Peacock Body & S-Curved Neck */}
-              <path
-                d="
-                  M 68 132
-                  C 60 120 58 98 64 82
-                  C 68 72 74 62 72 52
-                  C 71 47 66 45 68 40
-                  C 70 36 78 36 80 42
-                  C 82 48 78 58 76 68
-                  C 74 80 82 100 80 120
-                  C 78 130 74 134 68 132
-                  Z
-                "
-                fill="url(#flankGoldTrim)"
-              />
-              {/* Beak */}
-              <path d="M 68 40 L 60 42 L 67 44 Z" fill="url(#flankGoldTrim)" />
-              {/* Crest Plume Feathers (Kalgi) */}
-              <line x1="74" y1="38" x2="72" y2="28" stroke="url(#flankGoldTrim)" strokeWidth="1.2" />
-              <circle cx="72" cy="27" r="1.8" fill="url(#flankGoldTrim)" />
-              <line x1="77" y1="37" x2="78" y2="26" stroke="url(#flankGoldTrim)" strokeWidth="1.2" />
-              <circle cx="78" cy="25" r="1.8" fill="url(#flankGoldTrim)" />
-              <line x1="80" y1="39" x2="84" y2="29" stroke="url(#flankGoldTrim)" strokeWidth="1.2" />
-              <circle cx="84" cy="28" r="1.8" fill="url(#flankGoldTrim)" />
+                {/* Head & Majestic Raised Trunk */}
+                <path
+                  d="
+                    M 26 48
+                    C 22 42 16 38 12 40
+                    C 8 42 6 48 6 56
+                    C 6 64 2 68 0 64
+                    C -2 58 4 48 8 40
+                    C 12 32 18 26 26 28
+                    C 30 30 32 38 32 44
+                    Z
+                  "
+                  fill="url(#flankGoldTrim)"
+                />
+
+                {/* Golden Lotus held at tip of trunk */}
+                <circle cx="-1" cy="62" r="3" fill="#ffb300" />
+                <path d="M -4 60 C -6 56 -1 54 -1 60 Z" fill="#fff8e7" />
+
+                {/* Fan Ear with Gold Detailing */}
+                <path
+                  d="M 30 38 C 38 34 42 46 36 54 C 32 56 28 50 30 38 Z"
+                  fill="url(#flankGoldTrim)"
+                  stroke="#5d3604"
+                  strokeWidth="0.8"
+                />
+
+                {/* White Ivory Tusk */}
+                <path d="M 16 52 C 12 55 10 60 12 62 C 14 62 16 56 18 53 Z" fill="#fffef7" />
+
+                {/* Royal Embroidered Saddle Cloth (Jhool) */}
+                <path
+                  d="M 32 48 L 62 48 L 60 62 L 34 62 Z"
+                  fill="#800020"
+                  stroke="url(#flankGoldTrim)"
+                  strokeWidth="1"
+                />
+                <circle cx="47" cy="55" r="2.5" fill="url(#flankGoldTrim)" />
+                {/* Hanging Tassels on Jhool */}
+                <line x1="38" y1="62" x2="38" y2="66" stroke="url(#flankGoldTrim)" strokeWidth="1" />
+                <line x1="47" y1="62" x2="47" y2="67" stroke="url(#flankGoldTrim)" strokeWidth="1" />
+                <line x1="56" y1="62" x2="56" y2="66" stroke="url(#flankGoldTrim)" strokeWidth="1" />
+
+                {/* Howdah Finial Crown */}
+                <path d="M 42 42 L 52 42 L 47 34 Z" fill="url(#flankGoldTrim)" />
+                <circle cx="47" cy="33" r="1.5" fill="#fff8e7" />
+              </g>
             </svg>
           </div>
 
