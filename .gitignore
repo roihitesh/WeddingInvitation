@@ -1,2 +1,5 @@
 .idea/
 .DS_Store
+.tools/
+node_modules/
+dist/
