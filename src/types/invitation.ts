@@ -220,3 +220,87 @@ export interface CelebrationsPageProps {
   onViewVenue?: () => void;
 }
 
+export interface VenuePhoto {
+  id: string;
+  src?: string;
+  alt: { en: string; hi: string };
+  caption?: { en?: string; hi?: string };
+  isPrimary?: boolean;
+}
+
+export type TravelTransportType =
+  | 'airport'
+  | 'railway'
+  | 'bus'
+  | 'local'
+  | 'parking'
+  | 'shuttle';
+
+export interface TravelOption {
+  id: string;
+  type: TravelTransportType;
+  title: { en: string; hi: string };
+  description: { en: string; hi: string };
+  distanceOrTime?: { en?: string; hi?: string };
+  icon?: string;
+}
+
+export interface VenueInfo {
+  id: string;
+  name: { en: string; hi: string };
+  description: { en: string; hi: string };
+  eventName?: { en?: string; hi?: string };
+  fullAddress?: { en?: string; hi?: string };
+  cityAndPostalCode?: { en?: string; hi?: string };
+  eventDate?: { en?: string; hi?: string };
+  timing?: { en?: string; hi?: string };
+  contactPerson?: { en?: string; hi?: string };
+  contactNumber?: string;
+  parkingInfo?: { en?: string; hi?: string };
+  accessibilityInfo?: { en?: string; hi?: string };
+  googleMapsUrl?: string | null;
+  embedMapUrl?: string | null;
+  photos: VenuePhoto[];
+  isMainVenue?: boolean;
+}
+
+export interface VenuePageConfig {
+  heading: { en: string; hi: string };
+  subtitle: { en: string; hi: string };
+  venues: VenueInfo[];
+  travelSection: {
+    heading: { en: string; hi: string };
+    subtitle: { en: string; hi: string };
+    options: TravelOption[];
+  };
+  closing: {
+    message: { en: string; hi: string };
+    coupleNames: string;
+    returnCta: { en: string; hi: string };
+  };
+  labels: {
+    getDirections: { en: string; hi: string };
+    fullAddress: { en: string; hi: string };
+    eventDate: { en: string; hi: string };
+    timings: { en: string; hi: string };
+    contact: { en: string; hi: string };
+    parking: { en: string; hi: string };
+    accessibility: { en: string; hi: string };
+    viewGallery: { en: string; hi: string };
+    planVisit: { en: string; hi: string };
+    venueAwaiting: { en: string; hi: string };
+    venueAwaitingDesc: { en: string; hi: string };
+  };
+}
+
+export interface VenuePageProps {
+  language: SupportedLanguage;
+  onLanguageChange: (lang: SupportedLanguage) => void;
+  onNavigateSection: (section: NavSection) => void;
+  onBackToWelcome?: () => void;
+  onBackToCelebrations?: () => void;
+  onBackToLanguageSelection?: () => void;
+  weddingDetails?: WeddingDetails;
+}
+
+

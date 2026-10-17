@@ -4,6 +4,7 @@ import { LanguageSelectionPage } from './components/LanguageSelection/LanguageSe
 import { WelcomePage } from './components/WelcomePage/WelcomePage';
 import { OurStoryPage } from './components/OurStory/OurStoryPage';
 import { CelebrationsPage } from './components/Celebrations/CelebrationsPage';
+import { VenuePage } from './components/Venue/VenuePage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
 
@@ -17,6 +18,7 @@ export type ScreenState = 'opening' | 'language' | 'invitation';
  * 3. Page 3: The Royal Wedding Welcome Page (in chosen language with language switcher)
  * 4. Page 4: Our Love Story (Editorial photo album + continuous vertical timeline)
  * 5. Page 5: Wedding Celebrations (Haldi, Mehendi, Sangeet, Wedding Ceremony, Reception)
+ * 6. Page 6: Wedding Venue & Directions (Palace destination, Google Maps navigation, transit)
  */
 export const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<ScreenState>('opening');
@@ -83,6 +85,18 @@ export const App: React.FC = () => {
               onNavigateSection={setActiveSection}
               onBackToWelcome={() => setActiveSection('welcome')}
               onBackToStory={() => setActiveSection('story')}
+              onBackToLanguageSelection={handleBackToLanguage}
+              onViewVenue={() => setActiveSection('venue')}
+            />
+          )}
+
+          {activeSection === 'venue' && (
+            <VenuePage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onNavigateSection={setActiveSection}
+              onBackToWelcome={() => setActiveSection('welcome')}
+              onBackToCelebrations={() => setActiveSection('celebrations')}
               onBackToLanguageSelection={handleBackToLanguage}
             />
           )}
