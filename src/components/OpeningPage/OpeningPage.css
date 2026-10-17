@@ -1,50 +1,61 @@
-/* ============================================================================
-   HITESH & SHIVANEE - ROYAL INDIAN WEDDING INVITATION OPENING PAGE
-   Inspired by traditional luxury wedding cards, Mughal/Rajput palace arches,
-   intricate antique gold ornamentation, and handmade ivory paper.
-   ============================================================================ */
+/* ==========================================================================
+   Royal Indian Palace Opening Page — Hitesh & Shivanee
+   Theme: Antique Ivory, Deep Maroon Lacquer, Antique Gold Foil & Champagne Accents
+   ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. Root Variables & Typography
+   -------------------------------------------------------------------------- */
 :root {
-  --color-bg-ivory: #faf6ee;
-  --color-bg-cream: #f6ecdb;
-  --color-maroon-primary: #520f18;
-  --color-maroon-deep: #420a12;
-  --color-gold-antique: #c59b27;
-  --color-gold-dark: #966e1b;
-  --color-gold-light: #dfb76c;
-  --color-gold-shimmer: #fff2c7;
-  --color-text-body: #694b3c;
-  --color-text-muted: #846859;
-  
-  --font-serif-royal: "Cinzel", "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-serif-names: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-serif-body: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-devanagari: "Noto Serif Devanagari", serif;
+  --ivory-paper: #faf6ee;
+  --ivory-paper-warm: #f6ebd9;
+  --ivory-paper-light: #fefcf7;
+  --maroon-deep: #420a12;
+  --maroon-royal: #520f18;
+  --maroon-dark: #29040a;
+  --gold-antique: #c59b27;
+  --gold-highlight: #dfb76c;
+  --gold-deep: #966e1b;
+  --gold-champagne: #fff2c7;
+  --font-serif-royal: 'Playfair Display', 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Garamond, Georgia, serif;
 }
 
-/* ---------- 1. Full-Screen Viewport Container ---------- */
+/* --------------------------------------------------------------------------
+   2. Full-Screen Viewport Setup
+   -------------------------------------------------------------------------- */
 .opening-page-viewport {
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(14px, 3.5vw, 32px);
-  box-sizing: border-box;
   overflow-x: hidden;
-  background-color: var(--color-bg-ivory);
+  background-color: var(--ivory-paper);
   background-image:
-    radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.85) 0%, rgba(246, 236, 219, 0.4) 65%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cdefs%3E%3Cstyle%3E.l%7Bfill:none;stroke:%23c59b27;stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;opacity:0.045%7D.f%7Bfill:%23c59b27;opacity:0.045%7D%3C/style%3E%3C/defs%3E%3Cg transform='translate(80,80)'%3E%3Ccircle cx='0' cy='0' r='14' class='l' stroke-dasharray='1.5 1.5'/%3E%3Ccircle cx='0' cy='0' r='8' class='l'/%3E%3Ccircle cx='0' cy='0' r='3' class='f'/%3E%3Cpath d='M0 -8 C-4 -14 -4 -20 0 -24 C4 -20 4 -14 0 -8 Z' class='l'/%3E%3Cpath d='M0 8 C-4 14 -4 20 0 24 C4 20 4 14 0 8 Z' class='l'/%3E%3Cpath d='M-8 0 C-14 -4 -20 -4 -24 0 C-20 4 -14 4 -8 0 Z' class='l'/%3E%3Cpath d='M8 0 C14 -4 20 -4 24 0 C20 4 14 4 8 0 Z' class='l'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 160px 160px;
-  animation: anim-stage1-fade-bg 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    /* Delicate Traditional Indian Gold Jaali Watermark Pattern */
+    radial-gradient(circle at 50% 50%, rgba(197, 155, 39, 0.04) 1px, transparent 1px),
+    /* Soft Antique Paper Gradient */
+    radial-gradient(ellipse at 50% 30%, var(--ivory-paper-light) 0%, var(--ivory-paper) 45%, #f2e7d5 100%);
+  background-size: 24px 24px, 100% 100%;
+  animation: pageFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Shared SVG Gradients Defs Container */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hidden Shared Defs */
 .shared-svg-defs {
   position: absolute;
   width: 0;
@@ -53,370 +64,703 @@
   pointer-events: none;
 }
 
-/* ---------- 2. Intricate Gold Border Around Page ---------- */
-.page-ornamental-border-container {
-  position: absolute;
-  inset: clamp(10px, 2.2vw, 22px);
+/* --------------------------------------------------------------------------
+   3. Viewport Perimeter Ornamental Border
+   -------------------------------------------------------------------------- */
+.ornamental-border-layer {
+  position: fixed;
+  inset: 12px;
   pointer-events: none;
-  z-index: 2;
-  border: 1px solid rgba(197, 155, 39, 0.45);
-  outline: 1px solid rgba(197, 155, 39, 0.2);
-  outline-offset: -5px;
-  animation: anim-stage2-border 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  z-index: 10;
+  animation: borderReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
-.border-corner {
-  position: absolute;
-  width: clamp(34px, 5vw, 48px);
-  height: clamp(34px, 5vw, 48px);
-  pointer-events: none;
+@keyframes borderReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.border-corner svg {
+
+.ornamental-border-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
-.corner-top-left { top: -2px; left: -2px; }
-.corner-top-right { top: -2px; right: -2px; }
-.corner-bottom-left { bottom: -2px; left: -2px; }
-.corner-bottom-right { bottom: -2px; right: -2px; }
 
-/* ---------- 3. Layered Royal Wedding Stationery Card ---------- */
-.stationery-card-wrapper {
+/* --------------------------------------------------------------------------
+   4. Grand Palace Portal Stage
+   -------------------------------------------------------------------------- */
+.palace-portal-container {
   position: relative;
-  z-index: 3;
-  width: min(680px, 94vw);
-  margin: auto;
-  padding: clamp(28px, 4.8vw, 46px) clamp(20px, 4.5vw, 44px) clamp(26px, 4vw, 38px);
+  width: 100%;
+  max-width: 580px;
+  min-height: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  z-index: 20;
+  animation: portalSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes portalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The Grand Mughal Arch SVG Frame */
+.palace-arch-svg {
+  position: absolute;
+  inset: -14px -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 28px);
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* The Opening Gateway Frame that houses the doors & inner sanctum */
+.palace-portal-frame {
+  position: relative;
+  width: 86%;
+  height: 660px;
+  margin-top: 36px;
+  margin-bottom: 24px;
+  border-radius: 8px 8px 4px 4px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 38px rgba(41, 4, 10, 0.28),
+    0 6px 14px rgba(150, 110, 27, 0.2),
+    inset 0 0 18px rgba(31, 2, 7, 0.4);
+  background-color: var(--maroon-dark);
+}
+
+/* --------------------------------------------------------------------------
+   5. Inner Palace Sanctum (Illuminated behind the doors)
+   -------------------------------------------------------------------------- */
+.palace-sanctum-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92);
+  transition: opacity 1.3s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: radial-gradient(circle at 50% 45%, #fff9e6 0%, #fae5a8 35%, #d1a533 70%, #3a0a10 100%);
+}
+
+.palace-sanctum-backdrop.sanctum-active {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Radiating Sunburst Rays */
+.sanctum-light-burst {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 245, 204, 0.45) 0deg 9deg,
+    rgba(223, 183, 108, 0.08) 9deg 18deg
+  );
+  animation: sunburstRotate 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes sunburstRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sanctum-central-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 235, 150, 0.7) 45%, transparent 75%);
+  filter: blur(14px);
+  animation: pulseDiya 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseDiya {
+  from {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.sanctum-inner-arch-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+.sanctum-sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+}
+
+.sparkle {
+  position: absolute;
+  color: #fff2c7;
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 4px #ffd54f);
+  animation: sparkleFloat 3s ease-in-out infinite alternate;
+}
+
+.sparkle.s1 { top: 25%; left: 30%; animation-delay: 0s; font-size: 1.2rem; }
+.sparkle.s2 { top: 35%; right: 28%; animation-delay: 0.5s; font-size: 0.9rem; }
+.sparkle.s3 { top: 55%; left: 22%; animation-delay: 1s; font-size: 1.4rem; }
+.sparkle.s4 { top: 65%; right: 24%; animation-delay: 1.5s; font-size: 1rem; }
+.sparkle.s5 { top: 40%; left: 48%; animation-delay: 0.8s; font-size: 1.1rem; }
+.sparkle.s6 { top: 75%; left: 45%; animation-delay: 1.8s; font-size: 0.8rem; }
+
+@keyframes sparkleFloat {
+  0% { transform: translateY(0px) scale(0.8); opacity: 0.4; }
+  100% { transform: translateY(-12px) scale(1.2); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   6. 3D Double Palace Doors Stage
+   -------------------------------------------------------------------------- */
+.palace-doors-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+}
+
+.palace-doors-3d-stage:focus-visible {
+  box-shadow: 0 0 0 3px var(--gold-highlight);
+}
+
+/* Left & Right Door Leaves */
+.palace-door-leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.1%; /* Slight 0.1% overlap to prevent pixel gaps */
+  height: 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 1.75s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 1.75s ease;
+  z-index: 12;
+}
+
+.palace-door-leaf.door-left {
+  left: 0;
+  transform-origin: 0% 50%;
+  box-shadow: 6px 0 16px rgba(0, 0, 0, 0.4);
+}
+
+.palace-door-leaf.door-right {
+  right: 0;
+  transform-origin: 100% 50%;
+  box-shadow: -6px 0 16px rgba(0, 0, 0, 0.4);
+}
+
+.door-vector-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Dynamic Shadow Overlay when Doors Swing Open */
+.door-lighting-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.05) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.4s ease;
+}
+
+.door-right .door-lighting-overlay {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+/* 3D OUTWARD ROTATION ON OPEN */
+.palace-doors-3d-stage.doors-open .door-left {
+  transform: rotateY(-84deg);
+  box-shadow: 14px 0 30px rgba(0, 0, 0, 0.65);
+}
+
+.palace-doors-3d-stage.doors-open .door-right {
+  transform: rotateY(84deg);
+  box-shadow: -14px 0 30px rgba(0, 0, 0, 0.65);
+}
+
+.palace-doors-3d-stage.doors-open .door-lighting-overlay {
+  opacity: 0.75;
+}
+
+/* Gentle Door Hover Shimmer (when closed) */
+.palace-doors-3d-stage.doors-closed:hover .door-knocker {
+  filter: drop-shadow(0 0 6px rgba(223, 183, 108, 0.8));
+  transition: filter 0.3s ease;
+}
+
+.palace-doors-3d-stage.doors-closed:hover .left-knocker {
+  transform: translate(254px, 380px) rotate(-3deg);
+}
+
+.palace-doors-3d-stage.doors-closed:hover .right-knocker {
+  transform: translate(26px, 380px) rotate(3deg);
+}
+
+/* --------------------------------------------------------------------------
+   7. Central Royal Invitation Content Facade
+   -------------------------------------------------------------------------- */
+.doors-content-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.portal-content-facade {
+  position: relative;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: 16px;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, transparent 65%),
-    linear-gradient(168deg, #fffefc 0%, #fcf7ed 44%, #f7ebdb 100%);
-  border: 1.5px solid rgba(197, 155, 39, 0.65);
-  box-shadow:
-    0 22px 60px rgba(50, 10, 18, 0.12),
-    0 4px 18px rgba(150, 110, 27, 0.08),
-    inset 0 0 50px rgba(247, 235, 219, 0.45);
-  isolation: isolate;
-  animation: anim-stage3-card 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  padding: 1.5rem 1rem 1rem;
+  box-sizing: border-box;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease;
 }
 
-/* Background Indian Palace Arch SVG */
-.palace-arch-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* Facade Dissolving when Doors Open */
+.portal-content-facade.facade-dissolving {
+  opacity: 0;
+  transform: translateY(-24px) scale(0.94);
+  filter: blur(4px);
   pointer-events: none;
-  z-index: 0;
 }
 
-/* Inner Content Layer (Clean Center for Visual Focus) */
-.card-content-layer {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ---------- 4. Top Decoration (Sanskrit Invocation & Symmetrical Motif) ---------- */
-.top-ornamental-motif {
+/* Top Sanskrit Invocation */
+.top-flourish-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 100%;
-  margin-bottom: clamp(10px, 2.2vw, 16px);
-  animation: anim-stage3-card 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+  animation: flourishFade 1.2s ease 0.5s both;
 }
 
-.top-flourish-side {
-  width: clamp(48px, 11vw, 90px);
-  height: 18px;
-  flex-shrink: 0;
-}
-.side-left {
-  transform-origin: right center;
-}
-.side-right {
-  transform-origin: left center;
+@keyframes flourishFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.top-mantra-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-maroon-primary);
-  font-family: var(--font-devanagari);
-  font-size: clamp(12.5px, 2.2vw, 15px);
+.top-flourish-svg {
+  width: 44px;
+  height: 20px;
+}
+
+.mantra-text {
+  font-family: var(--font-serif-body);
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-.flourish-symbol {
-  color: var(--color-gold-antique);
-  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: var(--gold-champagne);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  margin: 0;
 }
 
-/* ---------- 5. Custom H&S Wedding Monogram Logo ---------- */
+/* Custom H&S Monogram Logo Lockup */
 .logo-container {
-  margin: 0 auto clamp(8px, 1.8vw, 16px);
+  margin: 0.2rem 0 0.4rem;
+  animation: logoScaleIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s both;
+}
+
+@keyframes logoScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hs-logo-lockup-wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hs-monogram-emblem-svg {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.logo-lockup-text {
+  margin-top: -0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lockup-names-title {
+  font-family: var(--font-serif-royal);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--gold-champagne);
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.lockup-rule-wrap {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  animation: anim-stage4-logo 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+  gap: 0.4rem;
+  margin: 0.15rem 0;
+  width: 140px;
 }
 
-.hs-wedding-monogram {
-  width: clamp(130px, 24vw, 168px);
-  height: clamp(130px, 24vw, 168px);
-  display: block;
-  overflow: visible;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.hs-wedding-monogram:hover {
-  transform: scale(1.035);
+.lockup-rule-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-highlight), transparent);
 }
 
-/* ---------- 6. Couple's Names ---------- */
+.lockup-rule-diamond {
+  color: var(--gold-highlight);
+  font-size: 0.65rem;
+}
+
+.lockup-celebration-subtitle {
+  font-family: var(--font-serif-royal);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--gold-highlight);
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Prominent Couple's Names */
 .names-container {
+  margin: 0.3rem 0 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto clamp(12px, 2.4vw, 20px);
-  animation: anim-stage5-names 1.3s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both;
+  gap: 0;
+  animation: namesReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+}
+
+@keyframes namesReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .couple-name {
-  margin: 0;
-  font-family: var(--font-serif-names);
-  font-size: clamp(34px, 7.8vw, 54px);
-  font-weight: 500;
-  line-height: 1.08;
+  font-family: var(--font-serif-royal);
+  font-size: 2.35rem;
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: 0.04em;
-  color: var(--color-maroon-primary);
-  text-shadow: 0 1px 2px rgba(82, 15, 24, 0.12);
-  transition: transform 0.3s ease;
-}
-.name-groom {
-  margin-bottom: 2px;
-}
-.name-bride {
-  margin-top: 2px;
+  color: #fffaf0;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(223, 183, 108, 0.35);
+  margin: 0;
 }
 
 .ampersand-sign {
-  display: inline-block;
-  font-family: var(--font-serif-names);
-  font-size: clamp(20px, 3.8vw, 28px);
+  font-family: var(--font-serif-royal);
   font-style: italic;
+  font-size: 1.5rem;
   font-weight: 400;
-  color: var(--color-gold-antique);
   line-height: 1;
-  margin: 2px 0;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+  color: var(--gold-highlight);
+  margin: 0.15rem 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* ---------- 7. Invitation Message ---------- */
+/* Invitation Message */
 .message-container {
-  max-width: 500px;
-  margin: 0 auto clamp(8px, 1.8vw, 14px);
-  animation: anim-stage6-message 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.35s both;
+  max-width: 380px;
+  margin: 0.2rem auto 0.4rem;
+  animation: messageReveal 1.2s ease 1.1s both;
+}
+
+@keyframes messageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .invitation-message-text {
-  margin: 0;
   font-family: var(--font-serif-body);
-  font-size: clamp(14px, 2.5vw, 17px);
-  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
   font-weight: 400;
-  line-height: 1.65;
-  color: var(--color-text-body);
-  letter-spacing: 0.015em;
+  letter-spacing: 0.02em;
+  color: #f7e8ce;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  margin: 0;
 }
 
-/* ---------- 8. Bottom Decoration & Lotus Divider ---------- */
-.lotus-ornamental-divider {
-  width: min(240px, 60%);
-  margin: 0 auto clamp(16px, 3.2vw, 28px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: anim-stage6-message 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
+/* Lotus Divider */
+.lotus-divider-wrap {
+  margin: 0.3rem auto 0.6rem;
+  animation: lotusFade 1.2s ease 1.2s both;
+}
+
+@keyframes lotusFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .lotus-divider-svg {
-  width: 100%;
-  height: 28px;
+  width: 170px;
+  height: 20px;
   display: block;
 }
 
-/* ---------- 9. "OPEN OUR INVITATION" Action Prompt ---------- */
+/* --------------------------------------------------------------------------
+   8. Clickable Invitation Prompt
+   -------------------------------------------------------------------------- */
 .cta-container {
-  margin-top: clamp(4px, 1.2vw, 8px);
-  animation: anim-stage7-cta 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.7s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.3rem;
+  animation: promptGlow 1.2s ease 1.3s both;
+}
+
+@keyframes promptGlow {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .open-invitation-btn {
-  background: transparent;
-  border: 1px solid rgba(197, 155, 39, 0.55);
-  border-radius: 30px;
-  padding: 10px 24px 10px 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  cursor: pointer;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  background: linear-gradient(135deg, rgba(82, 15, 24, 0.92) 0%, rgba(41, 4, 10, 0.95) 100%);
+  border: 1.2px solid var(--gold-highlight);
+  border-radius: 30px;
+  color: var(--gold-champagne);
   box-shadow:
-    0 3px 12px rgba(82, 15, 24, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  background: linear-gradient(180deg, #fffef9 0%, #fbf5e8 100%);
-  transition:
-    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.28s ease,
-    border-color 0.28s ease,
-    background 0.28s ease;
-  user-select: none;
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 242, 199, 0.4),
+    0 0 12px rgba(223, 183, 108, 0.25);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
 }
 
 .open-invitation-btn:hover {
+  background: linear-gradient(135deg, rgba(110, 20, 32, 0.96) 0%, rgba(55, 6, 14, 0.98) 100%);
+  border-color: #fff2c7;
   transform: translateY(-2px);
-  border-color: var(--color-gold-antique);
-  background: linear-gradient(180deg, #ffffff 0%, #f7ecd5 100%);
   box-shadow:
-    0 8px 24px rgba(197, 155, 39, 0.22),
-    0 0 16px rgba(223, 183, 108, 0.2);
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(223, 183, 108, 0.55);
 }
 
 .open-invitation-btn:focus-visible {
-  outline: 2px solid var(--color-maroon-primary);
-  outline-offset: 3px;
-  border-color: var(--color-gold-antique);
+  box-shadow:
+    0 0 0 3px var(--gold-highlight),
+    0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
 .open-invitation-btn:active {
   transform: translateY(0);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 .cta-text {
   font-family: var(--font-serif-royal);
-  font-size: clamp(10.5px, 1.8vw, 12px);
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-maroon-primary);
 }
 
 .cta-arrow-icon {
-  width: 14px;
-  height: 14px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gold-antique);
-  animation: anim-arrow-gentle-bob 2.4s ease-in-out infinite;
+  width: 14px;
+  height: 14px;
+  animation: gentleBob 1.8s ease-in-out infinite;
 }
+
 .cta-arrow-icon svg {
   width: 100%;
   height: 100%;
+  color: var(--gold-highlight);
 }
 
-/* ---------- 10. Staggered Opening Animation Keyframes ---------- */
-@keyframes anim-stage1-fade-bg {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@keyframes gentleBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
 }
 
-@keyframes anim-stage2-border {
-  from { opacity: 0; transform: scale(0.985); }
-  to   { opacity: 1; transform: scale(1); }
+.open-invitation-subtitle {
+  font-family: var(--font-serif-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--gold-highlight);
+  margin: 0.45rem 0 0;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-@keyframes anim-stage3-card {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes anim-stage4-logo {
-  from { opacity: 0; transform: scale(0.92); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-@keyframes anim-stage5-names {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes anim-stage6-message {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes anim-stage7-cta {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes anim-arrow-gentle-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(3.5px); }
-}
-
-/* ---------- 11. Accessibility: prefers-reduced-motion ---------- */
+/* --------------------------------------------------------------------------
+   9. Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .opening-page-viewport,
-  .page-ornamental-border-container,
-  .stationery-card-wrapper,
-  .top-ornamental-motif,
-  .logo-container,
-  .names-container,
-  .message-container,
-  .lotus-ornamental-divider,
-  .cta-container,
-  .cta-arrow-icon,
-  .open-invitation-btn,
-  .hs-wedding-monogram {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+  }
+
+  .palace-doors-3d-stage.doors-open .door-left {
+    transform: none;
+    opacity: 0;
+  }
+
+  .palace-doors-3d-stage.doors-open .door-right {
+    transform: none;
+    opacity: 0;
+  }
+
+  .palace-sanctum-backdrop.sanctum-active {
+    transform: none;
+    opacity: 1;
   }
 }
 
-/* ---------- 12. Mobile Responsive Refinements ---------- */
-@media (max-width: 520px) {
+/* --------------------------------------------------------------------------
+   10. Mobile Responsiveness (< 600px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
   .opening-page-viewport {
-    padding: 12px 10px;
+    padding: 0.75rem 0.5rem;
   }
-  .page-ornamental-border-container {
-    inset: 8px;
+
+  .ornamental-border-layer {
+    inset: 6px;
   }
-  .stationery-card-wrapper {
-    padding: 24px 14px 22px;
-    border-radius: 12px;
+
+  .palace-portal-container {
+    max-width: 100%;
+    min-height: 640px;
   }
-  .top-flourish-side {
-    width: 38px;
+
+  .palace-portal-frame {
+    width: 90%;
+    height: 610px;
+    margin-top: 28px;
   }
+
+  .hs-monogram-emblem-svg {
+    width: 105px;
+    height: 105px;
+  }
+
   .couple-name {
-    font-size: 32px;
+    font-size: 1.95rem;
   }
+
   .ampersand-sign {
-    font-size: 19px;
+    font-size: 1.3rem;
   }
+
   .invitation-message-text {
-    font-size: 13.5px;
-    line-height: 1.6;
+    font-size: 0.96rem;
+    padding: 0 0.5rem;
   }
+
   .open-invitation-btn {
-    padding: 8px 20px 8px 22px;
+    padding: 0.65rem 1.35rem;
+  }
+
+  .cta-text {
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
   }
 }

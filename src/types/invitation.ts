@@ -12,8 +12,10 @@ export interface OpeningPageContent {
   language: 'en' | 'hi';
   mantraTop: string;
   couple: CoupleInfo;
+  lockupNames: string;
   invitationMessage: string;
   openCtaText: string;
+  openSubtitle: string;
   subtextAuspicious?: string;
 }
 
