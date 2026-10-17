@@ -110,7 +110,10 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
 
               {/* Custom H&S Wedding Monogram Emblem & Lockup */}
               <div className="logo-container">
-                <WeddingLogo namesText={lockupNames || 'HITESH & SHIVANEE'} />
+                <WeddingLogo
+                  namesText={lockupNames || 'HITESH & SHIVANEE'}
+                  hideLockupNames={true}
+                />
               </div>
 
               {/* Prominent Couple's Names */}

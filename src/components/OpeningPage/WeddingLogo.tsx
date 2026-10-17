@@ -3,6 +3,7 @@ import React from 'react';
 interface WeddingLogoProps {
   className?: string;
   namesText?: string;
+  hideLockupNames?: boolean;
 }
 
 /**
@@ -13,6 +14,7 @@ interface WeddingLogoProps {
 export const WeddingLogo: React.FC<WeddingLogoProps> = ({
   className = '',
   namesText = 'HITESH & SHIVANEE',
+  hideLockupNames = false,
 }) => {
   return (
     <div className={`hs-logo-lockup-wrapper ${className}`}>
@@ -170,7 +172,9 @@ export const WeddingLogo: React.FC<WeddingLogoProps> = ({
 
       {/* Complete Logo Lockup: Names directly below emblem */}
       <div className="logo-lockup-text">
-        <h2 className="lockup-names-title">{namesText}</h2>
+        {!hideLockupNames && (
+          <h2 className="lockup-names-title">{namesText}</h2>
+        )}
         <div className="lockup-rule-wrap" aria-hidden="true">
           <span className="lockup-rule-line" />
           <span className="lockup-rule-diamond">✦</span>

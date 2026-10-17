@@ -572,7 +572,7 @@ export const PalaceDoors: React.FC<PalaceDoorsProps> = ({
       {/* Subtle Hint on Closed Doors */}
       {!isOpen && (
         <div className="closed-doors-tap-hint" aria-hidden="true">
-          <span className="hint-pill">✦ {currentTheme.name} ✦</span>
+          <span className="hint-pill">✦ द्वार खोलें · Open Palace Gate ✦</span>
         </div>
       )}
     </div>

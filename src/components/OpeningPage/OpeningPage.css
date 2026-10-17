@@ -287,17 +287,32 @@
 }
 
 /* Top Sanskrit Invocation */
-.top-flourish-container {
+.top-flourish-container,
+.top-ornamental-motif {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
   margin-bottom: 0.35rem;
+  width: 100%;
 }
 
-.top-flourish-svg {
-  width: 42px;
-  height: 18px;
+.top-flourish-svg,
+.top-flourish-side {
+  width: 52px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.top-mantra-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.top-mantra-badge .flourish-symbol {
+  color: var(--gold-antique);
+  font-size: 0.9rem;
 }
 
 .mantra-text {
@@ -425,7 +440,12 @@
 }
 
 /* Lotus Divider */
-.lotus-divider-wrap {
+.lotus-divider-wrap,
+.lotus-ornamental-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   margin: 0.25rem auto 0.55rem;
 }
 

@@ -338,6 +338,10 @@
   letter-spacing: 0.16em;
   color: var(--maroon-deep, #3b060d);
   margin: 0 0 0.35rem;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title-hindi {
@@ -357,6 +361,10 @@
   font-weight: 600;
   color: var(--maroon-text, #451017);
   margin: 0 0 0.4rem;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tagline-hindi {
@@ -376,6 +384,10 @@
   margin: 0 0 0.6rem;
   padding: 0 0.5rem;
   opacity: 0.92;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .note-hindi {
