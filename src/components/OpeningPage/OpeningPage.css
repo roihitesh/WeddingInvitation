@@ -68,13 +68,25 @@
 /* --------------------------------------------------------------------------
    3. Viewport Perimeter Ornamental Border
    -------------------------------------------------------------------------- */
+.page-ornamental-border-container,
 .ornamental-border-layer {
   position: fixed;
   inset: 12px;
   pointer-events: none;
   z-index: 10;
+  border: 1px solid rgba(223, 183, 108, 0.35);
   animation: borderReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
+
+.border-corner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+}
+.corner-top-left { top: -1px; left: -1px; }
+.corner-top-right { top: -1px; right: -1px; }
+.corner-bottom-left { bottom: -1px; left: -1px; }
+.corner-bottom-right { bottom: -1px; right: -1px; }
 
 @keyframes borderReveal {
   from {
