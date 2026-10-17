@@ -361,7 +361,6 @@ export const RoyalSideCourt: React.FC = () => {
             <line x1="80" y1="39" x2="84" y2="29" stroke="url(#flankGoldTrim)" strokeWidth="1.2" />
             <circle cx="84" cy="28" r="1.8" fill="url(#flankGoldTrim)" />
           </svg>
-          <span className="heritage-caption">शुभ मयूर · Eternal Grace</span>
         </div>
 
         {/* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya */}
@@ -630,8 +629,8 @@ export const RoyalSideCourt: React.FC = () => {
               <path d="M 12 4 C 24 0 18 8 8 8 Z" fill="url(#flankGoldTrim)" opacity="0.7" />
             </g>
 
-            {/* Royal Ceremonial Elephant with Raised Trunk Holding Lotus (Gajraj Ashirwad - Centered at cx=70) */}
-            <g transform="translate(36, 48)">
+            {/* Royal Ceremonial Elephant with Raised Trunk Holding Lotus (Gajraj Ashirwad - Feet Grounded on Pedestal) */}
+            <g transform="translate(36, 70)">
               {/* Elephant Body */}
               <path
                 d="
@@ -696,7 +695,6 @@ export const RoyalSideCourt: React.FC = () => {
               <circle cx="47" cy="33" r="1.5" fill="#fff8e7" />
             </g>
           </svg>
-          <span className="heritage-caption">गजराज · Divine Blessing</span>
         </div>
 
         {/* 4. Bottom Brass Urli Display */}

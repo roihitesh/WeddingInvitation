@@ -753,7 +753,7 @@
   overflow: hidden;
 }
 
-/* Side Flank Columns (Fixed Left & Right Viewport Sides) */
+/* Side Flank Columns (Symmetrically Framing the Central Palace Gateway) */
 .palace-side-flank {
   position: absolute;
   top: 0;
@@ -767,11 +767,13 @@
 }
 
 .palace-side-flank.flank-left {
-  left: 24px;
+  right: calc(50% + 375px);
+  left: auto;
 }
 
 .palace-side-flank.flank-right {
-  right: 24px;
+  left: calc(50% + 375px);
+  right: auto;
 }
 
 .flank-pillar-svg {
@@ -948,19 +950,6 @@
   transition: transform 0.4s ease;
 }
 
-.heritage-caption {
-  font-family: var(--font-serif-royal);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-  margin-top: 0.4rem;
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
-  white-space: nowrap;
-}
-
 /* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya (Centered on Base) */
 .bottom-urli-display {
   position: absolute;
@@ -1051,23 +1040,21 @@
 }
 
 /* Responsive scaling for side flanks on smaller displays */
-@media (max-width: 1280px) {
+@media (max-width: 1320px) {
   .palace-side-flank {
     transform: scale(0.85);
+    transform-origin: center center;
   }
   .palace-side-flank.flank-left {
-    left: 2px;
-    transform-origin: left center;
+    right: calc(50% + 335px);
   }
   .palace-side-flank.flank-right {
-    right: 2px;
-    transform-origin: right center;
+    left: calc(50% + 335px);
   }
 }
 
 @media (max-width: 1080px) {
-  /* On medium screens, tuck the architectural pillars away so the central card remains unhindered,
-     while keeping the auspicious live Pushpa Vrishti floating gently */
+  /* On medium/compact screens, hide the side architectural pillars to keep focus purely on the invitation card */
   .palace-side-flank {
     display: none;
   }
