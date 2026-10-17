@@ -59,7 +59,7 @@ export interface LanguageSelectionPageProps {
   config?: LanguageSelectionConfig;
 }
 
-export type NavSection = 'welcome' | 'story' | 'celebrations' | 'venue' | 'rsvp';
+export type NavSection = 'welcome' | 'story' | 'celebrations' | 'venue' | 'rsvp' | 'gallery';
 
 export interface WeddingDetails {
   groom: string;
@@ -372,6 +372,60 @@ export interface RsvpPageProps {
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
 }
+
+export interface GalleryCategory {
+  id: string;
+  label: { en: string; hi: string };
+  icon?: string;
+}
+
+export type GalleryAspectRatio = 'landscape' | 'portrait' | 'square';
+
+export interface GalleryPhoto {
+  id: string;
+  src?: string;
+  alt: { en: string; hi: string };
+  caption?: { en?: string; hi?: string };
+  story?: { en?: string; hi?: string };
+  category: string;
+  order: number;
+  isFeatured?: boolean;
+  aspectRatio?: GalleryAspectRatio;
+  symbolicType?: string;
+}
+
+export interface GalleryPageConfig {
+  heading: { en: string; hi: string };
+  intro: { en: string; hi: string };
+  categories: GalleryCategory[];
+  photos: GalleryPhoto[];
+  featuredPhotoId?: string | null;
+  closing: {
+    quote: { en: string; hi: string };
+    coupleNames: string;
+    returnCta: { en: string; hi: string };
+  };
+  labels: {
+    allCategories: { en: string; hi: string };
+    featuredBadge: { en: string; hi: string };
+    photoCount: { en: string; hi: string };
+    prevPhoto: { en: string; hi: string };
+    nextPhoto: { en: string; hi: string };
+    closeViewer: { en: string; hi: string };
+    emptyTitle: { en: string; hi: string };
+    emptyDesc: { en: string; hi: string };
+  };
+}
+
+export interface GalleryPageProps {
+  language: SupportedLanguage;
+  onLanguageChange: (lang: SupportedLanguage) => void;
+  onNavigateSection: (section: NavSection) => void;
+  onBackToWelcome?: () => void;
+  onBackToLanguageSelection?: () => void;
+  weddingDetails?: WeddingDetails;
+}
+
 
 
 

@@ -6,6 +6,7 @@ import { OurStoryPage } from './components/OurStory/OurStoryPage';
 import { CelebrationsPage } from './components/Celebrations/CelebrationsPage';
 import { VenuePage } from './components/Venue/VenuePage';
 import { RsvpPage } from './components/RSVP/RsvpPage';
+import { GalleryPage } from './components/Gallery/GalleryPage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
 
@@ -106,6 +107,16 @@ export const App: React.FC = () => {
 
           {activeSection === 'rsvp' && (
             <RsvpPage
+              language={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onNavigateSection={setActiveSection}
+              onBackToWelcome={() => setActiveSection('welcome')}
+              onBackToLanguageSelection={handleBackToLanguage}
+            />
+          )}
+
+          {activeSection === 'gallery' && (
+            <GalleryPage
               language={selectedLanguage}
               onLanguageChange={setSelectedLanguage}
               onNavigateSection={setActiveSection}
