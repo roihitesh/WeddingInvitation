@@ -2,96 +2,101 @@ import React from 'react';
 
 interface PalaceSanctumProps {
   isOpen: boolean;
+  children?: React.ReactNode;
 }
 
 /**
  * Inner Palace Sanctum revealed behind the 3D double doors.
- * Radiates warm golden light beams, floating diya glow, and sacred ambience
- * as the grand doors swing open.
+ * Hosts the royal invitation stationery card bathed in warm golden light,
+ * divine diya radiance, and crystal-clear high-contrast typography.
  */
-export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({ isOpen }) => {
+export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
+  isOpen,
+  children,
+}) => {
   return (
     <div
       className={`palace-sanctum-backdrop ${isOpen ? 'sanctum-active' : ''}`}
-      aria-hidden="true"
+      aria-hidden={!isOpen}
     >
       {/* Radiant Golden Sunburst Rays */}
-      <div className="sanctum-light-burst" />
+      <div className="sanctum-light-burst" aria-hidden="true" />
 
-      {/* Central Warm Diya / Chandelier Aura */}
-      <div className="sanctum-central-glow" />
+      {/* Central Diya / Sacred Aura */}
+      <div className="sanctum-central-glow" aria-hidden="true" />
 
-      {/* Sacred Inner Arch Silhouette */}
+      {/* Inner Palace Pavilion Arch Silhouette */}
       <svg
         className="sanctum-inner-arch-svg"
-        viewBox="0 0 500 700"
+        viewBox="0 0 540 760"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        aria-hidden="true"
       >
         <defs>
-          <radialGradient id="sanctumGlowGrad" cx="50%" cy="40%" r="55%">
-            <stop offset="0%" stopColor="#fff9e6" stopOpacity="0.95" />
-            <stop offset="35%" stopColor="#f3d893" stopOpacity="0.7" />
-            <stop offset="70%" stopColor="#c59b27" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#4a0f18" stopOpacity="0" />
+          {/* Warm Ivory to Champagne Gradient for the Inner Sanctum Canvas */}
+          <radialGradient id="innerCardPaperGrad" cx="50%" cy="36%" r="65%">
+            <stop offset="0%" stopColor="#fffef9" />
+            <stop offset="45%" stopColor="#faf5ec" />
+            <stop offset="80%" stopColor="#f4e8d4" />
+            <stop offset="100%" stopColor="#edd8bc" />
           </radialGradient>
 
-          <linearGradient id="innerArchGold" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#fff2c7" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="#dfb76c" stopOpacity="0.6" />
+          <linearGradient id="innerSanctumGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#dfb76c" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#c59b27" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#966e1b" stopOpacity="0.2" />
           </linearGradient>
         </defs>
 
-        {/* Outer radial glow field */}
-        <rect width="500" height="700" fill="url(#sanctumGlowGrad)" opacity="0.85" />
+        {/* Inner Card Paper Surface */}
+        <rect width="540" height="760" fill="url(#innerCardPaperGrad)" />
 
-        {/* Distant Inner Palace Pavilion Arch */}
-        <path
-          d="
-            M 120 700
-            V 340
-            C 120 280 150 240 200 210
-            C 225 195 245 175 250 150
-            C 255 175 275 195 300 210
-            C 350 240 380 280 380 340
-            V 700
-          "
-          stroke="url(#innerArchGold)"
-          strokeWidth="2"
-          strokeDasharray="4 4"
-          fill="none"
+        {/* Inset Gold Architectural Framing Lines */}
+        <rect
+          x="16"
+          y="16"
+          width="508"
+          height="728"
+          rx="6"
+          stroke="url(#innerSanctumGold)"
+          strokeWidth="1.2"
+        />
+        <rect
+          x="22"
+          y="22"
+          width="496"
+          height="716"
+          rx="4"
+          stroke="url(#innerSanctumGold)"
+          strokeWidth="0.6"
+          strokeDasharray="4 3"
+          opacity="0.7"
         />
 
-        {/* Auspicious Sacred Diya / Kalash at Sanctum Center */}
-        <g transform="translate(250, 310)" opacity="0.9">
-          {/* Flame radiance rings */}
-          <circle cx="0" cy="0" r="42" fill="#fff5d0" opacity="0.3" filter="blur(8px)" />
-          <circle cx="0" cy="0" r="22" fill="#ffe082" opacity="0.5" filter="blur(4px)" />
-
-          {/* Diya Flame */}
-          <path
-            d="M 0 -22 C -6 -12 -5 -3 0 5 C 5 -3 6 -12 0 -22 Z"
-            fill="#fff9e6"
-          />
-          <path
-            d="M 0 -17 C -3 -10 -2 -4 0 2 C 2 -4 3 -10 0 -17 Z"
-            fill="#ffd54f"
-          />
-
-          {/* Brass Diya Bowl */}
-          <path
-            d="M -16 6 C -18 14 18 14 16 6 Z"
-            fill="url(#innerArchGold)"
-          />
-          <path
-            d="M -6 14 L 6 14 L 8 18 L -8 18 Z"
-            fill="url(#innerArchGold)"
-          />
-        </g>
+        {/* Distant Inner Palace Pavilion Cusped Arch Silhouette */}
+        <path
+          d="
+            M 60 720
+            V 260
+            C 60 210 85 180 135 158
+            C 160 146 186 140 216 140
+            C 236 128 254 116 270 94
+            C 286 116 304 128 324 140
+            C 354 140 380 146 405 158
+            C 455 180 480 210 480 260
+            V 720
+          "
+          stroke="url(#innerSanctumGold)"
+          strokeWidth="1.4"
+          strokeDasharray="4 4"
+          fill="none"
+          opacity="0.6"
+        />
       </svg>
 
-      {/* Floating Shimmer Sparkles */}
+      {/* Floating Sparkles in the Golden Light */}
       <div className="sanctum-sparkles" aria-hidden="true">
         <span className="sparkle s1">✦</span>
         <span className="sparkle s2">✧</span>
@@ -100,6 +105,9 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({ isOpen }) => {
         <span className="sparkle s5">✦</span>
         <span className="sparkle s6">✧</span>
       </div>
+
+      {/* Sacred Invitation Card Content Inside the Opened Portal */}
+      <div className="sanctum-card-content">{children}</div>
     </div>
   );
 };

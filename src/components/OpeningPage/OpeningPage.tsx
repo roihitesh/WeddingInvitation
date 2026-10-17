@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { OpeningPageProps } from '../../types/invitation';
 import { defaultContent } from '../../config/content.config';
 import { WeddingLogo } from './WeddingLogo';
@@ -12,9 +12,9 @@ import './OpeningPage.css';
 
 /**
  * Opening Page of the Royal Indian Wedding Invitation for Hitesh and Shivanee.
- * Recreates the unforgettable experience of standing before a grand Indian palace entrance
- * with interactive 3D maroon & antique-gold double doors that swing open to reveal
- * the illuminated inner celebration sanctum.
+ * Recreates the unforgettable experience of standing before a grand Indian palace entrance.
+ * The magnificent closed double doors slowly open in 3D after loading, unveiling
+ * the illuminated royal invitation card inside with crystal-clear, high-contrast typography.
  */
 export const OpeningPage: React.FC<OpeningPageProps> = ({
   content = defaultContent,
@@ -23,51 +23,47 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
   const { couple, invitationMessage, openCtaText, openSubtitle, mantraTop, lockupNames } =
     content;
 
-  // Door opening state: 'closed' | 'opening' | 'opened'
-  const [doorState, setDoorState] = useState<'closed' | 'opening' | 'opened'>('closed');
-  const timerRef = useRef<number | null>(null);
+  // Door state: false = closed, true = opened
+  const [isDoorsOpen, setIsDoorsOpen] = useState<boolean>(false);
 
-  // Clean up any pending timer on unmount
+  // Automatically and slowly open the doors after page loading
   useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        window.clearTimeout(timerRef.current);
-      }
-    };
-  }, []);
-
-  const handleTriggerOpen = () => {
-    if (doorState !== 'closed') return;
-
-    // Check prefers-reduced-motion for accessibility
     const prefersReducedMotion =
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    setDoorState('opening');
+    const delay = prefersReducedMotion ? 400 : 1200;
 
-    const duration = prefersReducedMotion ? 400 : 1750;
+    const autoOpenTimer = window.setTimeout(() => {
+      setIsDoorsOpen(true);
+    }, delay);
 
-    timerRef.current = window.setTimeout(() => {
-      setDoorState('opened');
-      if (onOpenInvitation) {
-        onOpenInvitation();
-      }
-    }, duration);
-  };
+    return () => window.clearTimeout(autoOpenTimer);
+  }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleTriggerOpen();
+  const handleManualOpen = () => {
+    if (!isDoorsOpen) {
+      setIsDoorsOpen(true);
     }
   };
 
-  const isDoorsOpening = doorState === 'opening' || doorState === 'opened';
+  const handleProceedNext = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.stopPropagation();
+    if (onOpenInvitation) {
+      onOpenInvitation();
+    }
+  };
+
+  const handleBtnKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleProceedNext(e);
+    }
+  };
 
   return (
     <main
-      className={`opening-page-viewport ${isDoorsOpening ? 'experience-opening' : ''}`}
+      className={`opening-page-viewport ${isDoorsOpen ? 'doors-are-open' : 'doors-are-closed'}`}
       role="region"
       aria-label="Hitesh & Shivanee Royal Palace Wedding Invitation"
     >
@@ -84,15 +80,11 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
 
         {/* Palace Gateway Opening Frame (Perspective Stage) */}
         <div className="palace-portal-frame">
-          {/* Inner Sanctum with radiant golden light beams (Behind the doors) */}
-          <PalaceSanctum isOpen={isDoorsOpening} />
-
-          {/* 3D Double Palace Doors (Interactive, swings open outward) */}
-          <PalaceDoors isOpen={isDoorsOpening} onOpen={handleTriggerOpen}>
-            {/* Royal Wedding Invitation Content (Embossed on the Entrance Portal) */}
+          {/* Inner Sanctum: Hosts the royal invitation card INSIDE the open portal */}
+          <PalaceSanctum isOpen={isDoorsOpen}>
             <div
-              className={`portal-content-facade ${
-                isDoorsOpening ? 'facade-dissolving' : ''
+              className={`inner-invitation-card ${
+                isDoorsOpen ? 'card-revealed' : 'card-concealed'
               }`}
             >
               {/* Top Invocation: ॥ श्री गणेशाय नमः ॥ */}
@@ -120,17 +112,13 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
               {/* Antique Gold Lotus Divider */}
               <LotusDivider />
 
-              {/* Interactive Invitation Prompt */}
+              {/* Interactive Invitation Prompt to Enter Celebrations */}
               <div className="cta-container">
                 <button
                   type="button"
                   className="open-invitation-btn"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent duplicate trigger from doors parent
-                    handleTriggerOpen();
-                  }}
-                  onKeyDown={handleKeyDown}
-                  disabled={isDoorsOpening}
+                  onClick={handleProceedNext}
+                  onKeyDown={handleBtnKeyDown}
                   aria-label={`${openCtaText} - ${openSubtitle || 'A celebration of love, family and forever'}`}
                 >
                   <span className="cta-text">{openCtaText}</span>
@@ -157,7 +145,10 @@ export const OpeningPage: React.FC<OpeningPageProps> = ({
                 </p>
               </div>
             </div>
-          </PalaceDoors>
+          </PalaceSanctum>
+
+          {/* 3D Double Palace Doors (Sits in front, slowly opens outward) */}
+          <PalaceDoors isOpen={isDoorsOpen} onOpen={handleManualOpen} />
         </div>
       </section>
     </main>
