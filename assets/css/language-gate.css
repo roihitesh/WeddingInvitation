@@ -1,27 +1,478 @@
-.entry-gate { position: fixed; z-index: 60; inset: 0; display: grid; place-items: center; overflow: auto; padding: 24px 16px; background: rgba(45,10,16,.88); isolation: isolate; transition: opacity .65s ease, visibility .65s ease; }
-.entry-gate::before,.entry-gate::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; }
-.entry-gate::before { opacity: .24; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%23d8b65b' stroke-width='1'%3E%3Ccircle cx='150' cy='150' r='132'/%3E%3Ccircle cx='150' cy='150' r='110'/%3E%3Ccircle cx='150' cy='150' r='76'/%3E%3Cpath d='M150 10 171 82 238 44 209 112 287 120 220 153 274 206 201 194 194 274 153 210 107 277 111 201 34 221 89 160 15 127 94 111 60 39 128 82Z'/%3E%3C/g%3E%3C/svg%3E"); background-position: center; background-size: min(88vw,680px); background-repeat: no-repeat; }
-.entry-gate::after { opacity: .48; background-image: radial-gradient(circle at 12% 18%,#f4d77a 0 1px,transparent 2px),radial-gradient(circle at 78% 32%,#f4d77a 0 1px,transparent 2px),radial-gradient(circle at 27% 77%,#f4d77a 0 1px,transparent 2px),radial-gradient(circle at 88% 80%,#f4d77a 0 1px,transparent 2px),radial-gradient(circle at 62% 12%,#f4d77a 0 1px,transparent 2px); animation: gold-dust-drift 9s ease-in-out infinite alternate; }
-@keyframes gold-dust-drift { from { transform: translateY(0); } to { transform: translateY(-10px); } }
-.entry-gate.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
-.entry-card { position: relative; width: min(590px,100%); padding: 28px clamp(21px,6vw,54px) 30px; border: 1px solid #dabd6d; outline: 1px solid rgba(252,246,186,.4); outline-offset: -8px; background: linear-gradient(145deg,rgba(255,253,248,.98),rgba(248,239,219,.97)); box-shadow: 0 25px 100px rgba(8,0,0,.4),0 0 32px rgba(229,193,88,.12); text-align: center; }
-.entry-card::before,.entry-card::after { position:absolute; color:#bb8d34; font-family:serif; font-size:27px; line-height:1; text-shadow:0 1px #fff0b8; }
-.entry-card::before { content:"❋"; top:8px; left:12px; }.entry-card::after { content:"❋"; right:12px; bottom:8px; transform:rotate(180deg); }
-.entry-card .gold-rule { width:84px; height:1px; margin:12px auto; background:linear-gradient(90deg,transparent,#bf953f,#fcf6ba,#b38728,transparent); }
-.ganesha-mark { width:102px; height:102px; display:block; margin:0 auto 2px; overflow:visible; transform:perspective(550px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translate3d(0,0,0); transform-style:preserve-3d; transition:transform .24s ease,filter .4s ease; filter:drop-shadow(0 0 12px rgba(229,193,88,.45)); animation:crest-bloom 3.8s ease-in-out infinite alternate; will-change:transform; }
-.crest-trace { fill:none; stroke:url(#entryGold); stroke-width:1.35; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:500; stroke-dashoffset:500; animation:crest-draw 2.2s cubic-bezier(.25,.7,.25,1) forwards; }.crest-wreath { animation-delay:.25s; stroke-width:1.05; }.crest-base { animation-delay:.35s; }.crest-letter { fill:url(#entryGold); opacity:0; font-family:"Playfair Display",Georgia,serif; font-size:39px; font-style:italic; filter:drop-shadow(0 0 12px rgba(229,193,88,.7)); animation:crest-appear .8s ease 1.3s forwards; }.crest-letter-s { x:49px; }.crest-letter-h { x:68px; }.crest-om { fill:url(#entryGold); opacity:0; text-anchor:middle; font-family:var(--devanagari); font-size:14px; animation:crest-appear .7s ease 1.8s forwards; }
-@keyframes crest-draw { to { stroke-dashoffset:0; } } @keyframes crest-appear { to { opacity:1; } } @keyframes crest-bloom { from { filter:drop-shadow(0 0 7px rgba(229,193,88,.35)); } to { filter:drop-shadow(0 0 15px rgba(229,193,88,.72)); } }
-.entry-mantra { margin:0 0 11px; color:#7b2020; font-family:var(--devanagari); font-size:15px; letter-spacing:.04em; }
-.entry-eyebrow { margin:0 0 7px; color:#9b7028; font-size:9px; letter-spacing:.18em; text-transform:uppercase; }
-.entry-welcome { max-width:430px; margin:0 auto 17px; color:#6f4c39; font-size:11px; line-height:1.9; }
-.entry-language-heading { margin:0 0 9px; color:#755340; font-size:9px; letter-spacing:.12em; text-transform:uppercase; }
-.language-choice { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:0 auto 17px; }
-.language-choice [data-language-card] { position:relative; min-height:88px; display:grid; align-content:center; justify-items:center; gap:5px; padding:12px 18px; border:1px solid rgba(166,126,50,.47); border-radius:4px; background:rgba(255,255,255,.52); color:#562316; cursor:pointer; transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease; }
-.language-choice [data-language-card]:hover,.language-choice [data-language-card]:focus-visible { outline:none; transform:translateY(-3px); border-color:#bf953f; box-shadow:0 0 20px rgba(229,193,88,.4); }
-.language-choice [data-language-card].is-selected { border-color:#a97b24; background:#fffaf0; box-shadow:inset 0 0 0 1px rgba(191,149,63,.28),0 0 17px rgba(229,193,88,.3); }
-.language-choice [data-language-card].is-selected::after { content:"✓"; position:absolute; top:6px; right:9px; display:grid; width:19px; height:19px; place-items:center; border-radius:50%; background:linear-gradient(135deg,#bf953f,#fcf6ba,#b38728); color:#542314; font-size:11px; }
-.language-card-icon { color:#a47729; font-family:var(--serif); font-size:16px; line-height:1; }.language-native { font-family:var(--serif); font-size:17px; }.language-card-subtext { color:#866b58; font-size:9px; line-height:1.4; }.language-choice [data-language-card="hi"] .language-native,.language-choice [data-language-card="hi"] .language-card-subtext { font-family:var(--devanagari); }
-.entry-card > .button { display:flex; width:min(340px,100%); min-height:45px; margin:0 auto; }.entry-card > .button:focus-visible { outline:3px solid #bc8c2e; outline-offset:3px; }
-.entry-card > .entry-hint { margin:10px 0 0; color:#87745d; font-size:9px; }
-@media(max-width:420px) { .entry-card { padding:25px 20px; }.ganesha-mark { width:92px;height:92px; }.language-choice { gap:7px; }.language-choice [data-language-card] { min-height:82px; padding:10px 8px; }.language-card-subtext { font-size:8px; } }
-@media(prefers-reduced-motion:reduce) { .entry-gate::after { animation:none; }.entry-gate,.language-choice [data-language-card] { transition:none; } }
+/* ============================================================================
+   HINDU LAGAN PATRIKA ENTRANCE GATE & ROYAL MONOGRAM EMBLEM
+   Authentic traditional Indian wedding invitation presentation
+   ============================================================================ */
+
+/* ---------- 1. Ceremonial Backdrop ---------- */
+.entry-gate {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 16px;
+  background: radial-gradient(circle at 50% 28%, rgba(78, 14, 24, .96) 0%, rgba(42, 6, 12, .98) 65%, #180205 100%);
+  isolation: isolate;
+  transition: opacity .75s cubic-bezier(.16, 1, .3, 1), visibility .75s cubic-bezier(.16, 1, .3, 1);
+}
+.entry-gate::before,
+.entry-gate::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+/* Sacred Mandala watermark pattern */
+.entry-gate::before {
+  opacity: .32;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1.2'%3E%3Ccircle cx='200' cy='200' r='186' stroke-dasharray='4 4'/%3E%3Ccircle cx='200' cy='200' r='164'/%3E%3Ccircle cx='200' cy='200' r='142' stroke-width='0.8'/%3E%3Ccircle cx='200' cy='200' r='100'/%3E%3Ccircle cx='200' cy='200' r='60'/%3E%3Cpath d='M200 14 L218 108 L312 88 L256 164 L348 200 L256 236 L312 312 L218 292 L200 386 L182 292 L88 312 L144 236 L52 200 L144 164 L88 88 L182 108 Z' stroke-width='1.4'/%3E%3Cpath d='M200 58 Q230 140 312 144 Q230 200 286 286 Q200 230 144 312 Q140 230 58 200 Q140 170 114 88 Q200 140 200 58 Z' stroke-width='0.9' opacity='.6'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: center;
+  background-size: min(90vw, 760px);
+  background-repeat: no-repeat;
+  animation: mandala-rotate 120s linear infinite;
+}
+@keyframes mandala-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Floating auspicious golden dust */
+.entry-gate::after {
+  opacity: .55;
+  background-image:
+    radial-gradient(circle at 14% 18%, #fcf6ba 0 1.5px, transparent 3px),
+    radial-gradient(circle at 84% 28%, #f7d27e 0 1.5px, transparent 3px),
+    radial-gradient(circle at 22% 76%, #fdf0cd 0 1.5px, transparent 3px),
+    radial-gradient(circle at 76% 82%, #fcf6ba 0 1.5px, transparent 3px),
+    radial-gradient(circle at 50% 12%, #f7d27e 0 2px, transparent 4px),
+    radial-gradient(circle at 64% 64%, #fcf6ba 0 1.5px, transparent 3px);
+  animation: gold-drift 10s ease-in-out infinite alternate;
+}
+@keyframes gold-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-16px); }
+}
+
+.entry-gate.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- 2. Royal Lagan Patrika Card Frame ---------- */
+.entry-card.patrika-card {
+  position: relative;
+  width: min(650px, 94vw);
+  margin: auto;
+  padding: clamp(34px, 5.5vw, 48px) clamp(22px, 5vw, 46px) 36px;
+  border-radius: 16px;
+  background: linear-gradient(168deg, #fffefc 0%, #fcf7ed 42%, #f7ebdb 100%);
+  border: 2px solid #c99e52;
+  outline: 1.5px solid rgba(212, 175, 55, .5);
+  outline-offset: -9px;
+  box-shadow:
+    0 26px 85px rgba(18, 2, 4, .68),
+    0 0 50px rgba(212, 175, 55, .2),
+    inset 0 0 40px rgba(247, 235, 219, .4);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* 4 Ornate Patrika Filigree Corners */
+.patrika-corner {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  z-index: 2;
+  pointer-events: none;
+}
+.patrika-corner svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.patrika-corner-tl { top: 13px; left: 13px; }
+.patrika-corner-tr { top: 13px; right: 13px; }
+.patrika-corner-bl { bottom: 13px; left: 13px; }
+.patrika-corner-br { bottom: 13px; right: 13px; }
+
+/* Top auspicious invocation */
+.patrika-top-motif {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.patrika-top-flourish {
+  color: #c99e52;
+  font-size: 15px;
+}
+.entry-card .entry-mantra {
+  margin: 0;
+  color: #7b1d22 !important;
+  font-family: var(--devanagari) !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+/* ---------- 3. Royal Wedding Monogram Crest Logo ---------- */
+.ganesha-mark {
+  width: 136px;
+  height: 136px;
+  display: block;
+  margin: 4px auto 10px;
+  overflow: visible;
+  filter: drop-shadow(0 4px 14px rgba(184, 134, 11, .45));
+  transition: transform .35s ease, filter .35s ease;
+  animation: crest-gentle-breathe 4.5s ease-in-out infinite alternate;
+}
+.ganesha-mark:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 6px 20px rgba(184, 134, 11, .7));
+}
+@keyframes crest-gentle-breathe {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.025); }
+}
+
+.crest-om {
+  font-family: var(--devanagari);
+  font-size: 18px;
+  font-weight: 700;
+  filter: drop-shadow(0 0 6px rgba(253, 241, 203, .8));
+}
+.crest-monogram .crest-letter {
+  font-family: "Cormorant Garamond", "Cinzel", "Playfair Display", Georgia, serif;
+  font-size: 40px;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+.crest-monogram .crest-ampersand {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+}
+.crest-banner-text {
+  font-family: var(--devanagari);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+}
+
+/* ---------- 4. Patrika Typography & Layout ---------- */
+.entry-card .entry-eyebrow {
+  margin: 0 0 6px;
+  color: #9c6c24 !important;
+  font-size: 10px !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.entry-card .entry-title {
+  margin: 0 0 8px;
+  color: #581219 !important;
+  font-family: var(--serif) !important;
+  font-size: clamp(23px, 4.8vw, 32px) !important;
+  line-height: 1.28;
+  font-weight: 500;
+}
+
+.patrika-names-wrap {
+  position: relative;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 6px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.patrika-names-wrap::before,
+.patrika-names-wrap::after {
+  content: "";
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c99e52);
+}
+.patrika-names-wrap::after {
+  background: linear-gradient(90deg, #c99e52, transparent);
+}
+.entry-card .entry-names {
+  margin: 0 14px;
+  color: #63141d !important;
+  font-family: var(--serif) !important;
+  font-size: clamp(26px, 5.8vw, 42px) !important;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 2px rgba(110, 34, 44, .1);
+}
+
+/* Auspicious Date Seal Badge */
+.patrika-date-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(201, 158, 82, .45);
+  background: rgba(255, 253, 248, .85);
+  box-shadow: 0 2px 8px rgba(99, 20, 29, .06);
+  margin: 0 auto 14px;
+}
+.patrika-seal-icon {
+  color: #c99e52;
+  font-size: 10px;
+}
+.patrika-date-seal .entry-date {
+  margin: 0;
+  color: #855c20 !important;
+  font-family: var(--serif);
+  font-size: 11.5px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.entry-card .entry-welcome {
+  max-width: 480px;
+  margin: 0 auto 18px;
+  color: #6d4b3b !important;
+  font-size: 11.5px;
+  line-height: 1.7;
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ---------- 5. Creative Wedding Language Dialog ---------- */
+.patrika-language-dialog {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: rgba(255, 255, 255, .52);
+  border: 1px solid rgba(201, 158, 82, .32);
+  border-radius: 12px;
+  padding: 16px 16px 18px;
+  margin: 0 auto 20px;
+  box-shadow: inset 0 1px 4px rgba(255, 255, 255, .7);
+}
+.patrika-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.patrika-dialog-ornament {
+  color: #c99e52;
+  font-size: 12px;
+}
+.entry-card .entry-language-heading {
+  margin: 0;
+  color: #7d541e !important;
+  font-size: 10px !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.language-choice {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+/* Luxury Wedding Scroll Language Card */
+.language-choice [data-language-card] {
+  position: relative;
+  min-height: 102px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(198, 154, 120, .38);
+  border-radius: 10px;
+  background: linear-gradient(160deg, #fffdfa 0%, #fbf5ea 100%);
+  color: #4a131b;
+  cursor: pointer;
+  text-align: left;
+  transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease, background .26s ease;
+  box-shadow: 0 4px 14px rgba(70, 30, 35, .05);
+}
+.language-choice [data-language-card]:hover,
+.language-choice [data-language-card]:focus-visible {
+  outline: none;
+  transform: translateY(-3px);
+  border-color: #d4af37;
+  box-shadow: 0 10px 24px rgba(184, 134, 11, .16), 0 0 16px rgba(212, 175, 55, .2);
+}
+
+/* Selected state with gold embossed check seal */
+.language-choice [data-language-card].is-selected {
+  border-color: #b8860b !important;
+  background: linear-gradient(160deg, #fffef9 0%, #f7ecd7 100%) !important;
+  box-shadow: 0 8px 24px rgba(184, 134, 11, .22), inset 0 0 0 1px #d4af37 !important;
+}
+
+.language-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.language-card-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.language-card-badge {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(198, 154, 120, .18);
+  color: #8a5a2b;
+  transition: all .24s ease;
+}
+.language-choice [data-language-card].is-selected .language-card-badge {
+  background: #b8860b;
+  color: #fffdf9;
+}
+
+.language-native {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: #5a141c;
+  margin-bottom: 3px;
+  line-height: 1.25;
+}
+.language-choice [data-language-card="hi"] .language-native {
+  font-family: var(--devanagari);
+  font-size: 19px;
+}
+
+.language-card-subtext {
+  color: #755b4a;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.language-choice [data-language-card="hi"] .language-card-subtext {
+  font-family: var(--devanagari);
+  font-size: 10.5px;
+}
+
+/* Golden checkmark seal */
+.language-check-seal {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #fcf6ba, #aa7c11);
+  color: #420a11;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+  animation: seal-pop .3s cubic-bezier(.16, 1, .3, 1);
+}
+.language-choice [data-language-card].is-selected .language-check-seal {
+  display: grid;
+}
+@keyframes seal-pop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- 6. Enter CTA Button ---------- */
+.entry-card .entry-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(380px, 100%);
+  min-height: 52px;
+  margin: 0 auto;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #b8860b 0%, #fad682 50%, #b8860b 100%) !important;
+  color: #3b080f !important;
+  font-family: var(--serif) !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase;
+  border: 1px solid #ffd984 !important;
+  box-shadow: 0 8px 28px rgba(184, 134, 11, .38);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.entry-card .entry-enter-btn:hover,
+.entry-card .entry-enter-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(184, 134, 11, .5), 0 0 20px rgba(253, 241, 203, .5);
+  outline: none;
+}
+.btn-sacred-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+.btn-arrow {
+  font-size: 14px;
+  transition: transform .2s ease;
+}
+.entry-card .entry-enter-btn:hover .btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ---------- 7. Responsive & Motion ---------- */
+@media (max-width: 520px) {
+  .entry-card.patrika-card {
+    padding: 28px 18px 28px;
+    border-radius: 12px;
+  }
+  .patrika-corner {
+    width: 32px;
+    height: 32px;
+  }
+  .patrika-corner-tl { top: 9px; left: 9px; }
+  .patrika-corner-tr { top: 9px; right: 9px; }
+  .patrika-corner-bl { bottom: 9px; left: 9px; }
+  .patrika-corner-br { bottom: 9px; right: 9px; }
+  .ganesha-mark {
+    width: 115px;
+    height: 115px;
+  }
+  .language-choice {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .language-choice [data-language-card] {
+    min-height: 84px;
+    padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-gate::before,
+  .entry-gate::after,
+  .ganesha-mark {
+    animation: none !important;
+  }
+  .entry-gate,
+  .language-choice [data-language-card],
+  .entry-card .entry-enter-btn {
+    transition: none !important;
+  }
+}

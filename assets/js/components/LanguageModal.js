@@ -11,17 +11,34 @@ export function initLanguageModal({ wedding, i18n, confirmButton, soundscape }) 
     card.setAttribute("role", "radio");
     card.dataset.languageCard = language;
     card.setAttribute("aria-checked", "false");
+    const topRow = document.createElement("div");
+    topRow.className = "language-card-top";
+
     const icon = document.createElement("span");
     icon.className = "language-card-icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.textContent = option.icon || "✧";
+    icon.textContent = option.icon || (language === "hi" ? "🪔" : "🪷");
+
+    const badge = document.createElement("span");
+    badge.className = "language-card-badge";
+    badge.textContent = option.badge || (language === "hi" ? "शुभ लग्न पत्रिका" : "Royal Invitation");
+
+    topRow.append(icon, badge);
+
     const native = document.createElement("span");
     native.className = "language-native";
     native.textContent = option.native;
+
     const subtext = document.createElement("span");
     subtext.className = "language-card-subtext";
     subtext.textContent = option.subtext || "";
-    card.append(icon, native, subtext);
+
+    const checkSeal = document.createElement("span");
+    checkSeal.className = "language-check-seal";
+    checkSeal.setAttribute("aria-hidden", "true");
+    checkSeal.textContent = "✓";
+
+    card.append(topRow, native, subtext, checkSeal);
     choiceGroup.append(card);
 
     const toggle = document.createElement("button");

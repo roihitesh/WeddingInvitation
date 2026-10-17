@@ -172,8 +172,20 @@ const ui = {
 };
 
 const languageOptions = {
-  en: { native: "English", shortLabel: "A", icon: "✒", subtext: "Traditional Wedding Invitation" },
-  hi: { native: "हिन्दी", shortLabel: "अ", icon: "दीप", subtext: "पारंपरिक शुभ विवाह पत्रिका" },
+  en: {
+    native: "English",
+    shortLabel: "A",
+    icon: "🪷",
+    badge: "Royal Invitation",
+    subtext: "Traditional Hindu Wedding Celebration"
+  },
+  hi: {
+    native: "हिन्दी पत्रिका",
+    shortLabel: "अ",
+    icon: "🪔",
+    badge: "शुभ लग्न पत्रिका",
+    subtext: "मांगलिक उत्सव एवं वैदिक संस्कार"
+  },
 };
 
 const weddingData = {
