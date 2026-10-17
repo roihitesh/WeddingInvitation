@@ -74,22 +74,25 @@ export const RoyalSideCourt: React.FC = () => {
             </filter>
           </defs>
 
-          {/* Vertical Sandstone Pillar Shaft */}
-          <rect x="18" y="0" width="36" height="880" fill="url(#flankPillarGrad)" />
-          <line x1="18" y1="0" x2="18" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
-          <line x1="54" y1="0" x2="54" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
-          <line x1="36" y1="0" x2="36" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="0.6" strokeDasharray="6 4" strokeOpacity="0.4" />
+          {/* Vertical Sandstone Pillar Shaft (Symmetrically Centered) */}
+          <rect x="62" y="0" width="36" height="880" fill="url(#flankPillarGrad)" />
+          <line x1="62" y1="0" x2="62" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
+          <line x1="98" y1="0" x2="98" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
+          <line x1="80" y1="0" x2="80" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="0.6" strokeDasharray="6 4" strokeOpacity="0.4" />
 
           {/* Top Capital & Scalloped Bracket */}
           <path
             d="
-              M 6 0
-              L 66 0
-              L 60 28
-              C 84 32 108 56 114 90
-              C 98 84 82 82 60 84
-              L 54 110
-              L 18 110
+              M 48 0
+              L 112 0
+              L 106 28
+              C 126 32 138 56 142 90
+              C 126 84 116 82 98 84
+              L 98 110
+              L 62 110
+              L 62 84
+              C 44 82 34 84 18 90
+              C 22 56 34 32 54 28
               Z
             "
             fill="url(#flankPillarGrad)"
@@ -99,7 +102,7 @@ export const RoyalSideCourt: React.FC = () => {
 
           {/* Carved Jaali Chevron Molding along the shaft */}
           {[160, 240, 320, 400, 480, 560, 640, 720].map((yVal, idx) => (
-            <g key={`l-chev-${idx}`} transform={`translate(24, ${yVal})`}>
+            <g key={`l-chev-${idx}`} transform={`translate(68, ${yVal})`}>
               <path d="M 0 0 L 12 8 L 24 0" stroke="url(#flankGoldTrim)" strokeWidth="1" fill="none" opacity="0.6" />
               <circle cx="12" cy="14" r="2" fill="url(#flankGoldTrim)" opacity="0.6" />
             </g>
@@ -108,12 +111,12 @@ export const RoyalSideCourt: React.FC = () => {
           {/* Base Plinth Molding */}
           <path
             d="
-              M 8 880
-              L 8 830
-              L 18 810
-              L 54 810
-              L 64 830
-              L 64 880
+              M 48 880
+              L 48 830
+              L 62 810
+              L 98 810
+              L 112 830
+              L 112 880
               Z
             "
             fill="url(#flankPillarGrad)"
@@ -403,22 +406,25 @@ export const RoyalSideCourt: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
         >
-          {/* Vertical Sandstone Pillar Shaft */}
-          <rect x="106" y="0" width="36" height="880" fill="url(#flankPillarGrad)" />
-          <line x1="106" y1="0" x2="106" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
-          <line x1="142" y1="0" x2="142" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
-          <line x1="124" y1="0" x2="124" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="0.6" strokeDasharray="6 4" strokeOpacity="0.4" />
+          {/* Vertical Sandstone Pillar Shaft (Symmetrically Centered) */}
+          <rect x="62" y="0" width="36" height="880" fill="url(#flankPillarGrad)" />
+          <line x1="62" y1="0" x2="62" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
+          <line x1="98" y1="0" x2="98" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="1" strokeOpacity="0.6" />
+          <line x1="80" y1="0" x2="80" y2="880" stroke="url(#flankGoldTrim)" strokeWidth="0.6" strokeDasharray="6 4" strokeOpacity="0.4" />
 
           {/* Top Capital & Scalloped Bracket */}
           <path
             d="
-              M 154 0
-              L 94 0
-              L 100 28
-              C 76 32 52 56 46 90
-              C 62 84 78 82 100 84
-              L 106 110
-              L 142 110
+              M 48 0
+              L 112 0
+              L 106 28
+              C 126 32 138 56 142 90
+              C 126 84 116 82 98 84
+              L 98 110
+              L 62 110
+              L 62 84
+              C 44 82 34 84 18 90
+              C 22 56 34 32 54 28
               Z
             "
             fill="url(#flankPillarGrad)"
@@ -426,23 +432,23 @@ export const RoyalSideCourt: React.FC = () => {
             strokeWidth="1.2"
           />
 
-          {/* Carved Jaali Chevrons */}
+          {/* Carved Jaali Chevron Molding along the shaft */}
           {[160, 240, 320, 400, 480, 560, 640, 720].map((yVal, idx) => (
-            <g key={`r-chev-${idx}`} transform={`translate(112, ${yVal})`}>
+            <g key={`r-chev-${idx}`} transform={`translate(68, ${yVal})`}>
               <path d="M 0 0 L 12 8 L 24 0" stroke="url(#flankGoldTrim)" strokeWidth="1" fill="none" opacity="0.6" />
               <circle cx="12" cy="14" r="2" fill="url(#flankGoldTrim)" opacity="0.6" />
             </g>
           ))}
 
-          {/* Base Plinth */}
+          {/* Base Plinth Molding */}
           <path
             d="
-              M 152 880
-              L 152 830
-              L 142 810
-              L 106 810
-              L 96 830
-              L 96 880
+              M 48 880
+              L 48 830
+              L 62 810
+              L 98 810
+              L 112 830
+              L 112 880
               Z
             "
             fill="url(#flankPillarGrad)"
@@ -624,8 +630,8 @@ export const RoyalSideCourt: React.FC = () => {
               <path d="M 12 4 C 24 0 18 8 8 8 Z" fill="url(#flankGoldTrim)" opacity="0.7" />
             </g>
 
-            {/* Royal Ceremonial Elephant with Raised Trunk Holding Lotus (Gajraj Ashirwad) */}
-            <g transform="translate(18, 48)">
+            {/* Royal Ceremonial Elephant with Raised Trunk Holding Lotus (Gajraj Ashirwad - Centered at cx=70) */}
+            <g transform="translate(36, 48)">
               {/* Elephant Body */}
               <path
                 d="

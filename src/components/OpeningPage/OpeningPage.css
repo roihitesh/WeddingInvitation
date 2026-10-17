@@ -260,7 +260,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 5.8rem 1.8rem 2.2rem;
+  padding: 7.8rem 1.8rem 2.2rem;
   box-sizing: border-box;
 }
 
@@ -758,7 +758,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 180px;
+  width: 170px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -767,11 +767,11 @@
 }
 
 .palace-side-flank.flank-left {
-  left: 20px;
+  left: 24px;
 }
 
 .palace-side-flank.flank-right {
-  right: 20px;
+  right: 24px;
 }
 
 .flank-pillar-svg {
@@ -784,22 +784,16 @@
   filter: drop-shadow(0 4px 16px rgba(110, 66, 6, 0.16));
 }
 
-/* 1. Hanging Brass Diya Lamp with Live Golden Flame */
+/* 1. Hanging Brass Diya Lamp with Live Golden Flame (Centered on Pillar) */
 .hanging-deepam-unit {
   position: absolute;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 6;
-}
-
-.hanging-deepam-unit.deepam-left {
-  left: 42px;
-}
-
-.hanging-deepam-unit.deepam-right {
-  right: 42px;
 }
 
 .deepam-chain {
@@ -895,7 +889,7 @@
   }
 }
 
-/* 2. Cascading Fresh Marigold & Jasmine Toran Strings */
+/* 2. Cascading Fresh Marigold & Jasmine Toran Strings (Inward Facing) */
 .cascading-toran-unit {
   position: absolute;
   top: 0;
@@ -903,13 +897,13 @@
 }
 
 .cascading-toran-unit.toran-left {
-  left: 6px;
+  right: -8px;
   transform-origin: top center;
   animation: toranSway 5.8s ease-in-out infinite alternate;
 }
 
 .cascading-toran-unit.toran-right {
-  right: 6px;
+  left: -8px;
   transform-origin: top center;
   animation: toranSway 6.4s ease-in-out infinite alternate-reverse;
 }
@@ -929,59 +923,51 @@
   display: block;
 }
 
-/* 3. Royal Heritage Emblems (Peacock Left, Elephant Right) */
+/* 3. Royal Heritage Emblems (Peacock Left, Elephant Right - Symmetrically Aligned) */
 .royal-heritage-emblem {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   z-index: 6;
   opacity: 0.95;
-}
-
-.royal-heritage-emblem.emblem-peacock {
-  left: 12px;
-}
-
-.royal-heritage-emblem.emblem-elephant {
-  right: 12px;
+  width: 140px;
 }
 
 .peacock-artwork-svg,
 .elephant-artwork-svg {
   width: 138px;
   height: 178px;
+  display: block;
+  margin: 0 auto;
   filter: drop-shadow(0 6px 16px rgba(110, 66, 6, 0.28));
   transition: transform 0.4s ease;
 }
 
 .heritage-caption {
   font-family: var(--font-serif-royal);
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold-deep);
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
+  text-align: center;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
   white-space: nowrap;
 }
 
-/* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya */
+/* 4. Bottom Traditional Brass Urli with Floating Lotuses & Diya (Centered on Base) */
 .bottom-urli-display {
   position: absolute;
   bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 6;
-}
-
-.bottom-urli-display.urli-left {
-  left: 8px;
-}
-
-.bottom-urli-display.urli-right {
-  right: 8px;
 }
 
 .urli-svg {

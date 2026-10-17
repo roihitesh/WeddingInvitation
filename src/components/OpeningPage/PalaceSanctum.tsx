@@ -75,24 +75,24 @@ export const PalaceSanctum: React.FC<PalaceSanctumProps> = ({
           opacity="0.7"
         />
 
-        {/* Distant Inner Palace Pavilion Cusped Arch Silhouette */}
+        {/* Distant Inner Palace Pavilion Cusped Arch Canopy (Raised high to cleanly frame above Ganesha) */}
         <path
           d="
             M 60 810
-            V 260
-            C 60 210 85 180 135 158
-            C 160 146 186 140 216 140
-            C 236 128 254 116 270 94
-            C 286 116 304 128 324 140
-            C 354 140 380 146 405 158
-            C 455 180 480 210 480 260
+            V 230
+            C 60 170 90 130 140 108
+            C 165 96 195 90 225 90
+            C 245 78 258 64 270 46
+            C 282 64 295 78 315 90
+            C 345 90 375 96 400 108
+            C 450 130 480 170 480 230
             V 810
           "
           stroke="url(#innerSanctumGold)"
-          strokeWidth="1.4"
+          strokeWidth="1.2"
           strokeDasharray="4 4"
           fill="none"
-          opacity="0.6"
+          opacity="0.45"
         />
       </svg>
 
