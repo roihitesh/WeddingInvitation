@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="favBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#520f18" />
+      <stop offset="100%" stopColor="#2c0a10" />
+    </radialGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fdf0cd" />
+      <stop offset="50%" stopColor="#dfb76c" />
+      <stop offset="100%" stopColor="#8c6d23" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#favBg)" stroke="url(#favGold)" stroke-width="2.5" />
+  <circle cx="50" cy="50" r="44" fill="none" stroke="url(#favGold)" stroke-width="1" stroke-dasharray="2 2" />
+  <text x="50" y="58" text-anchor="middle" font-family="'Cinzel', serif" font-size="28" font-weight="700" fill="url(#favGold)">
+    H&amp;S
+  </text>
+  <circle cx="50" cy="22" r="2.5" fill="url(#favGold)" />
+  <circle cx="50" cy="78" r="2.5" fill="url(#favGold)" />
+</svg>
