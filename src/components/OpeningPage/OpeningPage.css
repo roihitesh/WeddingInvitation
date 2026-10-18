@@ -606,8 +606,10 @@
 .palace-doors-3d-stage {
   position: absolute;
   inset: 0;
-  perspective: 1400px;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   cursor: pointer;
   z-index: 10;
   outline: none;
@@ -625,21 +627,27 @@
   width: 50.1%; /* 0.1% overlap to prevent middle pixel seam */
   height: 100%;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   /* SLOW, MAJESTIC, UNHURRIED ROYAL DOOR OPENING */
-  transition: transform 2.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 2.6s ease;
+  transition: transform 2.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 2.6s ease, opacity 2.4s ease;
+  -webkit-transition: -webkit-transform 2.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 2.6s ease, opacity 2.4s ease;
+  will-change: transform, opacity;
   z-index: 12;
 }
 
 .palace-door-leaf.door-left {
   left: 0;
   transform-origin: 0% 50%;
+  -webkit-transform-origin: 0% 50%;
   box-shadow: 6px 0 16px rgba(0, 0, 0, 0.45);
 }
 
 .palace-door-leaf.door-right {
   right: 0;
   transform-origin: 100% 50%;
+  -webkit-transform-origin: 100% 50%;
   box-shadow: -6px 0 16px rgba(0, 0, 0, 0.45);
 }
 
@@ -665,12 +673,14 @@
 
 /* 3D OUTWARD ROTATION ON OPEN */
 .palace-doors-3d-stage.doors-open .door-left {
-  transform: rotateY(-86deg);
+  transform: rotateY(-92deg);
+  -webkit-transform: rotateY(-92deg);
   box-shadow: 14px 0 32px rgba(0, 0, 0, 0.7);
 }
 
 .palace-doors-3d-stage.doors-open .door-right {
-  transform: rotateY(86deg);
+  transform: rotateY(92deg);
+  -webkit-transform: rotateY(92deg);
   box-shadow: -14px 0 32px rgba(0, 0, 0, 0.7);
 }
 
@@ -711,48 +721,79 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
   .opening-page-viewport {
-    padding: 0.6rem 0.4rem;
+    padding: 0.4rem 0.2rem;
   }
 
   .ornamental-border-layer {
-    inset: 6px;
+    inset: 4px;
   }
 
   .palace-portal-container {
-    max-width: 100%;
-    min-height: 640px;
+    max-width: calc(100% - 64px);
+    width: 100%;
+    min-height: 560px;
   }
 
   .palace-portal-frame {
-    width: 90%;
-    height: 620px;
-    margin-top: 26px;
+    width: 96%;
+    height: min(84vh, 670px);
+    min-height: 540px;
+    margin-top: 14px;
+    border-radius: 12px;
+  }
+
+  .palace-arch-svg {
+    inset: -10px -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 20px);
+  }
+
+  .palace-doors-3d-stage.doors-open .door-left {
+    transform: rotateY(-96deg);
+    -webkit-transform: rotateY(-96deg);
+    opacity: 0.12;
+  }
+
+  .palace-doors-3d-stage.doors-open .door-right {
+    transform: rotateY(96deg);
+    -webkit-transform: rotateY(96deg);
+    opacity: 0.12;
   }
 
   .sanctum-card-content {
     padding: 1.2rem 0.8rem 1rem;
+    justify-content: space-evenly;
+  }
+
+  .top-ganesha-invocation {
+    margin-bottom: 0.25rem;
+  }
+
+  .ganesha-vector-svg {
+    width: 44px;
+    height: 44px;
   }
 
   .hs-monogram-emblem-svg {
-    width: 95px;
-    height: 95px;
+    width: 80px;
+    height: 80px;
   }
 
   .couple-name {
-    font-size: 2.05rem;
+    font-size: 1.95rem;
   }
 
   .ampersand-sign {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 
   .invitation-message-text {
-    font-size: 0.98rem;
-    line-height: 1.45;
+    font-size: 0.88rem;
+    line-height: 1.4;
   }
 
   .open-invitation-btn {
-    padding: 0.62rem 1.35rem;
+    padding: 0.65rem 1.4rem;
   }
 
   .cta-text {
@@ -761,7 +802,7 @@
   }
 
   .open-invitation-subtitle {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
   }
 }
 
@@ -1071,24 +1112,94 @@
   }
 }
 
-/* Responsive scaling for side flanks on smaller displays */
-@media (max-width: 1320px) {
+/* Responsive positioning for side flanks across all screen sizes */
+@media (max-width: 1200px) {
   .palace-side-flank {
-    transform: scale(0.85);
-    transform-origin: center center;
+    display: flex !important;
+    width: 90px;
+    transform: scale(0.8);
+    transform-origin: top center;
   }
   .palace-side-flank.flank-left {
-    right: calc(50% + 335px);
+    left: 4px;
+    right: auto;
   }
   .palace-side-flank.flank-right {
-    left: calc(50% + 335px);
+    right: 4px;
+    left: auto;
   }
 }
 
-@media (max-width: 1080px) {
-  /* On medium/compact screens, hide the side architectural pillars to keep focus purely on the invitation card */
+@media (max-width: 860px) {
   .palace-side-flank {
-    display: none;
+    display: flex !important;
+    width: 54px;
+    transform: none;
+    z-index: 18;
+  }
+  .palace-side-flank.flank-left {
+    left: 0;
+    right: auto;
+  }
+  .palace-side-flank.flank-right {
+    right: 0;
+    left: auto;
+  }
+  .hanging-deepam-unit {
+    transform: scale(0.62) translateX(-50%);
+    transform-origin: top center;
+    top: 4px;
+  }
+  .cascading-toran-unit {
+    transform: scale(0.62);
+    transform-origin: top center;
+    top: 0;
+  }
+  .bottom-sculpture-thali-unit {
+    transform: scale(0.58) translateX(-50%);
+    transform-origin: bottom center;
+    bottom: 8px;
+  }
+  .flank-pillar-svg {
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 500px) {
+  .palace-side-flank {
+    display: flex !important;
+    width: 36px;
+    z-index: 18;
+  }
+  .palace-side-flank.flank-left {
+    left: 0;
+    right: auto;
+  }
+  .palace-side-flank.flank-right {
+    right: 0;
+    left: auto;
+  }
+  .hanging-deepam-unit {
+    transform: scale(0.48) translateX(-50%);
+    transform-origin: top center;
+    top: 0px;
+  }
+  .deepam-ambient-glow {
+    width: 90px;
+    height: 90px;
+  }
+  .cascading-toran-unit {
+    transform: scale(0.48);
+    transform-origin: top center;
+    top: -4px;
+  }
+  .bottom-sculpture-thali-unit {
+    transform: scale(0.45) translateX(-50%);
+    transform-origin: bottom center;
+    bottom: 4px;
+  }
+  .flank-pillar-svg {
+    opacity: 0.8;
   }
 }
 
