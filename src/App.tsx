@@ -9,6 +9,8 @@ import { RsvpPage } from './components/RSVP/RsvpPage';
 import { GalleryPage } from './components/Gallery/GalleryPage';
 import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
+import { WeddingMusicProvider, useWeddingMusic } from './context/WeddingMusicContext';
+import { FloatingMusicControl } from './components/Music/FloatingMusicControl';
 
 export type ScreenState = 'opening' | 'language' | 'invitation';
 
@@ -38,12 +40,11 @@ function getInitialSectionFromHash(): NavSection | null {
 }
 
 /**
- * Root Application Component — Hitesh & Shivanee Royal Indian Wedding Invitation.
+ * Inner Application Content Component with Music Synchronization.
  */
-export const App: React.FC = () => {
+const WeddingAppContent: React.FC = () => {
   const initialHashSection = getInitialSectionFromHash();
   const [currentScreen, setCurrentScreen] = useState<ScreenState>(() => {
-    // If a guest deep-links to a hash section, take them straight to invitation
     if (initialHashSection) return 'invitation';
     return 'opening';
   });
@@ -51,6 +52,19 @@ export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<NavSection>(() => {
     return initialHashSection || 'welcome';
   });
+
+  const { notifyPageChanged } = useWeddingMusic();
+
+  // Synchronize background music with current screen and active section
+  useEffect(() => {
+    if (currentScreen === 'opening') {
+      notifyPageChanged('opening');
+    } else if (currentScreen === 'language') {
+      notifyPageChanged('language');
+    } else if (currentScreen === 'invitation') {
+      notifyPageChanged(activeSection);
+    }
+  }, [currentScreen, activeSection, notifyPageChanged]);
 
   // Persist language choice
   const handleLanguageChange = (lang: SupportedLanguage) => {
@@ -180,9 +194,22 @@ export const App: React.FC = () => {
           )}
         </>
       )}
+
+      {/* Floating Royal Background Music Controller & Drawer */}
+      <FloatingMusicControl language={selectedLanguage} />
     </div>
   );
 };
 
-export default App;
+/**
+ * Root Application Component wrapped with Global Wedding Music Provider.
+ */
+export const App: React.FC = () => {
+  return (
+    <WeddingMusicProvider>
+      <WeddingAppContent />
+    </WeddingMusicProvider>
+  );
+};
 
+export default App;

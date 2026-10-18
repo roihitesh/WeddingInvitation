@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   OurStoryPageProps,
   NavSection,
   StoryPhotoItem,
 } from '../../types/invitation';
 import { defaultStoryPageConfig } from '../../config/storyPage.config';
+import { useWeddingMusic } from '../../context/WeddingMusicContext';
 import { WeddingNav } from '../WelcomePage/WeddingNav';
 import { StoryIntro } from './StoryIntro';
 import { VerticalTimeline } from './VerticalTimeline';
@@ -31,8 +32,39 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   const [activePhoto, setActivePhoto] = useState<StoryPhotoItem | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  const { notifySceneChanged, sceneBased } = useWeddingMusic();
+
   const config = defaultStoryPageConfig;
   const isHindi = language === 'hi';
+
+  // Scene-based music observer for milestones
+  useEffect(() => {
+    if (!sceneBased || activePhoto !== null) return;
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            const milestoneId = entry.target.id.replace('milestone-', '');
+            if (milestoneId) {
+              notifySceneChanged(milestoneId);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    const elements = document.querySelectorAll('[id^="milestone-"]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [sceneBased, activePhoto, notifySceneChanged]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);

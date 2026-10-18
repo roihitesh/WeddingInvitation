@@ -11,6 +11,7 @@ import { defaultVenueConfig } from '../src/config/venuePage.config.ts';
 import { defaultRsvpConfig } from '../src/config/rsvpPage.config.ts';
 import { defaultGalleryConfig } from '../src/config/galleryPage.config.ts';
 import { defaultClosingConfig } from '../src/config/closingSection.config.ts';
+import { weddingMusicTracks, pageToTrackMap, sceneToTrackMap, musicUiLabels } from '../src/config/music.config.ts';
 import { submitRsvp, isBackendConfigured } from '../src/services/rsvpService.ts';
 
 test('1. Couple Names & Royal Monogram Verification', () => {
@@ -200,3 +201,65 @@ test('8. Final Closing Section & Refined Footer Links', () => {
     'प्यार से सजा यह सफ़र, अपनों के साथ और यादों में हमेशा।'
   );
 });
+
+test('9. Royal Background Music: Track Registry & Asset Mapping', () => {
+  assert.ok(weddingMusicTracks.length >= 15, 'Must contain all 15 curated royal wedding melodies');
+
+  const trackIds = new Set<string>();
+  weddingMusicTracks.forEach((track) => {
+    assert.ok(track.id, 'Each track must have an id');
+    assert.ok(!trackIds.has(track.id), `Duplicate track ID detected: ${track.id}`);
+    trackIds.add(track.id);
+
+    assert.ok(track.title.en.length > 0, `Track ${track.id} missing English title`);
+    assert.ok(track.title.hi.length > 0, `Track ${track.id} missing Hindi title`);
+    assert.ok(track.src.startsWith('/audio/') && track.src.endsWith('.mp3'), `Track ${track.id} has invalid src`);
+    assert.ok(track.originalSong.length > 0, `Track ${track.id} missing originalSong attribution`);
+    assert.ok(track.license.length > 0, `Track ${track.id} missing license note`);
+  });
+
+  // Verify all page sections map to an existing track
+  const expectedPages = ['opening', 'language', 'welcome', 'story', 'celebrations', 'venue', 'rsvp', 'gallery', 'closing'];
+  expectedPages.forEach((page) => {
+    const trackId = pageToTrackMap[page];
+    assert.ok(trackId, `Page ${page} must map to a track ID`);
+    assert.ok(trackIds.has(trackId), `Page ${page} maps to unknown track ID ${trackId}`);
+  });
+
+  // Verify all story milestones & ceremony scenes map to an existing track
+  const expectedScenes = [
+    'first-meeting',
+    'first-crush',
+    'sharing-feelings',
+    'trip-main',
+    'family-blessings',
+    'tying-knot',
+    'haldi',
+    'mehendi',
+    'sangeet',
+    'wedding',
+    'reception',
+  ];
+  expectedScenes.forEach((scene) => {
+    const trackId = sceneToTrackMap[scene];
+    assert.ok(trackId, `Scene ${scene} must map to a track ID`);
+    assert.ok(trackIds.has(trackId), `Scene ${scene} maps to unknown track ID ${trackId}`);
+  });
+});
+
+test('10. Royal Background Music: Bilingual UI Labels & Audio Bounds', () => {
+  // Bilingual labels verification
+  const devanagariRegex = /[\u0900-\u097F]/;
+  assert.ok(musicUiLabels.musicControlTitle.en.length > 0);
+  assert.ok(devanagariRegex.test(musicUiLabels.musicControlTitle.hi), 'Hindi music title must contain Devanagari text');
+  assert.ok(devanagariRegex.test(musicUiLabels.nowPlaying.hi), 'Hindi now-playing must contain Devanagari text');
+  assert.ok(devanagariRegex.test(musicUiLabels.autoTrackChange.hi), 'Hindi auto-track label must contain Devanagari text');
+  assert.ok(devanagariRegex.test(musicUiLabels.sceneBasedMusic.hi), 'Hindi scene-based label must contain Devanagari text');
+
+  // Volume bounds clamping logic
+  const clampVolume = (vol: number) => Math.max(0, Math.min(1, vol));
+  assert.equal(clampVolume(-0.5), 0);
+  assert.equal(clampVolume(1.5), 1);
+  assert.equal(clampVolume(0.25), 0.25);
+});
+

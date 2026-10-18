@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CelebrationsPageProps,
   NavSection,
@@ -6,6 +6,7 @@ import {
 } from '../../types/invitation';
 import { defaultCelebrationsConfig } from '../../config/celebrationsPage.config';
 import { defaultWeddingDetails } from '../../config/weddingDetails.config';
+import { useWeddingMusic } from '../../context/WeddingMusicContext';
 import { WeddingNav } from '../WelcomePage/WeddingNav';
 import { CelebrationsIntro } from './CelebrationsIntro';
 import { CelebrationsCountdown } from './CelebrationsCountdown';
@@ -41,8 +42,39 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
 }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  const { notifySceneChanged, sceneBased } = useWeddingMusic();
+
   const config = defaultCelebrationsConfig;
   const isHindi = language === 'hi';
+
+  // Scene-based music observer for celebrations events
+  useEffect(() => {
+    if (!sceneBased) return;
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            const eventId = entry.target.id.replace('celebration-', '');
+            if (eventId) {
+              notifySceneChanged(eventId);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    const elements = document.querySelectorAll('[id^="celebration-"]');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [sceneBased, notifySceneChanged]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
