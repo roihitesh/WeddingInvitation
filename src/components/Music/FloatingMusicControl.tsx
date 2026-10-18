@@ -24,6 +24,7 @@ export const FloatingMusicControl: React.FC<FloatingMusicControlProps> = ({ lang
     setAutoChange,
     setSceneBased,
     dismissBlockedNotice,
+    unlockAndPlay,
   } = useWeddingMusic();
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -34,6 +35,9 @@ export const FloatingMusicControl: React.FC<FloatingMusicControlProps> = ({ lang
   const currentMood = currentTrack?.mood[language] || '';
 
   const handleTogglePanel = () => {
+    if (isBlocked || !isPlaying) {
+      unlockAndPlay();
+    }
     setIsPanelOpen((prev) => !prev);
     if (isBlocked) {
       dismissBlockedNotice();
@@ -42,9 +46,7 @@ export const FloatingMusicControl: React.FC<FloatingMusicControlProps> = ({ lang
 
   const handleBannerClick = () => {
     dismissBlockedNotice();
-    if (!isPlaying) {
-      togglePlay();
-    }
+    unlockAndPlay();
   };
 
   return (

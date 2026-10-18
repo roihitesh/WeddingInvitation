@@ -3,7 +3,8 @@
  *
  * Provides:
  * - Dual-channel seamless crossfading (Channel A & Channel B)
- * - Safe volume ramping without audible clicks or pops
+ * - Safe volume handling for both desktop & mobile devices (iOS / Android)
+ * - iOS WebKit synchronous unlock & priming on user gestures (touchend / click)
  * - Browser Autoplay policy detection (NotAllowedError)
  * - Visibility API listener to gently duck audio when tab is backgrounded
  * - SSR & Vitest/Jest friendly guards
@@ -54,12 +55,20 @@ export class AudioController {
       this.channelA = new Audio();
       this.channelA.preload = 'auto';
       this.channelA.loop = true;
-      this.channelA.volume = this.getEffectiveVolume();
+      this.channelA.setAttribute('playsinline', 'true');
+      this.channelA.setAttribute('webkit-playsinline', 'true');
+      try {
+        this.channelA.volume = this.getEffectiveVolume();
+      } catch {}
 
       this.channelB = new Audio();
       this.channelB.preload = 'auto';
       this.channelB.loop = true;
-      this.channelB.volume = 0;
+      this.channelB.setAttribute('playsinline', 'true');
+      this.channelB.setAttribute('webkit-playsinline', 'true');
+      try {
+        this.channelB.volume = 0;
+      } catch {}
     } catch (e) {
       console.warn('[AudioController] Audio initialization failed:', e);
     }
@@ -86,7 +95,10 @@ export class AudioController {
     if (this.fadeIntervalId) return; // Allow active crossfade to manage channel volumes
     const active = this.getActiveElement();
     if (active) {
-      active.volume = this.getEffectiveVolume();
+      try {
+        active.volume = this.getEffectiveVolume();
+        active.muted = this.isMuted;
+      } catch {}
     }
   }
 
@@ -96,6 +108,58 @@ export class AudioController {
 
   private getInactiveElement(): HTMLAudioElement | null {
     return this.activeChannel === 'A' ? this.channelB : this.channelA;
+  }
+
+  /**
+   * Synchronously unlock/prime both audio channels on direct user interaction (click/touchend).
+   * Essential for mobile iOS Safari and Chrome.
+   */
+  public unlockAndPlay(src?: string): Promise<void> {
+    const targetSrc = src || this.currentSrc;
+    if (!targetSrc) return Promise.resolve();
+
+    this.currentSrc = targetSrc;
+    const active = this.getActiveElement();
+    const inactive = this.getInactiveElement();
+
+    if (!active) return Promise.resolve();
+
+    // Ensure source is assigned
+    if (!active.src || !active.src.endsWith(targetSrc)) {
+      active.src = targetSrc;
+      active.currentTime = 0;
+    }
+
+    active.loop = true;
+    const effectiveVol = this.getEffectiveVolume();
+    try {
+      active.volume = effectiveVol;
+      active.muted = this.isMuted;
+    } catch {}
+
+    // Prime the secondary channel synchronously so future crossfades work without user gestures
+    if (inactive && (!inactive.src || inactive.src === '')) {
+      try {
+        inactive.src = targetSrc;
+        inactive.currentTime = 0;
+        inactive.load();
+      } catch {}
+    }
+
+    return active
+      .play()
+      .then(() => {
+        this.isPlaying = true;
+        this.setBlocked(false);
+        this.onStateChange?.(true);
+      })
+      .catch((err) => {
+        if (err?.name === 'NotAllowedError') {
+          this.setBlocked(true);
+        } else {
+          console.warn('[AudioController] Direct play error:', err);
+        }
+      });
   }
 
   /**
@@ -132,23 +196,27 @@ export class AudioController {
 
     const effectiveVol = this.getEffectiveVolume();
 
-    // If no previous audio was playing, start incoming directly with a smooth fade-in
+    // Set next active channel immediately so getActiveElement() returns the correct element
+    this.activeChannel = this.activeChannel === 'A' ? 'B' : 'A';
+
+    // If no previous audio was playing, start incoming directly
     if (!previousSrc || !this.isPlaying || !crossfade) {
       outgoing.pause();
       outgoing.currentTime = 0;
 
       incoming.src = src;
       incoming.currentTime = 0;
-      incoming.volume = 0;
+      try {
+        incoming.volume = effectiveVol;
+        incoming.muted = this.isMuted;
+      } catch {}
       incoming.loop = true;
 
       try {
         await incoming.play();
-        this.activeChannel = this.activeChannel === 'A' ? 'B' : 'A';
         this.isPlaying = true;
         this.setBlocked(false);
         this.onStateChange?.(true);
-        this.rampVolume(incoming, 0, effectiveVol, Math.min(this.crossfadeDurationMs, 1500));
       } catch (err: any) {
         if (err?.name === 'NotAllowedError') {
           this.setBlocked(true);
@@ -163,7 +231,10 @@ export class AudioController {
     // Dual-channel Crossfade
     incoming.src = src;
     incoming.currentTime = 0;
-    incoming.volume = 0;
+    try {
+      incoming.volume = 0;
+      incoming.muted = this.isMuted;
+    } catch {}
     incoming.loop = true;
 
     try {
@@ -183,12 +254,13 @@ export class AudioController {
         const progress = Math.min(1, currentStep / steps);
         const currentTargetVol = this.getEffectiveVolume();
 
-        // Cosine/linear interpolation
         const outFactor = 1 - progress;
         const inFactor = progress;
 
-        outgoing.volume = Math.max(0, Math.min(1, startOutVol * outFactor));
-        incoming.volume = Math.max(0, Math.min(1, currentTargetVol * inFactor));
+        try {
+          outgoing.volume = Math.max(0, Math.min(1, startOutVol * outFactor));
+          incoming.volume = Math.max(0, Math.min(1, currentTargetVol * inFactor));
+        } catch {}
 
         if (progress >= 1) {
           if (this.fadeIntervalId) {
@@ -197,8 +269,9 @@ export class AudioController {
           }
           outgoing.pause();
           outgoing.currentTime = 0;
-          incoming.volume = currentTargetVol;
-          this.activeChannel = this.activeChannel === 'A' ? 'B' : 'A';
+          try {
+            incoming.volume = currentTargetVol;
+          } catch {}
         }
       }, stepTime);
     } catch (err: any) {
@@ -209,25 +282,6 @@ export class AudioController {
         this.onError?.(err);
       }
     }
-  }
-
-  private rampVolume(element: HTMLAudioElement, fromVol: number, toVol: number, durationMs: number) {
-    if (durationMs <= 0) {
-      element.volume = toVol;
-      return;
-    }
-    const stepTime = 50;
-    const steps = Math.max(1, Math.floor(durationMs / stepTime));
-    let step = 0;
-
-    const interval = setInterval(() => {
-      step++;
-      const factor = Math.min(1, step / steps);
-      element.volume = Math.max(0, Math.min(1, fromVol + (toVol - fromVol) * factor));
-      if (factor >= 1) {
-        clearInterval(interval);
-      }
-    }, stepTime);
   }
 
   public pause(): void {
@@ -245,26 +299,7 @@ export class AudioController {
   }
 
   public resume(): Promise<void> {
-    if (!this.currentSrc) return Promise.resolve();
-    const active = this.getActiveElement();
-    if (active) {
-      active.volume = this.getEffectiveVolume();
-      return active
-        .play()
-        .then(() => {
-          this.isPlaying = true;
-          this.setBlocked(false);
-          this.onStateChange?.(true);
-        })
-        .catch((err) => {
-          if (err?.name === 'NotAllowedError') {
-            this.setBlocked(true);
-          } else {
-            console.warn('[AudioController] Resume error:', err);
-          }
-        });
-    }
-    return Promise.resolve();
+    return this.unlockAndPlay();
   }
 
   public setVolume(volume: number): void {
@@ -278,10 +313,7 @@ export class AudioController {
   }
 
   public unlock(): Promise<void> {
-    if (this.isBlocked && this.currentSrc) {
-      return this.resume();
-    }
-    return Promise.resolve();
+    return this.unlockAndPlay();
   }
 
   public isCurrentlyPlaying(): boolean {

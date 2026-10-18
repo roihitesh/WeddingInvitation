@@ -52,6 +52,61 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const controllerRef = useRef<AudioController | null>(null);
   const preferencesRef = useRef(preferences);
   preferencesRef.current = preferences;
+  const activePageRef = useRef(activePage);
+  activePageRef.current = activePage;
+  const currentTrackRef = useRef(currentTrack);
+  currentTrackRef.current = currentTrack;
+
+  // Direct track play
+  const playTrack = useCallback(
+    async (trackId: string, options: { force?: boolean } = {}) => {
+      const track = weddingMusicTracks.find((t) => t.id === trackId);
+      if (!track) return;
+
+      setCurrentTrack(track);
+      setPreferences((prev) => {
+        if (!prev.enabled) {
+          try {
+            localStorage.setItem(PREF_ENABLED_KEY, 'true');
+          } catch {}
+          return { ...prev, enabled: true };
+        }
+        return prev;
+      });
+
+      if (controllerRef.current) {
+        await controllerRef.current.play(track.src, {
+          force: options.force,
+          crossfade: true,
+        });
+      }
+    },
+    []
+  );
+
+  // Synchronous unlock & play for mobile touch/click gestures
+  const unlockAndPlay = useCallback(
+    async (trackId?: string) => {
+      if (!preferencesRef.current.enabled) {
+        setPreferences((prev) => {
+          try {
+            localStorage.setItem(PREF_ENABLED_KEY, 'true');
+          } catch {}
+          return { ...prev, enabled: true };
+        });
+      }
+
+      const chosenTrackId = trackId || currentTrackRef.current?.id || pageToTrackMap[activePageRef.current] || 'royal-shehnai';
+      const track = weddingMusicTracks.find((t) => t.id === chosenTrackId);
+      if (track) {
+        setCurrentTrack(track);
+        if (controllerRef.current) {
+          await controllerRef.current.unlockAndPlay(track.src);
+        }
+      }
+    },
+    []
+  );
 
   // Initialize AudioController once
   useEffect(() => {
@@ -70,24 +125,24 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
     controller.setVolume(preferences.volume);
     controllerRef.current = controller;
 
-    // First user gesture unlock listener
+    // Direct user gesture listener for mobile WebKit & Chrome
     const handleFirstGesture = () => {
       if (controllerRef.current && preferencesRef.current.enabled) {
-        controllerRef.current.unlock();
+        unlockAndPlay();
       }
     };
 
+    window.addEventListener('touchend', handleFirstGesture, { passive: true });
     window.addEventListener('click', handleFirstGesture, { passive: true });
-    window.addEventListener('touchstart', handleFirstGesture, { passive: true });
-    window.addEventListener('keydown', handleFirstGesture, { passive: true });
+    window.addEventListener('pointerup', handleFirstGesture, { passive: true });
 
     return () => {
+      window.removeEventListener('touchend', handleFirstGesture);
       window.removeEventListener('click', handleFirstGesture);
-      window.removeEventListener('touchstart', handleFirstGesture);
-      window.removeEventListener('keydown', handleFirstGesture);
+      window.removeEventListener('pointerup', handleFirstGesture);
       controller.destroy();
     };
-  }, []);
+  }, [unlockAndPlay]);
 
   // Update volume in controller and localStorage
   const setVolume = useCallback((vol: number) => {
@@ -137,33 +192,6 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
     });
   }, []);
 
-  // Direct track play
-  const playTrack = useCallback(
-    async (trackId: string, options: { force?: boolean } = {}) => {
-      const track = weddingMusicTracks.find((t) => t.id === trackId);
-      if (!track) return;
-
-      setCurrentTrack(track);
-      setPreferences((prev) => {
-        if (!prev.enabled) {
-          try {
-            localStorage.setItem(PREF_ENABLED_KEY, 'true');
-          } catch {}
-          return { ...prev, enabled: true };
-        }
-        return prev;
-      });
-
-      if (controllerRef.current) {
-        await controllerRef.current.play(track.src, {
-          force: options.force,
-          crossfade: true,
-        });
-      }
-    },
-    []
-  );
-
   // Play / Pause toggle
   const togglePlay = useCallback(async () => {
     if (isPlaying) {
@@ -184,13 +212,13 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
       });
 
       if (currentTrack) {
-        await controllerRef.current?.resume();
+        await controllerRef.current?.unlockAndPlay(currentTrack.src);
       } else {
         const defaultTrackId = pageToTrackMap[activePage] || 'royal-shehnai';
-        await playTrack(defaultTrackId);
+        await unlockAndPlay(defaultTrackId);
       }
     }
-  }, [isPlaying, currentTrack, activePage, playTrack]);
+  }, [isPlaying, currentTrack, activePage, unlockAndPlay]);
 
   // Page changed notification
   const notifyPageChanged = useCallback(
@@ -251,6 +279,7 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
     notifyPageChanged,
     notifySceneChanged,
     dismissBlockedNotice,
+    unlockAndPlay,
   };
 
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

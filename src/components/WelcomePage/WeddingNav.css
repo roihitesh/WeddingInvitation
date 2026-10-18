@@ -1,0 +1,368 @@
+/**
+ * Dedicated Stylesheet for Royal Wedding Navigation Bar & Mobile Drawer
+ * Hitesh & Shivanee Wedding Invitation
+ */
+
+.royal-wedding-nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  background: rgba(250, 246, 238, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1.5px solid rgba(197, 155, 39, 0.35);
+  box-shadow: 0 4px 18px rgba(41, 4, 10, 0.06);
+  transition: all 0.3s ease;
+}
+
+.nav-bar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.65rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Brand Lockup */
+.nav-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-back-lang-link {
+  background: none;
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c1424;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-back-lang-link:hover {
+  background: #f3e5ab;
+  border-color: #d4af37;
+  transform: translateX(-2px);
+}
+
+.nav-brand-click {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-mini-monogram {
+  width: 36px;
+  height: 36px;
+}
+
+.nav-couple-title {
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4a1322;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Desktop Destinations */
+.nav-destinations-desktop {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links-list {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4a1322;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+  color: #7b1d33;
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.nav-link-active {
+  color: #5c1424;
+  font-weight: 700;
+}
+
+.nav-active-pip {
+  width: 18px;
+  height: 2px;
+  background: #d4af37;
+  border-radius: 2px;
+}
+
+/* Right Controls */
+.nav-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.compact-lang-switcher {
+  background: #fbf7ee;
+  border: 1px solid #d4af37;
+  border-radius: 20px;
+  padding: 0.35rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5c1424;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.compact-lang-switcher:hover {
+  background: #f4ecdf;
+  border-color: #b8861d;
+  transform: scale(1.03);
+}
+
+/* Hamburger Button */
+.mobile-nav-toggle-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  background: #fcf8f0;
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.mobile-nav-toggle-btn:hover {
+  background: #f6ecdb;
+  border-color: #d4af37;
+}
+
+.toggle-bar {
+  width: 20px;
+  height: 2px;
+  background: #5c1424;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-open .bar-1 {
+  transform: translateY(6px) rotate(45deg);
+}
+.toggle-open .bar-2 {
+  opacity: 0;
+}
+.toggle-open .bar-3 {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile Backdrop */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 6, 10, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 910;
+  animation: fadeInBackdrop 0.2s ease-out;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 82%;
+  max-width: 320px;
+  height: 100vh;
+  background: #fdfaf3;
+  border-left: 2px solid #d4af37;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.35);
+  z-index: 920;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.4rem 2rem;
+  box-sizing: border-box;
+  animation: slideDrawerIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow-y: auto;
+}
+
+@keyframes slideDrawerIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid rgba(197, 155, 39, 0.3);
+  margin-bottom: 1.2rem;
+}
+
+.mobile-drawer-title {
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4a1322;
+  letter-spacing: 0.04em;
+}
+
+.mobile-drawer-close-btn {
+  background: none;
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5c1424;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.mobile-nav-link {
+  width: 100%;
+  min-height: 50px;
+  background: #fffdf9;
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  border-radius: 10px;
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #451017;
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(45, 16, 23, 0.03);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: #fdf5e7;
+  border-color: #d4af37;
+  transform: translateX(4px);
+}
+
+.mobile-link-active {
+  background: linear-gradient(135deg, #5c1424 0%, #3d0d17 100%);
+  color: #f7eedb;
+  border-color: #d4af37;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(92, 20, 36, 0.2);
+}
+
+.mobile-active-lotus {
+  color: #d4af37;
+  font-size: 1.1rem;
+}
+
+.mobile-drawer-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(197, 155, 39, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.mobile-drawer-lang-btn {
+  width: 100%;
+  min-height: 44px;
+  background: #f5eedf;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  color: #5c1424;
+  font-family: var(--font-cinzel, 'Cinzel', serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Mobile Breakpoint (< 860px) */
+@media (max-width: 860px) {
+  .nav-destinations-desktop {
+    display: none;
+  }
+
+  .mobile-nav-toggle-btn {
+    display: flex;
+  }
+
+  .nav-bar-content {
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-couple-title {
+    font-size: 0.95rem;
+  }
+}

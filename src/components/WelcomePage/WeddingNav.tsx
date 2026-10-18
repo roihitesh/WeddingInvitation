@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SupportedLanguage, NavSection } from '../../types/invitation';
 import { WeddingLogo } from '../OpeningPage/WeddingLogo';
+import './WeddingNav.css';
 
 interface WeddingNavProps {
   language: SupportedLanguage;
@@ -12,10 +13,11 @@ interface WeddingNavProps {
 
 /**
  * Minimal, elegant royal wedding navigation bar.
- * Displays:
- * - Left/Center: Existing H&S royal monogram logo & names
- * - Center: Navigation destinations (Welcome, Our Story, Celebrations, Venue)
- * - Right: Compact language switcher control (switches between English and हिंदी)
+ * Features:
+ * - Left/Center: Existing H&S royal monogram logo & couple names
+ * - Center: Desktop navigation destinations
+ * - Right: Compact language switcher control & mobile drawer trigger
+ * - Mobile: Side-slide drawer with luxury royal styling & backdrop overlay
  */
 export const WeddingNav: React.FC<WeddingNavProps> = ({
   language,
@@ -129,27 +131,60 @@ export const WeddingNav: React.FC<WeddingNavProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation & Backdrop Overlay */}
       {mobileMenuOpen && (
-        <nav className="mobile-nav-drawer" aria-label="Mobile Navigation">
-          <ul className="mobile-nav-list">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.key;
-              return (
-                <li key={item.key} className="mobile-nav-item">
-                  <button
-                    type="button"
-                    className={`mobile-nav-link ${isActive ? 'mobile-link-active' : ''}`}
-                    onClick={() => handleNavClick(item.key)}
-                  >
-                    <span>{item.label}</span>
-                    {isActive && <span className="mobile-active-lotus">𑁍</span>}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <>
+          <div
+            className="mobile-nav-backdrop"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <nav className="mobile-nav-drawer" aria-label="Mobile Navigation">
+            <div className="mobile-drawer-header">
+              <span className="mobile-drawer-title">Hitesh &amp; Shivanee</span>
+              <button
+                type="button"
+                className="mobile-drawer-close-btn"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label={isHindi ? 'बंद करें' : 'Close menu'}
+              >
+                ✕
+              </button>
+            </div>
+
+            <ul className="mobile-nav-list">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.key;
+                return (
+                  <li key={item.key} className="mobile-nav-item">
+                    <button
+                      type="button"
+                      className={`mobile-nav-link ${isActive ? 'mobile-link-active' : ''}`}
+                      onClick={() => handleNavClick(item.key)}
+                    >
+                      <span>{item.label}</span>
+                      {isActive && <span className="mobile-active-lotus">𑁍</span>}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mobile-drawer-footer">
+              <button
+                type="button"
+                className="mobile-drawer-lang-btn"
+                onClick={() => {
+                  handleToggleLang();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <span>🌐</span>
+                <span>{isHindi ? 'Switch to English' : 'हिंदी में देखें'}</span>
+              </button>
+            </div>
+          </nav>
+        </>
       )}
     </header>
   );

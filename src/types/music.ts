@@ -48,4 +48,5 @@ export interface MusicContextType {
   notifyPageChanged: (page: string) => void;
   notifySceneChanged: (scene: string) => void;
   dismissBlockedNotice: () => void;
+  unlockAndPlay: (trackId?: string) => Promise<void>;
 }

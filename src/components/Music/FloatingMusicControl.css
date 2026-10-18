@@ -578,24 +578,33 @@ input:checked + .music-slider-round:before {
 }
 
 /* Mobile responsive adjustments */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .music-control-wrapper {
-    bottom: 20px;
-    right: 16px;
+    bottom: 68px; /* Positioned above mobile bottom dock */
+    right: 12px;
   }
 
   .music-floating-btn {
     padding: 6px 12px 6px 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(212, 175, 55, 0.3);
   }
 
   .music-btn-label {
-    max-width: 110px;
+    max-width: 105px;
   }
 
   .music-panel {
-    bottom: 76px;
-    right: 12px;
-    width: calc(100vw - 24px);
-    max-height: 80vh;
+    bottom: 124px;
+    right: 8px;
+    width: calc(100vw - 16px);
+    max-height: 75vh;
+  }
+
+  .music-autoplay-prompt {
+    bottom: calc(100% + 8px);
+    right: 0;
+    width: calc(100vw - 32px);
+    max-width: 300px;
   }
 }
+

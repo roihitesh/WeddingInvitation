@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   CelebrationsPageProps,
   NavSection,
-  CelebrationEvent,
 } from '../../types/invitation';
 import { defaultCelebrationsConfig } from '../../config/celebrationsPage.config';
 import { defaultWeddingDetails } from '../../config/weddingDetails.config';
-import { useWeddingMusic } from '../../context/WeddingMusicContext';
 import { WeddingNav } from '../WelcomePage/WeddingNav';
 import { CelebrationsIntro } from './CelebrationsIntro';
 import { CelebrationsCountdown } from './CelebrationsCountdown';
-import { EventTimeline } from './EventTimeline';
+import { CeremonyCardSwipe } from './CeremonyCardSwipe';
 import { LotusDivider } from '../OpeningPage/LotusDivider';
 import { RoyalWeddingFooter } from '../FinalClosing/RoyalWeddingFooter';
 import '../FinalClosing/FinalClosing.css';
@@ -40,48 +38,8 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
   weddingDetails = defaultWeddingDetails,
   onViewVenue,
 }) => {
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  const { notifySceneChanged, sceneBased } = useWeddingMusic();
-
   const config = defaultCelebrationsConfig;
   const isHindi = language === 'hi';
-
-  // Scene-based music observer for celebrations events
-  useEffect(() => {
-    if (!sceneBased) return;
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            const eventId = entry.target.id.replace('celebration-', '');
-            if (eventId) {
-              notifySceneChanged(eventId);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      }
-    );
-
-    const elements = document.querySelectorAll('[id^="celebration-"]');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [sceneBased, notifySceneChanged]);
-
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage((current) => (current === msg ? null : current));
-    }, 4500);
-  };
 
   const handleNavSection = (section: NavSection) => {
     if (section === 'celebrations') {
@@ -111,25 +69,12 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
       if (onViewVenue) {
         onViewVenue();
       } else {
-        showToast(
-          isHindi
-            ? 'विवाह स्थल एवं मार्ग निर्देश शीघ्र ही साझा किए जाएंगे।'
-            : 'Royal venue details and travel directions will be announced soon.'
-        );
+        onNavigateSection('venue');
       }
       return;
     }
 
     onNavigateSection(section);
-  };
-
-  const handleViewDetails = (event: CelebrationEvent) => {
-    const title = event.title[language] || event.title.en;
-    showToast(
-      isHindi
-        ? `${title} के विस्तृत समय एवं रस्मों की जानकारी अतिशीघ्र उपलब्ध होगी।`
-        : `Detailed itinerary and ceremonies for ${title} will be announced soon!`
-    );
   };
 
   const handleMapClick = (url: string) => {
@@ -146,28 +91,6 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
         activeSection="celebrations"
         onBackToLanguageSelection={onBackToLanguageSelection}
       />
-
-      {/* Floating Royal Toast Notification for placeholder callbacks */}
-      {toastMessage && (
-        <aside
-          className="royal-celebrations-toast"
-          role="status"
-          aria-live="polite"
-        >
-          <div className="toast-gold-frame">
-            <span className="toast-icon">🪔</span>
-            <span className="toast-msg">{toastMessage}</span>
-            <button
-              type="button"
-              className="toast-close"
-              onClick={() => setToastMessage(null)}
-              aria-label={isHindi ? 'हटाएं' : 'Dismiss'}
-            >
-              ✕
-            </button>
-          </div>
-        </aside>
-      )}
 
       {/* Ambient background layers: Handmade paper texture and soft gold jaali watermark */}
       <div className="celebrations-ambient-bg" aria-hidden="true">
@@ -198,19 +121,17 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
           }}
         />
 
-        {/* Section 3: Event Overview & Sequence */}
-        <EventTimeline
+        {/* Section 3: Interactive Ceremony Card Swipe Experience */}
+        <CeremonyCardSwipe
           events={config.events}
           language={language}
           labels={{
-            date: config.labels.date[language] || config.labels.date.en,
-            time: config.labels.time[language] || config.labels.time.en,
-            venue: config.labels.venue[language] || config.labels.venue.en,
-            dressCode: config.labels.dressCode[language] || config.labels.dressCode.en,
-            viewMap: config.labels.viewMap[language] || config.labels.viewMap.en,
-            eventDetails: config.labels.eventDetails[language] || config.labels.eventDetails.en,
+            date: config.labels.date,
+            time: config.labels.time,
+            venue: config.labels.venue,
+            dressCode: config.labels.dressCode,
+            viewMap: config.labels.viewMap,
           }}
-          onViewDetails={handleViewDetails}
           onMapClick={handleMapClick}
         />
 

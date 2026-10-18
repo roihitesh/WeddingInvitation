@@ -1,0 +1,87 @@
+/**
+ * Styles for Mobile Bottom Quick Navigation Dock
+ * Hitesh & Shivanee Wedding Invitation
+ */
+
+.mobile-quick-dock {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-quick-dock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 850;
+    background: rgba(253, 250, 243, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1.5px solid rgba(197, 155, 39, 0.35);
+    box-shadow: 0 -4px 20px rgba(45, 10, 18, 0.08);
+    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .quick-dock-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: none;
+    border: none;
+    color: #5c1424;
+    padding: 4px 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .quick-dock-btn:active {
+    transform: scale(0.94);
+  }
+
+  .quick-dock-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .quick-dock-label {
+    font-family: var(--font-cinzel, 'Cinzel', serif);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #4a1322;
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+
+  .quick-dock-btn.active {
+    background: rgba(212, 175, 55, 0.15);
+  }
+
+  .quick-dock-btn.active .quick-dock-icon {
+    transform: translateY(-2px);
+  }
+
+  .quick-dock-btn.active .quick-dock-label {
+    color: #5c1424;
+    font-weight: 800;
+  }
+
+  .quick-dock-pip {
+    width: 14px;
+    height: 2px;
+    background: #d4af37;
+    border-radius: 1px;
+    margin-top: 1px;
+  }
+}

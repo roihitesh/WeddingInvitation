@@ -11,6 +11,7 @@ import { defaultContent } from './config/content.config';
 import { SupportedLanguage, NavSection } from './types/invitation';
 import { WeddingMusicProvider, useWeddingMusic } from './context/WeddingMusicContext';
 import { FloatingMusicControl } from './components/Music/FloatingMusicControl';
+import { MobileQuickDock } from './components/Navigation/MobileQuickDock';
 
 export type ScreenState = 'opening' | 'language' | 'invitation';
 
@@ -53,7 +54,7 @@ const WeddingAppContent: React.FC = () => {
     return initialHashSection || 'welcome';
   });
 
-  const { notifyPageChanged } = useWeddingMusic();
+  const { notifyPageChanged, unlockAndPlay } = useWeddingMusic();
 
   // Synchronize background music with current screen and active section
   useEffect(() => {
@@ -77,10 +78,12 @@ const WeddingAppContent: React.FC = () => {
   };
 
   const handleOpenPalace = () => {
+    unlockAndPlay('madhurashtakam');
     setCurrentScreen('language');
   };
 
   const handleSelectLanguage = (lang: SupportedLanguage) => {
+    unlockAndPlay('raabta');
     handleLanguageChange(lang);
     setActiveSection('welcome');
     setCurrentScreen('invitation');
@@ -192,6 +195,13 @@ const WeddingAppContent: React.FC = () => {
               onBackToLanguageSelection={handleBackToLanguage}
             />
           )}
+
+          {/* Mobile Bottom Quick Navigation Dock */}
+          <MobileQuickDock
+            language={selectedLanguage}
+            activeSection={activeSection}
+            onNavigateSection={handleNavigateSection}
+          />
         </>
       )}
 

@@ -88,21 +88,8 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
       return;
     }
 
-    if (section === 'celebrations') {
-      if (onExploreCelebrations) {
-        onExploreCelebrations();
-      } else {
-        showToast(config.closing.celebrationFeedback[language] || config.closing.celebrationFeedback.en);
-      }
-      return;
-    }
-
-    if (section === 'venue') {
-      showToast(
-        isHindi
-          ? 'विवाह स्थल एवं मार्ग निर्देश शीघ्र ही साझा किए जाएंगे।'
-          : 'Royal venue details and travel directions will be announced soon.'
-      );
+    if (section === 'celebrations' && onExploreCelebrations) {
+      onExploreCelebrations();
       return;
     }
 
