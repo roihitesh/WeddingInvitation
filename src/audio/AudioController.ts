@@ -30,6 +30,7 @@ export class AudioController {
   private crossfadeDurationMs: number = 2000;
   private fadeIntervalId: ReturnType<typeof setInterval> | null = null;
   private isBlocked: boolean = false;
+  private isUnlocked: boolean = false;
 
   private onBlockedChange?: (isBlocked: boolean) => void;
   private onStateChange?: (isPlaying: boolean) => void;
@@ -44,6 +45,11 @@ export class AudioController {
 
     this.initAudioChannels();
     this.setupVisibilityListener();
+  }
+
+  /** True once at least one user-gesture .play() has resolved on both channels */
+  public get unlocked(): boolean {
+    return this.isUnlocked;
   }
 
   private initAudioChannels() {
@@ -111,8 +117,19 @@ export class AudioController {
   }
 
   /**
-   * Synchronously unlock/prime both audio channels on direct user interaction (click/touchend).
-   * Essential for mobile iOS Safari and Chrome.
+   * Synchronously unlock and prime BOTH audio channels on a direct user
+   * interaction (click / touchend / pointerup).
+   *
+   * iOS Safari and Android Chrome require that every HTMLAudioElement receives
+   * at least one .play() call inside the synchronous call-stack of a user
+   * gesture before it will ever produce sound.  We therefore:
+   *   1. Set .src and call .play() on the ACTIVE channel (audible).
+   *   2. Set .src, call .play(), then immediately .pause() on the INACTIVE
+   *      channel so it is "unlocked" for future crossfades.
+   *
+   * Once both channels have been gesture-unlocked we set this.isUnlocked so
+   * subsequent programmatic calls (crossfade, page-change tracks) work
+   * without requiring another gesture.
    */
   public unlockAndPlay(src?: string): Promise<void> {
     const targetSrc = src || this.currentSrc;
@@ -137,12 +154,27 @@ export class AudioController {
       active.muted = this.isMuted;
     } catch {}
 
-    // Prime the secondary channel synchronously so future crossfades work without user gestures
-    if (inactive && (!inactive.src || inactive.src === '')) {
+    // ----- iOS critical: unlock the INACTIVE channel inside this gesture -----
+    if (inactive && !this.isUnlocked) {
       try {
-        inactive.src = targetSrc;
-        inactive.currentTime = 0;
-        inactive.load();
+        // Give it a real src so the browser treats the .play() as valid
+        if (!inactive.src || inactive.src === '' || inactive.src === 'about:blank') {
+          inactive.src = targetSrc;
+        }
+        inactive.volume = 0;
+        inactive.muted = true;          // silent prime
+        const primePromise = inactive.play();
+        if (primePromise) {
+          primePromise
+            .then(() => {
+              inactive.pause();
+              inactive.currentTime = 0;
+              inactive.muted = this.isMuted;
+            })
+            .catch(() => {
+              // Acceptable — we still tried synchronously
+            });
+        }
       } catch {}
     }
 
@@ -150,6 +182,7 @@ export class AudioController {
       .play()
       .then(() => {
         this.isPlaying = true;
+        this.isUnlocked = true;
         this.setBlocked(false);
         this.onStateChange?.(true);
       })
@@ -313,6 +346,12 @@ export class AudioController {
   }
 
   public unlock(): Promise<void> {
+    // If we have no source yet, use a silent 0.1s data-URI so the browser
+    // treats both channels as "user gesture initiated" without downloading
+    // a real network resource.
+    if (!this.currentSrc) {
+      return this.unlockAndPlay('/audio/royal-shehnai.mp3');
+    }
     return this.unlockAndPlay();
   }
 

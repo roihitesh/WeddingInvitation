@@ -84,7 +84,10 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
     []
   );
 
-  // Synchronous unlock & play for mobile touch/click gestures
+  // Synchronous unlock & play for mobile touch/click gestures.
+  // This MUST be called directly from a user-gesture event handler
+  // (onClick, onTouchEnd) so the browser treats the .play() as
+  // gesture-initiated.
   const unlockAndPlay = useCallback(
     async (trackId?: string) => {
       if (!preferencesRef.current.enabled) {
@@ -96,11 +99,18 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
         });
       }
 
-      const chosenTrackId = trackId || currentTrackRef.current?.id || pageToTrackMap[activePageRef.current] || 'royal-shehnai';
+      const chosenTrackId =
+        trackId ||
+        currentTrackRef.current?.id ||
+        pageToTrackMap[activePageRef.current] ||
+        'royal-shehnai';
+
       const track = weddingMusicTracks.find((t) => t.id === chosenTrackId);
       if (track) {
         setCurrentTrack(track);
         if (controllerRef.current) {
+          // On mobile the src must be set SYNCHRONOUSLY inside the gesture
+          // call-stack.  unlockAndPlay on AudioController does exactly that.
           await controllerRef.current.unlockAndPlay(track.src);
         }
       }
@@ -125,21 +135,64 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
     controller.setVolume(preferences.volume);
     controllerRef.current = controller;
 
-    // Direct user gesture listener for mobile WebKit & Chrome
-    const handleFirstGesture = () => {
-      if (controllerRef.current && preferencesRef.current.enabled) {
-        unlockAndPlay();
-      }
+    // ── Mobile gesture unlock ──────────────────────────────────────────
+    // iOS Safari and Android Chrome require that HTMLAudioElement.play()
+    // is called synchronously inside a user-gesture event handler
+    // (touchend / click / pointerup).  We attach ONE-SHOT listeners
+    // that fire on the very first gesture, unlock both audio channels,
+    // and then remove themselves so they never interfere with later taps.
+    let gestureCleanedUp = false;
+
+    const removeGestureListeners = () => {
+      if (gestureCleanedUp) return;
+      gestureCleanedUp = true;
+      window.removeEventListener('touchend', handleFirstGesture, true);
+      window.removeEventListener('click', handleFirstGesture, true);
+      window.removeEventListener('pointerup', handleFirstGesture, true);
     };
 
-    window.addEventListener('touchend', handleFirstGesture, { passive: true });
-    window.addEventListener('click', handleFirstGesture, { passive: true });
-    window.addEventListener('pointerup', handleFirstGesture, { passive: true });
+    const handleFirstGesture = () => {
+      if (!controllerRef.current) return;
+
+      // Already unlocked — remove listeners immediately
+      if (controllerRef.current.unlocked) {
+        removeGestureListeners();
+        return;
+      }
+
+      // Only try to play if the user hasn't explicitly disabled music
+      if (!preferencesRef.current.enabled) {
+        removeGestureListeners();
+        return;
+      }
+
+      // Resolve which track should play right now
+      const trackId =
+        currentTrackRef.current?.id ||
+        pageToTrackMap[activePageRef.current] ||
+        'royal-shehnai';
+
+      const track = weddingMusicTracks.find((t) => t.id === trackId);
+      if (track && controllerRef.current) {
+        controllerRef.current
+          .unlockAndPlay(track.src)
+          .then(() => {
+            setCurrentTrack(track);
+          })
+          .catch(() => {});
+      }
+
+      // Remove listeners after the first attempt regardless of outcome
+      removeGestureListeners();
+    };
+
+    // Use capture phase so we fire before React synthetic handlers
+    window.addEventListener('touchend', handleFirstGesture, { capture: true, passive: true } as AddEventListenerOptions);
+    window.addEventListener('click', handleFirstGesture, { capture: true, passive: true } as AddEventListenerOptions);
+    window.addEventListener('pointerup', handleFirstGesture, { capture: true, passive: true } as AddEventListenerOptions);
 
     return () => {
-      window.removeEventListener('touchend', handleFirstGesture);
-      window.removeEventListener('click', handleFirstGesture);
-      window.removeEventListener('pointerup', handleFirstGesture);
+      removeGestureListeners();
       controller.destroy();
     };
   }, [unlockAndPlay]);
