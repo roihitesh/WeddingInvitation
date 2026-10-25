@@ -41,6 +41,8 @@ export const VenuePage: React.FC<VenuePageProps> = ({
   onBackToCelebrations,
   onBackToLanguageSelection,
   weddingDetails: _weddingDetails,
+  hideNav = false,
+  hideFooter = false,
 }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activePhoto, setActivePhoto] = useState<VenuePhoto | null>(null);
@@ -101,13 +103,15 @@ export const VenuePage: React.FC<VenuePageProps> = ({
   return (
     <div className="venue-page-root" role="main">
       {/* Top Royal Navigation Bar */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="venue"
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="venue"
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* Floating Royal Toast */}
       {toastMessage && (
@@ -325,12 +329,14 @@ export const VenuePage: React.FC<VenuePageProps> = ({
       )}
 
       {/* Sacred Traditional Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="venue"
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="venue"
+        />
+      )}
     </div>
   );
 };

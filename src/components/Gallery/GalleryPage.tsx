@@ -31,6 +31,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   onNavigateSection,
   onBackToWelcome,
   onBackToLanguageSelection,
+  hideNav = false,
+  hideFooter = false,
 }) => {
   const config = defaultGalleryConfig;
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -91,13 +93,15 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
   return (
     <div className="royal-gallery-page-container" id="gallery-page-top">
       {/* Top Royal Navigation */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={onNavigateSection}
-        activeSection="gallery"
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={onNavigateSection}
+          activeSection="gallery"
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* Main Page Content */}
       <main className="gallery-main-container">
@@ -146,12 +150,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({
       </main>
 
       {/* Page 9: Refined Royal Wedding Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={onNavigateSection}
-        activeSection="gallery"
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={onNavigateSection}
+          activeSection="gallery"
+        />
+      )}
 
       {/* Full-screen Lightbox Modal */}
       {selectedPhoto && (

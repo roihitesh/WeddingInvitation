@@ -113,6 +113,9 @@ export interface WelcomePageProps {
   onExploreWedding?: () => void;
   onSendWishes?: () => void;
   onNavigateSection?: (section: NavSection) => void;
+  hideNav?: boolean;
+  hideFooter?: boolean;
+  hideClosing?: boolean;
 }
 
 export type TimelineMarkerType =
@@ -163,6 +166,8 @@ export interface OurStoryPageProps {
   onBackToWelcome?: () => void;
   onBackToLanguageSelection?: () => void;
   onExploreCelebrations?: () => void;
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
 export type CelebrationEventType =
@@ -218,6 +223,8 @@ export interface CelebrationsPageProps {
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
   onViewVenue?: () => void;
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
 export interface VenuePhoto {
@@ -301,6 +308,8 @@ export interface VenuePageProps {
   onBackToCelebrations?: () => void;
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
 export type AttendanceStatus = 'attending' | 'declined';
@@ -371,6 +380,8 @@ export interface RsvpPageProps {
   onBackToWelcome?: () => void;
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
 export interface GalleryCategory {
@@ -424,6 +435,8 @@ export interface GalleryPageProps {
   onBackToWelcome?: () => void;
   onBackToLanguageSelection?: () => void;
   weddingDetails?: WeddingDetails;
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
 export interface FinalClosingConfig {

@@ -38,6 +38,8 @@ export const RsvpPage: React.FC<RsvpPageProps> = ({
   onBackToWelcome,
   onBackToLanguageSelection,
   weddingDetails: _weddingDetails = defaultWeddingDetails,
+  hideNav = false,
+  hideFooter = false,
 }) => {
   const config = defaultRsvpConfig;
   const isHindi = language === 'hi';
@@ -138,13 +140,15 @@ export const RsvpPage: React.FC<RsvpPageProps> = ({
   return (
     <div className="rsvp-page-root" role="main">
       {/* Top Royal Navigation Bar */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="rsvp"
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="rsvp"
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* Ambient background layers */}
       <div className="rsvp-ambient-bg" aria-hidden="true">
@@ -360,12 +364,14 @@ export const RsvpPage: React.FC<RsvpPageProps> = ({
       </div>
 
       {/* Sacred Traditional Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={onNavigateSection}
-        activeSection="rsvp"
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={onNavigateSection}
+          activeSection="rsvp"
+        />
+      )}
     </div>
   );
 };

@@ -31,6 +31,9 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
   onExploreWedding,
   onSendWishes,
   onNavigateSection,
+  hideNav = false,
+  hideFooter = false,
+  hideClosing = false,
 }) => {
   const [activeSection, setActiveSection] = useState<NavSection>('welcome');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -82,13 +85,15 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
       <div className="welcome-ambient-glow" aria-hidden="true" />
 
       {/* 3. Top Royal Navigation Bar */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection={activeSection}
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection={activeSection}
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* 4. Main Welcome Page Body Container */}
       <main className="welcome-page-main-container">
@@ -101,20 +106,24 @@ export const WelcomePage: React.FC<WelcomePageProps> = ({
         />
 
         {/* Page 9: Final Wedding Invitation & Closing Section */}
-        <FinalInvitationClosing
-          language={language}
-          onNavigateSection={handleNavSection}
-          weddingDetails={weddingDetails}
-        />
+        {!hideClosing && (
+          <FinalInvitationClosing
+            language={language}
+            onNavigateSection={handleNavSection}
+            weddingDetails={weddingDetails}
+          />
+        )}
       </main>
 
       {/* Page 9: Refined Royal Wedding Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection={activeSection}
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection={activeSection}
+        />
+      )}
 
       {/* Graceful Toast Feedback for Placeholder Destinations */}
       {toastMessage && (

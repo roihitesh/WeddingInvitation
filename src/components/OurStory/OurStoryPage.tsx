@@ -28,6 +28,8 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   onBackToWelcome,
   onBackToLanguageSelection,
   onExploreCelebrations,
+  hideNav = false,
+  hideFooter = false,
 }) => {
   const [activePhoto, setActivePhoto] = useState<StoryPhotoItem | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -107,13 +109,15 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
   return (
     <div className="our-story-page-root" role="main">
       {/* Top Royal Navigation Bar */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="story"
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="story"
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* Floating Royal Toast Notification for placeholder callbacks */}
       {toastMessage && (
@@ -178,12 +182,14 @@ export const OurStoryPage: React.FC<OurStoryPageProps> = ({
       />
 
       {/* Sacred Traditional Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="story"
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="story"
+        />
+      )}
     </div>
   );
 };

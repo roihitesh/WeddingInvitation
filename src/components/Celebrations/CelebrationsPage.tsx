@@ -37,6 +37,8 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
   onBackToLanguageSelection,
   weddingDetails = defaultWeddingDetails,
   onViewVenue,
+  hideNav = false,
+  hideFooter = false,
 }) => {
   const config = defaultCelebrationsConfig;
   const isHindi = language === 'hi';
@@ -84,13 +86,15 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
   return (
     <div className="celebrations-page-root" role="main">
       {/* Top Royal Navigation Bar */}
-      <WeddingNav
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="celebrations"
-        onBackToLanguageSelection={onBackToLanguageSelection}
-      />
+      {!hideNav && (
+        <WeddingNav
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="celebrations"
+          onBackToLanguageSelection={onBackToLanguageSelection}
+        />
+      )}
 
       {/* Ambient background layers: Handmade paper texture and soft gold jaali watermark */}
       <div className="celebrations-ambient-bg" aria-hidden="true">
@@ -152,12 +156,14 @@ export const CelebrationsPage: React.FC<CelebrationsPageProps> = ({
       </div>
 
       {/* Sacred Traditional Footer */}
-      <RoyalWeddingFooter
-        language={language}
-        onLanguageChange={onLanguageChange}
-        onNavigateSection={handleNavSection}
-        activeSection="celebrations"
-      />
+      {!hideFooter && (
+        <RoyalWeddingFooter
+          language={language}
+          onLanguageChange={onLanguageChange}
+          onNavigateSection={handleNavSection}
+          activeSection="celebrations"
+        />
+      )}
     </div>
   );
 };
