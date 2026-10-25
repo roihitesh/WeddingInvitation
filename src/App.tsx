@@ -226,7 +226,7 @@ const WeddingAppContent: React.FC = () => {
                 onSendWishes={() => handleNavigateSection('rsvp')}
                 hideNav={true}
                 hideFooter={true}
-                hideClosing={true}
+                hideClosing={false}
               />
             </div>
 
