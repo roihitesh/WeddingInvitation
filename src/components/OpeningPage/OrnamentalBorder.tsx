@@ -11,6 +11,19 @@ interface OrnamentalBorderProps {
 export const OrnamentalBorder: React.FC<OrnamentalBorderProps> = ({ className = '' }) => {
   return (
     <div className={`page-ornamental-border-container ${className}`} aria-hidden="true">
+      {/* Shared defs for border gold gradient */}
+      <svg className="ornamental-border-defs-svg" style={{ position: 'absolute', width: 0, height: 0 }}>
+        <defs>
+          <linearGradient id="pageBorderGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#80540d" />
+            <stop offset="25%" stopColor="#dfb76c" />
+            <stop offset="50%" stopColor="#fff8e7" />
+            <stop offset="75%" stopColor="#dfb76c" />
+            <stop offset="100%" stopColor="#80540d" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       {/* 4 Traditional Indian Corner Filigrees */}
       <div className="border-corner corner-top-left">
         <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">

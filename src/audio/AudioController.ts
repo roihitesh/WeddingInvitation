@@ -251,6 +251,10 @@ export class AudioController {
         this.setBlocked(false);
         this.onStateChange?.(true);
       } catch (err: any) {
+        if (err?.name === 'AbortError') {
+          // Play request was superseded by a newer track load; safe to ignore
+          return;
+        }
         if (err?.name === 'NotAllowedError') {
           this.setBlocked(true);
         } else {
@@ -277,7 +281,7 @@ export class AudioController {
       this.onStateChange?.(true);
 
       const duration = this.crossfadeDurationMs;
-      const stepTime = 50; // ms
+      const stepTime = 40; // ms for silky smooth volume steps
       const steps = Math.max(1, Math.floor(duration / stepTime));
       let currentStep = 0;
       const startOutVol = outgoing.volume;
@@ -300,14 +304,18 @@ export class AudioController {
             clearInterval(this.fadeIntervalId);
             this.fadeIntervalId = null;
           }
-          outgoing.pause();
-          outgoing.currentTime = 0;
           try {
+            outgoing.pause();
+            outgoing.currentTime = 0;
             incoming.volume = currentTargetVol;
           } catch {}
         }
       }, stepTime);
     } catch (err: any) {
+      if (err?.name === 'AbortError') {
+        // Play was superseded by a new source load
+        return;
+      }
       if (err?.name === 'NotAllowedError') {
         this.setBlocked(true);
       } else {

@@ -103,13 +103,16 @@ const WeddingAppContent: React.FC = () => {
 
             let currentSection: NavSection = 'welcome';
 
-            for (const section of VALID_SECTIONS) {
-              const el = sectionRefs.current[section];
-              if (!el) continue;
-              const rect = el.getBoundingClientRect();
-              // When section top crosses above the target line, it becomes active
-              if (rect.top <= targetPoint) {
-                currentSection = section;
+            // Only check downstream sections if scrolled away from top
+            if (container.scrollTop > 50) {
+              for (const section of VALID_SECTIONS) {
+                const el = sectionRefs.current[section];
+                if (!el) continue;
+                const rect = el.getBoundingClientRect();
+                // When section top crosses above the target line, it becomes active
+                if (rect.top <= targetPoint) {
+                  currentSection = section;
+                }
               }
             }
 
@@ -170,6 +173,7 @@ const WeddingAppContent: React.FC = () => {
 
     isProgrammaticScroll.current = true;
     setActiveSection(section);
+    notifyPageChanged(section, true);
     window.history.replaceState(null, '', `#${section}`);
 
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -177,7 +181,7 @@ const WeddingAppContent: React.FC = () => {
     setTimeout(() => {
       isProgrammaticScroll.current = false;
     }, 850);
-  }, []);
+  }, [notifyPageChanged]);
 
   // Ref callback helper
   const setSectionRef = useCallback((section: NavSection) => (el: HTMLDivElement | null) => {
@@ -231,7 +235,7 @@ const WeddingAppContent: React.FC = () => {
                 onSendWishes={() => handleNavigateSection('rsvp')}
                 hideNav={true}
                 hideFooter={true}
-                hideClosing={false}
+                hideClosing={true}
               />
             </div>
 

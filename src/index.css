@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
+:root {
+  --ivory-paper: #faf6ee;
+  --ivory-paper-warm: #f6ebd9;
+  --ivory-paper-light: #fffdf8;
+  --maroon-deep: #3b060d;
+  --maroon-royal: #520f18;
+  --maroon-dark: #29040a;
+  --maroon-text: #451017;
+  --gold-antique: #b8861d;
+  --gold-highlight: #dfb76c;
+  --gold-deep: #8f6414;
+  --gold-champagne: #fff2c7;
+  --font-serif-royal: 'Playfair Display', 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+  --font-serif-body: 'Cormorant Garamond', Garamond, Georgia, serif;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }

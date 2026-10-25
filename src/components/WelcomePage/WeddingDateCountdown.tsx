@@ -102,6 +102,13 @@ export const WeddingDateCountdown: React.FC<WeddingDateCountdownProps> = ({
       {/* Decorative Gold Arch Border Vector */}
       <div className="countdown-card-frame" aria-hidden="true">
         <svg viewBox="0 0 400 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="countdown-arch-svg">
+          <defs>
+            <linearGradient id="dateCardGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#966e1b" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#dfb76c" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#966e1b" stopOpacity="0.3" />
+            </linearGradient>
+          </defs>
           <path
             d="M 10 30 C 120 30 160 8 200 8 C 240 8 280 30 390 30"
             stroke="url(#dateCardGold)"

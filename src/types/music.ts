@@ -45,7 +45,7 @@ export interface MusicContextType {
   setVolume: (vol: number) => void;
   setAutoChange: (enabled: boolean) => void;
   setSceneBased: (enabled: boolean) => void;
-  notifyPageChanged: (page: string) => void;
+  notifyPageChanged: (page: string, immediate?: boolean) => void;
   notifySceneChanged: (scene: string) => void;
   dismissBlockedNotice: () => void;
   unlockAndPlay: (trackId?: string) => Promise<void>;

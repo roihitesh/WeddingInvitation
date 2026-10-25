@@ -56,6 +56,7 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
   activePageRef.current = activePage;
   const currentTrackRef = useRef(currentTrack);
   currentTrackRef.current = currentTrack;
+  const pageChangeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Direct track play
   const playTrack = useCallback(
@@ -275,7 +276,7 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   // Page changed notification
   const notifyPageChanged = useCallback(
-    (page: string) => {
+    (page: string, immediate: boolean = false) => {
       setActivePage(page);
 
       if (!preferencesRef.current.enabled) {
@@ -286,12 +287,26 @@ export const WeddingMusicProvider: React.FC<{ children: React.ReactNode }> = ({ 
         return;
       }
 
-      const targetTrackId = pageToTrackMap[page];
-      if (targetTrackId && targetTrackId !== currentTrack?.id) {
-        playTrack(targetTrackId);
+      if (pageChangeTimerRef.current) {
+        clearTimeout(pageChangeTimerRef.current);
+        pageChangeTimerRef.current = null;
+      }
+
+      const switchTrack = () => {
+        const targetTrackId = pageToTrackMap[page];
+        if (targetTrackId && targetTrackId !== currentTrackRef.current?.id) {
+          playTrack(targetTrackId);
+        }
+      };
+
+      if (immediate) {
+        switchTrack();
+      } else {
+        // Smooth debounce (600ms) prevents song stuttering/abrupt interruptions during rapid continuous scrolling
+        pageChangeTimerRef.current = setTimeout(switchTrack, 600);
       }
     },
-    [currentTrack, playTrack]
+    [playTrack]
   );
 
   // Scene changed notification (e.g. Haldi ceremony or story milestone)

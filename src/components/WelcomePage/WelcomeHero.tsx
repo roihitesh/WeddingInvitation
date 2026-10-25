@@ -97,7 +97,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
             "
             stroke="url(#heroGoldBorder)"
             strokeWidth="1.4"
-            fill="url(#heroInnerMaroon)"
+            fill="none"
           />
 
           {/* Top Arch Finial Kalash Accent */}
