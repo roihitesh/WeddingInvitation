@@ -84,51 +84,56 @@ const WeddingAppContent: React.FC = () => {
     }
   }, [currentScreen, activeSection, notifyPageChanged]);
 
-  // ── IntersectionObserver: detect which frame is currently centered / visible ──
+  // ── Scroll Spy: dynamically highlight active section in Top Bar as user scrolls ──
   useEffect(() => {
     if (currentScreen !== 'invitation') return;
 
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isProgrammaticScroll.current) return;
+    let ticking = false;
 
-        let maxRatio = 0;
-        let visibleSection: NavSection | null = null;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!isProgrammaticScroll.current && container) {
+            const containerRect = container.getBoundingClientRect();
+            // Test line placed 38% down into the viewport
+            const targetPoint = containerRect.top + container.clientHeight * 0.38;
 
-        entries.forEach((entry) => {
-          const section = entry.target.getAttribute('data-section') as NavSection | null;
-          if (section && entry.intersectionRatio > maxRatio) {
-            maxRatio = entry.intersectionRatio;
-            visibleSection = section;
-          }
-        });
+            let currentSection: NavSection = 'welcome';
 
-        if (visibleSection && maxRatio > 0.35) {
-          setActiveSection((prev) => {
-            if (prev !== visibleSection) {
-              window.history.replaceState(null, '', `#${visibleSection}`);
-              return visibleSection!;
+            for (const section of VALID_SECTIONS) {
+              const el = sectionRefs.current[section];
+              if (!el) continue;
+              const rect = el.getBoundingClientRect();
+              // When section top crosses above the target line, it becomes active
+              if (rect.top <= targetPoint) {
+                currentSection = section;
+              }
             }
-            return prev;
-          });
-        }
-      },
-      {
-        root: container,
-        threshold: [0.1, 0.35, 0.6, 0.85],
+
+            setActiveSection((prev) => {
+              if (prev !== currentSection) {
+                window.history.replaceState(null, '', `#${currentSection}`);
+                return currentSection;
+              }
+              return prev;
+            });
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    );
+    };
 
-    // Observe all chapter snap sections
-    VALID_SECTIONS.forEach((key) => {
-      const el = sectionRefs.current[key];
-      if (el) observer.observe(el);
-    });
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    // Run initial check once mounted
+    handleScroll();
 
-    return () => observer.disconnect();
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
   }, [currentScreen]);
 
   // Persist language choice

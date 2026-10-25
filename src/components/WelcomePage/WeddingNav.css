@@ -116,15 +116,19 @@
 }
 
 .nav-link-active {
-  color: #5c1424;
+  color: #520f18;
   font-weight: 700;
+  background: rgba(212, 175, 55, 0.16);
+  border-radius: 8px;
 }
 
 .nav-active-pip {
-  width: 18px;
-  height: 2px;
-  background: #d4af37;
+  width: 22px;
+  height: 2.5px;
+  background: linear-gradient(90deg, #966e1b, #dfb76c, #966e1b);
   border-radius: 2px;
+  box-shadow: 0 0 8px rgba(223, 183, 108, 0.6);
+  transition: all 0.3s ease;
 }
 
 /* Right Controls */
